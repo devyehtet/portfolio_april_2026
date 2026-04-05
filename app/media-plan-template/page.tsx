@@ -19,10 +19,23 @@ export const metadata: Metadata = {
 };
 
 const phaseStyles: Record<string, string> = {
-  Awareness: "border-sky-500/30 bg-sky-500/10 text-sky-200",
-  Consideration: "border-violet-500/30 bg-violet-500/10 text-violet-200",
-  Conversion: "border-emerald-500/30 bg-emerald-500/10 text-emerald-200",
+  Awareness: "border-sky-400/35 bg-sky-400/12 text-sky-100",
+  Consideration: "border-violet-400/35 bg-violet-400/12 text-violet-100",
+  Conversion: "border-emerald-400/35 bg-emerald-400/12 text-emerald-100",
 };
+
+const phaseRowGlowStyles: Record<string, string> = {
+  Awareness: "from-sky-400/18 via-sky-400/8 to-transparent",
+  Consideration: "from-violet-400/18 via-violet-400/8 to-transparent",
+  Conversion: "from-emerald-400/18 via-emerald-400/8 to-transparent",
+};
+
+const metricCardStyles = [
+  "border-sky-400/20 bg-sky-400/[0.08]",
+  "border-indigo-400/20 bg-indigo-400/[0.08]",
+  "border-violet-400/20 bg-violet-400/[0.08]",
+  "border-emerald-400/20 bg-emerald-400/[0.08]",
+];
 
 export default function MediaPlanTemplatePage() {
   return (
@@ -176,29 +189,105 @@ export default function MediaPlanTemplatePage() {
             </p>
           </div>
 
-          <div className="overflow-hidden rounded-3xl border border-slate-200/80 bg-white text-slate-900 shadow-2xl shadow-slate-950/30">
-            <div className="border-b border-slate-200 bg-slate-50 px-5 py-5">
-              <div className="grid gap-3 md:grid-cols-4">
-                {mediaPlanDemoMetrics.map((metric) => (
-                  <div key={metric.label} className="rounded-2xl border border-slate-200 bg-white p-4">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                      {metric.label}
+          <div className="overflow-hidden rounded-[2rem] border border-slate-800/90 bg-[linear-gradient(180deg,rgba(15,23,42,0.98),rgba(2,6,23,0.98))] text-slate-100 shadow-[0_30px_120px_rgba(2,6,23,0.65)]">
+            <div className="border-b border-slate-800/80 bg-slate-950/80 px-5 py-5 backdrop-blur">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="flex gap-2">
+                    <span className="h-2.5 w-2.5 rounded-full bg-rose-400/80" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-amber-300/80" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
+                  </div>
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+                      Google Sheet Mockup
                     </p>
-                    <p className="mt-2 text-xl font-bold">{metric.value}</p>
-                    <p className="mt-1 text-xs leading-5 text-slate-500">
+                    <p className="mt-1 text-sm font-semibold text-slate-100">
+                      Q2 growth planning workspace
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-2 text-[11px] font-medium text-slate-300">
+                  {["Overview", "Channel Mix", "Conversion Notes"].map((tab) => (
+                    <span
+                      key={tab}
+                      className="rounded-full border border-slate-700 bg-slate-900/80 px-3 py-1.5"
+                    >
+                      {tab}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-5 grid gap-3 lg:grid-cols-[1.1fr_0.9fr]">
+                <div className="rounded-3xl border border-slate-800 bg-[linear-gradient(135deg,rgba(14,165,233,0.16),rgba(15,23,42,0.4)_55%,rgba(99,102,241,0.12))] p-5">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-200">
+                    Campaign Snapshot
+                  </p>
+                  <h3 className="mt-3 text-xl font-semibold text-white">
+                    Multi-channel launch plan with reach, traffic, and conversion guardrails
+                  </h3>
+                  <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300">
+                    Built to show how spend, audience strategy, and landing-page
+                    support can live in one clean planning view before execution.
+                  </p>
+                </div>
+
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {[
+                    { label: "Primary KPI", value: "Qualified Sessions" },
+                    { label: "Planning Window", value: "8 Weeks" },
+                    { label: "Optimization Rhythm", value: "Weekly" },
+                    { label: "Share Method", value: "Manual Review" },
+                  ].map((item) => (
+                    <div
+                      key={item.label}
+                      className="rounded-2xl border border-slate-800 bg-slate-900/75 p-4"
+                    >
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+                        {item.label}
+                      </p>
+                      <p className="mt-2 text-sm font-semibold text-slate-100">
+                        {item.value}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-5 px-5 py-5">
+              <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+                {mediaPlanDemoMetrics.map((metric, index) => (
+                  <div
+                    key={metric.label}
+                    className={`rounded-3xl border p-4 ${metricCardStyles[index % metricCardStyles.length]}`}
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-300">
+                        {metric.label}
+                      </p>
+                      <span className="rounded-full border border-white/10 bg-white/5 px-2 py-1 text-[10px] uppercase tracking-[0.16em] text-slate-400">
+                        Demo
+                      </span>
+                    </div>
+                    <p className="mt-4 text-3xl font-semibold tracking-tight text-white">
+                      {metric.value}
+                    </p>
+                    <p className="mt-3 text-sm leading-6 text-slate-300">
                       {metric.note}
                     </p>
                   </div>
                 ))}
               </div>
-            </div>
 
-            <div className="overflow-x-auto">
-              <div className="min-w-[920px]">
-                <div className="grid grid-cols-[0.8fr_1fr_1.3fr_1.2fr_0.8fr_0.8fr_0.9fr] border-b border-slate-200 bg-slate-100 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+              <div className="overflow-x-auto rounded-[1.75rem] border border-slate-800/80 bg-slate-950/55">
+                <div className="min-w-[980px]">
+                  <div className="grid grid-cols-[0.85fr_1fr_1.35fr_1.2fr_0.8fr_0.8fr_0.95fr] border-b border-slate-800 bg-white/[0.04] text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
                   {["Phase", "Channel", "Objective", "Audience", "Budget", "Flight", "Target"].map(
                     (header) => (
-                      <div key={header} className="px-4 py-3">
+                      <div key={header} className="px-4 py-3.5">
                         {header}
                       </div>
                     )
@@ -208,33 +297,46 @@ export default function MediaPlanTemplatePage() {
                 {mediaPlanDemoRows.map((row) => (
                   <div
                     key={`${row.phase}-${row.channel}`}
-                    className="grid grid-cols-[0.8fr_1fr_1.3fr_1.2fr_0.8fr_0.8fr_0.9fr] border-b border-slate-200 last:border-b-0"
+                    className="group relative grid grid-cols-[0.85fr_1fr_1.35fr_1.2fr_0.8fr_0.8fr_0.95fr] border-b border-slate-800/80 bg-slate-950/15 transition hover:bg-slate-900/45 last:border-b-0"
                   >
-                    <div className="px-4 py-4">
+                    <div
+                      className={`pointer-events-none absolute inset-y-3 left-0 w-20 bg-gradient-to-r ${phaseRowGlowStyles[row.phase] ?? "from-white/5 to-transparent"} opacity-90`}
+                    />
+
+                    <div className="relative px-4 py-4">
                       <span
-                        className={`inline-flex rounded-full border px-3 py-1 text-[11px] font-semibold ${phaseStyles[row.phase] ?? "border-slate-200 bg-slate-100 text-slate-600"}`}
+                        className={`inline-flex rounded-full border px-3 py-1 text-[11px] font-semibold ${phaseStyles[row.phase] ?? "border-slate-700 bg-slate-800 text-slate-200"}`}
                       >
                         {row.phase}
                       </span>
                     </div>
-                    <div className="px-4 py-4 text-sm font-semibold">
-                      {row.channel}
+                    <div className="relative px-4 py-4">
+                      <p className="text-sm font-semibold text-white">{row.channel}</p>
+                      <p className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-500">
+                        Channel role
+                      </p>
                     </div>
-                    <div className="px-4 py-4 text-sm leading-6 text-slate-700">
+                    <div className="relative px-4 py-4 text-sm leading-6 text-slate-200">
                       {row.objective}
                     </div>
-                    <div className="px-4 py-4 text-sm leading-6 text-slate-700">
+                    <div className="relative px-4 py-4 text-sm leading-6 text-slate-300">
                       {row.audience}
                     </div>
-                    <div className="px-4 py-4 text-sm font-semibold">
-                      {row.budget}
+                    <div className="relative px-4 py-4">
+                      <p className="text-sm font-semibold text-white">{row.budget}</p>
+                      <p className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-500">
+                        Allocated
+                      </p>
                     </div>
-                    <div className="px-4 py-4 text-sm">{row.flight}</div>
-                    <div className="px-4 py-4 text-sm leading-6 text-slate-700">
+                    <div className="relative px-4 py-4 text-sm text-slate-200">
+                      {row.flight}
+                    </div>
+                    <div className="relative px-4 py-4 text-sm leading-6 text-slate-300">
                       {row.target}
                     </div>
                   </div>
                 ))}
+                </div>
               </div>
             </div>
           </div>
