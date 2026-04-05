@@ -14,6 +14,7 @@ import {
 const navItems = [
   { label: "About", id: "about" },
   { label: "Services", id: "services" },
+  { label: "Work", id: "work" },
   { label: "Template", id: "template" },
   { label: "Skills", id: "skills" },
   { label: "Experience", id: "experience" },
@@ -185,6 +186,36 @@ const certifications = [
     issuer: "Google",
     year: 2024,
     description: "Programmatic media planning & activation.",
+  },
+];
+
+const inquiryPaths = [
+  {
+    label: "Work With Me",
+    title: "Start with the service that fits the job",
+    description:
+      "Send a focused work inquiry for consulting, training, audits, freelance media buying, and strategic growth support.",
+    href: "/work-with-me",
+    cta: "Open Work Page",
+    highlights: ["Consulting", "Training", "Media Buying"],
+  },
+  {
+    label: "Book a Call",
+    title: "Use a brief-first booking flow",
+    description:
+      "Let me review the context before we schedule. This is best for serious business conversations and next-step planning.",
+    href: "/book-call",
+    cta: "Go to Booking",
+    highlights: ["Brief First", "Email Reply", "Clear Next Step"],
+  },
+  {
+    label: "Media Plan Template",
+    title: "Request the Google Sheet workflow",
+    description:
+      "Ask for the media plan template, share what you are planning, and I will manually review and share the sheet.",
+    href: "/media-plan-template",
+    cta: "View Template",
+    highlights: ["Google Sheet", "Manual Review", "Inbox Delivery"],
   },
 ];
 
@@ -585,6 +616,62 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* WORK PATHS */}
+        <section id="work" className="space-y-6">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div className="space-y-3">
+              <p className="text-xs uppercase tracking-[0.25em] text-sky-300">
+                Best Way to Reach Me
+              </p>
+              <h2 className="text-2xl font-semibold">
+                Choose the page that matches what you need
+              </h2>
+              <p className="max-w-3xl text-sm leading-7 text-slate-300">
+                If you are contacting me about work, use the landing page that
+                matches your intent. That keeps the message clearer and helps
+                me reply with the right next step faster.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-4 lg:grid-cols-3">
+            {inquiryPaths.map((item) => (
+              <article
+                key={item.label}
+                className="rounded-[1.75rem] border border-slate-800 bg-[linear-gradient(180deg,rgba(15,23,42,0.9),rgba(2,6,23,0.96))] p-5 shadow-[0_20px_60px_rgba(2,6,23,0.24)]"
+              >
+                <div className="flex flex-wrap gap-2">
+                  {item.highlights.map((highlight) => (
+                    <span
+                      key={highlight}
+                      className="rounded-full border border-slate-700 bg-slate-950/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-300"
+                    >
+                      {highlight}
+                    </span>
+                  ))}
+                </div>
+
+                <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.2em] text-sky-300">
+                  {item.label}
+                </p>
+                <h3 className="mt-2 text-lg font-semibold text-slate-100">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-slate-300">
+                  {item.description}
+                </p>
+
+                <Link
+                  href={item.href}
+                  className="mt-6 inline-flex rounded-full bg-sky-500 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-sky-400"
+                >
+                  {item.cta}
+                </Link>
+              </article>
+            ))}
           </div>
         </section>
 
