@@ -124,8 +124,25 @@ export default function MediaPlanRequestForm() {
     <form
       id="request-form"
       onSubmit={handleSubmit}
-      className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6 shadow-xl shadow-sky-950/20 backdrop-blur"
+      className="rounded-[2rem] border border-sky-400/15 bg-[linear-gradient(180deg,rgba(15,23,42,0.96),rgba(2,6,23,0.96))] p-6 shadow-[0_25px_100px_rgba(2,6,23,0.55)] backdrop-blur"
     >
+      <div className="rounded-2xl border border-sky-400/20 bg-sky-400/[0.08] p-4">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-sky-200">
+              Start Here
+            </p>
+            <p className="mt-1 text-sm font-semibold text-slate-50">
+              Fill this form and I&apos;ll review your request before sharing the sheet.
+            </p>
+          </div>
+
+          <span className="rounded-full border border-sky-300/20 bg-slate-950/60 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-200">
+            1-minute request
+          </span>
+        </div>
+      </div>
+
       <div className="flex flex-wrap gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300">
         {["Google Sheet", "Manual Share", "Email Delivery"].map((item) => (
           <span
@@ -149,25 +166,27 @@ export default function MediaPlanRequestForm() {
 
       <div className="mt-6 grid gap-4 md:grid-cols-2">
         <label className="block">
-          <span className="mb-1 block text-xs text-slate-300">Name</span>
+          <span className="mb-1 block text-xs font-medium text-slate-300">Name</span>
           <input
             name="name"
             value={form.name}
             onChange={handleChange}
             required
-            className="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm outline-none transition focus:border-sky-500"
+            placeholder="Your name"
+            className="w-full rounded-2xl border border-slate-700 bg-slate-950/90 px-4 py-3 text-sm outline-none transition placeholder:text-slate-500 focus:border-sky-500 focus:bg-slate-950"
           />
         </label>
 
         <label className="block">
-          <span className="mb-1 block text-xs text-slate-300">Work Email</span>
+          <span className="mb-1 block text-xs font-medium text-slate-300">Work Email</span>
           <input
             name="email"
             type="email"
             value={form.email}
             onChange={handleChange}
             required
-            className="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm outline-none transition focus:border-sky-500"
+            placeholder="you@company.com"
+            className="w-full rounded-2xl border border-slate-700 bg-slate-950/90 px-4 py-3 text-sm outline-none transition placeholder:text-slate-500 focus:border-sky-500 focus:bg-slate-950"
           />
         </label>
 
@@ -180,18 +199,20 @@ export default function MediaPlanRequestForm() {
             value={form.company}
             onChange={handleChange}
             required
-            className="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm outline-none transition focus:border-sky-500"
+            placeholder="Company / brand name"
+            className="w-full rounded-2xl border border-slate-700 bg-slate-950/90 px-4 py-3 text-sm outline-none transition placeholder:text-slate-500 focus:border-sky-500 focus:bg-slate-950"
           />
         </label>
 
         <label className="block">
-          <span className="mb-1 block text-xs text-slate-300">Role</span>
+          <span className="mb-1 block text-xs font-medium text-slate-300">Role</span>
           <input
             name="role"
             value={form.role}
             onChange={handleChange}
             required
-            className="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm outline-none transition focus:border-sky-500"
+            placeholder="Manager, founder, planner..."
+            className="w-full rounded-2xl border border-slate-700 bg-slate-950/90 px-4 py-3 text-sm outline-none transition placeholder:text-slate-500 focus:border-sky-500 focus:bg-slate-950"
           />
         </label>
 
@@ -203,7 +224,7 @@ export default function MediaPlanRequestForm() {
             name="useCase"
             value={form.useCase}
             onChange={handleChange}
-            className="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm outline-none transition focus:border-sky-500"
+            className="w-full rounded-2xl border border-slate-700 bg-slate-950/90 px-4 py-3 text-sm outline-none transition focus:border-sky-500 focus:bg-slate-950"
           >
             {useCases.map((useCase) => (
               <option key={useCase} value={useCase}>
@@ -219,7 +240,7 @@ export default function MediaPlanRequestForm() {
             name="budgetRange"
             value={form.budgetRange}
             onChange={handleChange}
-            className="w-full rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm outline-none transition focus:border-sky-500"
+            className="w-full rounded-2xl border border-slate-700 bg-slate-950/90 px-4 py-3 text-sm outline-none transition focus:border-sky-500 focus:bg-slate-950"
           >
             <option value="">Select budget range</option>
             {budgetRanges.map((budgetRange) => (
@@ -232,7 +253,7 @@ export default function MediaPlanRequestForm() {
       </div>
 
       <label className="mt-4 block">
-        <span className="mb-1 block text-xs text-slate-300">
+        <span className="mb-1 block text-xs font-medium text-slate-300">
           What are you planning right now?
         </span>
         <textarea
@@ -241,7 +262,8 @@ export default function MediaPlanRequestForm() {
           value={form.notes}
           onChange={handleChange}
           required
-          className="w-full rounded-3xl border border-slate-700 bg-slate-950 px-4 py-3 text-sm outline-none transition focus:border-sky-500"
+          placeholder="Tell me what campaign, market, launch, or planning problem you want to use this template for."
+          className="w-full rounded-3xl border border-slate-700 bg-slate-950/90 px-4 py-3 text-sm outline-none transition placeholder:text-slate-500 focus:border-sky-500 focus:bg-slate-950"
         />
       </label>
 
@@ -258,19 +280,28 @@ export default function MediaPlanRequestForm() {
         </p>
       )}
 
+      <div className="mt-5 rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
+        <div className="flex flex-wrap items-center gap-3 text-xs text-slate-300">
+          <span className="rounded-full border border-slate-700 bg-slate-900/80 px-2.5 py-1 font-semibold uppercase tracking-[0.16em] text-sky-200">
+            Next step
+          </span>
+          <span>I review the request and manually share the Google Sheet if it fits.</span>
+        </div>
+      </div>
+
       <button
         type="submit"
         disabled={isDisabled}
-        className={`mt-6 rounded-full px-6 py-3 text-sm font-semibold transition ${
+        className={`mt-6 w-full rounded-full px-6 py-3.5 text-sm font-semibold transition ${
           isDisabled
             ? "cursor-not-allowed bg-sky-500/40 text-slate-700"
-            : "bg-sky-500 text-slate-900 hover:bg-sky-400"
+            : "bg-sky-500 text-slate-900 shadow-lg shadow-sky-950/30 hover:bg-sky-400"
         }`}
       >
         {status === "submitting" ? "Sending..." : "Request Access"}
       </button>
 
-      <p className="mt-4 text-xs leading-6 text-slate-400">
+      <p className="mt-4 text-center text-xs leading-6 text-slate-400">
         This does not trigger an instant download. The request goes to my inbox
         first, then I manually share the Google Sheet.
       </p>
