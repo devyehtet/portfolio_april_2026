@@ -37,14 +37,20 @@ const metricCardStyles = [
   "border-emerald-400/20 bg-emerald-400/[0.08]",
 ];
 
+const requestFlowSteps = [
+  "Fill the request form with your planning context.",
+  "I review the details in my inbox.",
+  "The Google Sheet is shared manually if it fits.",
+];
+
 export default function MediaPlanTemplatePage() {
   return (
     <main className="min-h-screen bg-slate-950 text-slate-50">
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.14),transparent_55%),radial-gradient(circle_at_bottom_right,_rgba(129,140,248,0.16),transparent_40%)]" />
 
       <section className="relative z-10 mx-auto flex max-w-6xl flex-col gap-10 px-4 py-12">
-        <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
-          <div className="space-y-6 pt-1">
+        <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
+          <div className="order-2 space-y-6 pt-1 lg:order-1">
             <Link
               href="/"
               className="inline-flex rounded-full border border-slate-700 px-3 py-1 text-xs text-slate-300 transition hover:border-sky-400 hover:text-sky-200"
@@ -69,51 +75,66 @@ export default function MediaPlanTemplatePage() {
               <p className="text-xs uppercase tracking-[0.26em] text-sky-300">
                 Media Plan Template
               </p>
-              <h1 className="max-w-3xl text-4xl font-semibold leading-tight md:text-[3.4rem]">
-                Tell me what you&apos;re planning and request the media plan sheet here
+              <h1 className="max-w-3xl text-4xl font-semibold leading-[1.02] md:text-[3.55rem]">
+                Start with the form and I&apos;ll send the media plan sheet after review
               </h1>
               <p className="max-w-3xl text-sm leading-7 text-slate-300 md:text-base">
-                The form on the right is the main action. Fill in a few details,
-                I&apos;ll receive the request by email, review it, and manually
-                share the Google Sheet with you.
+                This page is built like a quick intake, not a brochure. Tell me
+                what you&apos;re planning, who it&apos;s for, and how you want to
+                use the template. I&apos;ll receive the request and manually share
+                the sheet with the right people.
               </p>
             </div>
 
-            <div className="rounded-[1.75rem] border border-sky-400/20 bg-[linear-gradient(135deg,rgba(14,165,233,0.16),rgba(15,23,42,0.7)_55%,rgba(15,23,42,0.96))] p-5">
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="rounded-full border border-sky-300/20 bg-slate-950/60 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-200">
-                  Fill the form first
-                </span>
-                <span className="text-sm font-medium text-slate-200">
-                  Takes about 1 minute
-                </span>
-              </div>
+            <div className="relative overflow-hidden rounded-[1.9rem] border border-slate-800 bg-[linear-gradient(135deg,rgba(8,15,33,0.96),rgba(17,24,39,0.92)_58%,rgba(15,23,42,0.98))] p-6">
+              <div className="pointer-events-none absolute right-0 top-0 h-36 w-36 rounded-full bg-sky-400/12 blur-3xl" />
+              <div className="pointer-events-none absolute bottom-0 left-10 h-28 w-28 rounded-full bg-indigo-400/12 blur-3xl" />
 
-              <div className="mt-4 grid gap-3 md:grid-cols-3">
-                {[
-                  "1. Fill in your planning details",
-                  "2. I review the request",
-                  "3. I manually share the sheet",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-2xl border border-white/10 bg-slate-950/45 px-4 py-3 text-sm text-slate-200"
-                  >
-                    {item}
+              <div className="relative grid gap-5 lg:grid-cols-[1.08fr_0.92fr]">
+                <div className="space-y-4">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="rounded-full border border-sky-300/20 bg-sky-400/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-200">
+                      Most visitors start here
+                    </span>
+                    <span className="text-sm font-medium text-slate-300">
+                      About 1 minute to complete
+                    </span>
                   </div>
-                ))}
-              </div>
 
-              <div className="mt-5 flex flex-wrap items-center gap-4">
-                <Link
-                  href="#request-form"
-                  className="inline-flex items-center rounded-full bg-sky-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-400"
-                >
-                  Start the request form
-                </Link>
-                <p className="text-sm text-slate-300">
-                  The form card is on the right on desktop and comes first on mobile.
-                </p>
+                  <div className="space-y-3">
+                    <h2 className="max-w-xl text-2xl font-semibold leading-tight text-white">
+                      Make the form the first move, then I take it from there.
+                    </h2>
+                    <p className="max-w-xl text-sm leading-7 text-slate-300">
+                      No instant file gate, no confusing flow. Just submit the
+                      request, wait for my review, and I&apos;ll share the Google
+                      Sheet manually.
+                    </p>
+                  </div>
+
+                  <Link
+                    href="#request-form"
+                    className="inline-flex items-center rounded-full bg-sky-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-400"
+                  >
+                    Jump to the request form
+                  </Link>
+                </div>
+
+                <div className="grid gap-3">
+                  {requestFlowSteps.map((item, index) => (
+                    <div
+                      key={item}
+                      className="rounded-2xl border border-white/10 bg-slate-950/45 px-4 py-4"
+                    >
+                      <div className="flex items-start gap-3">
+                        <span className="mt-0.5 inline-flex h-7 w-7 items-center justify-center rounded-full border border-sky-300/25 bg-sky-400/10 text-xs font-semibold text-sky-200">
+                          {index + 1}
+                        </span>
+                        <p className="text-sm leading-6 text-slate-200">{item}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -134,17 +155,22 @@ export default function MediaPlanTemplatePage() {
             </div>
           </div>
 
-          <div className="lg:sticky lg:top-6">
-            <div className="mb-4 flex items-center justify-between gap-3 rounded-2xl border border-slate-800 bg-slate-900/70 px-4 py-3 lg:mr-4">
+          <div className="order-1 lg:sticky lg:top-6 lg:order-2">
+            <div className="relative mb-4 overflow-hidden rounded-[1.75rem] border border-sky-400/20 bg-[linear-gradient(135deg,rgba(14,165,233,0.12),rgba(15,23,42,0.78)_50%,rgba(99,102,241,0.1))] px-4 py-4 lg:mr-4">
+              <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-sky-400/15 blur-2xl" />
               <div>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-300">
                   Main Action
                 </p>
-                <p className="mt-1 text-sm font-medium text-slate-200">
+                <p className="mt-1 text-sm font-medium text-slate-100">
                   Fill the form to request access
                 </p>
+                <p className="mt-2 text-sm leading-6 text-slate-300">
+                  This card is the important part of the page. If someone is ready,
+                  they should know to start here immediately.
+                </p>
               </div>
-              <span className="rounded-full border border-sky-400/20 bg-sky-400/10 px-3 py-1 text-xs font-semibold text-sky-200">
+              <span className="absolute right-4 top-4 rounded-full border border-sky-400/20 bg-sky-400/10 px-3 py-1 text-xs font-semibold text-sky-200">
                 Start here →
               </span>
             </div>
