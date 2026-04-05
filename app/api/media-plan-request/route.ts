@@ -91,7 +91,7 @@ Review this request and manually share the Google Sheet if it is a fit.
         {
           error:
             process.env.NODE_ENV === "development"
-              ? getMailSetupHelpMessage()
+              ? getMailSetupHelpMessage(error)
               : "Request form is temporarily unavailable. Please try again later.",
         },
         { status: 503 }

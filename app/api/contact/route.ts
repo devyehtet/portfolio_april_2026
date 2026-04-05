@@ -64,7 +64,7 @@ ${message}
         {
           error:
             process.env.NODE_ENV === "development"
-              ? getMailSetupHelpMessage()
+              ? getMailSetupHelpMessage(error)
               : "Contact form is temporarily unavailable. Please try again later.",
         },
         { status: 503 }

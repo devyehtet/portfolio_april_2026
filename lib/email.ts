@@ -124,7 +124,11 @@ function getSmtpConfig(options?: MailConfigOptions) {
   };
 }
 
-export function getMailSetupHelpMessage() {
+export function getMailSetupHelpMessage(error?: MailConfigError | null) {
+  if (error?.message) {
+    return error.message;
+  }
+
   return "Server email is not configured yet. Set RESEND_API_KEY, RESEND_FROM_EMAIL, and MEDIA_PLAN_TO_EMAIL (or CONTACT_TO_EMAIL). SMTP vars still work as a fallback if you prefer them.";
 }
 
@@ -164,6 +168,22 @@ async function sendViaResend(input: MailInput, options?: MailConfigOptions) {
       message = data.error?.message ?? data.message ?? message;
     } catch {
       // ignore json parse errors
+    }
+
+    if (response.status === 401 || /api key/i.test(message)) {
+      throw new MailConfigError(
+        "Resend rejected RESEND_API_KEY. Update .env.local with a valid API key."
+      );
+    }
+
+    if (
+      /domain/i.test(message) ||
+      /sender/i.test(message) ||
+      /from address/i.test(message)
+    ) {
+      throw new MailConfigError(
+        "Resend rejected RESEND_FROM_EMAIL. Use a sender on your verified mailer.yehtet.com domain."
+      );
     }
 
     throw new Error(message);
