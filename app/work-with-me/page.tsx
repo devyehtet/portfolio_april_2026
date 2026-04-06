@@ -8,6 +8,23 @@ export const metadata: Metadata = {
   title: "Work With Me",
   description:
     "Explore how Ye Htet Aung works with brands and teams through training, consulting, and freelance media buying.",
+  alternates: {
+    canonical: "/work-with-me",
+  },
+  openGraph: {
+    title: "Work With Me",
+    description:
+      "Explore how Ye Htet Aung works with brands and teams through training, consulting, and freelance media buying.",
+    url: "/work-with-me",
+    siteName: "Ye Htet Aung",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Work With Me",
+    description:
+      "Explore how Ye Htet Aung works with brands and teams through training, consulting, and freelance media buying.",
+  },
 };
 
 const offers = [

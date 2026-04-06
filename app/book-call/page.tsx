@@ -7,6 +7,23 @@ export const metadata: Metadata = {
   title: "Book a Call",
   description:
     "Share your project goals, training needs, or campaign challenges and send a direct booking request to Ye Htet Aung.",
+  alternates: {
+    canonical: "/book-call",
+  },
+  openGraph: {
+    title: "Book a Call",
+    description:
+      "Share your project goals, training needs, or campaign challenges and send a direct booking request to Ye Htet Aung.",
+    url: "/book-call",
+    siteName: "Ye Htet Aung",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Book a Call",
+    description:
+      "Share your project goals, training needs, or campaign challenges and send a direct booking request to Ye Htet Aung.",
+  },
 };
 
 const bookingBenefits = [
