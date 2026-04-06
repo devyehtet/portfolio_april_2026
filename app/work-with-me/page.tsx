@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import BrandShowcase from "@/app/components/BrandShowcase";
 import BookCallForm from "@/app/components/BookCallForm";
 import Reveal from "@/app/components/Reveal";
 
@@ -263,13 +262,6 @@ export default function WorkWithMePage() {
             </Reveal>
           ))}
         </div>
-
-        <BrandShowcase
-          compact
-          kicker="Selected Track Record"
-          title="Selected brands and organizations behind my experience"
-          description="For visitors exploring how we might work together, this gives a faster visual read on the brand and organizational exposure behind my work before we get into fit, process, and scope."
-        />
 
         <div className="section-shell grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
           <Reveal variant="left">
