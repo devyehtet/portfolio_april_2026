@@ -11,33 +11,33 @@ export const contentType = "image/png";
 export default function OpenGraphImage() {
   return new ImageResponse(
     renderLandingSocialCard({
-      badges: ["BOOK A CALL", "BRIEF FIRST", "EMAIL REPLY"],
+      badges: ["BOOK A CALL", "GOOGLE CALENDAR", "LIVE AVAILABILITY"],
       description:
-        "Share your project goals, training needs, or campaign challenge first. I review the fit, then reply with the best next step before any call is scheduled.",
+        "Book time directly on Google Calendar for a focused call about strategy, training, or performance support.",
       eyebrow: "Book a Call",
       metrics: [
-        { label: "Format", value: "Brief" },
-        { label: "Reply", value: "Email" },
-        { label: "Flow", value: "Focused" },
+        { label: "Booking", value: "Live" },
+        { label: "Platform", value: "GCal" },
+        { label: "Flow", value: "Direct" },
       ],
       rows: [
         {
-          label: "Support",
-          detail: "Training or consulting",
-          value: "Clear fit",
+          label: "Pick",
+          detail: "Choose a live slot",
+          value: "Fast",
         },
         {
-          label: "Campaigns",
-          detail: "Media buying needs",
-          value: "Next step",
+          label: "Confirm",
+          detail: "Calendar handles details",
+          value: "Auto",
         },
         {
-          label: "Message",
-          detail: "Business context first",
-          value: "No noise",
+          label: "Escalate",
+          detail: "Use Work With Me for bigger scope",
+          value: "Optional",
         },
       ],
-      title: "Start the work conversation with one focused inquiry",
+      title: "Book time directly on my Google Calendar",
       urlLabel: "yehtet.com/book-call",
     }),
     size

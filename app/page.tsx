@@ -201,12 +201,12 @@ const inquiryPaths = [
   },
   {
     label: "Book a Call",
-    title: "Use a brief-first booking flow",
+    title: "Book time directly on Google Calendar",
     description:
-      "Let me review the context before we schedule. This is best for serious business conversations and next-step planning.",
+      "Choose a live slot for a focused meeting. Use this when you already want to schedule time instead of sending a broader inquiry first.",
     href: "/book-call",
     cta: "Go to Booking",
-    highlights: ["Brief First", "Email Reply", "Clear Next Step"],
+    highlights: ["Google Calendar", "Live Slots", "Direct Booking"],
   },
   {
     label: "Media Plan Template",
