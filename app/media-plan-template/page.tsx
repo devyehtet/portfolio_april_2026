@@ -10,11 +10,25 @@ import {
 } from "@/lib/media-plan-template";
 
 export const metadata: Metadata = {
-  title: "Media Plan Template Request",
+  title: "Media Plan Template",
   description:
     "Request the Google Sheets media plan template and get a manual share follow-up from Ye Htet Aung.",
   alternates: {
     canonical: "/media-plan-template",
+  },
+  openGraph: {
+    title: "Media Plan Template",
+    description:
+      "Request the Google Sheets media plan template and get a manual share follow-up from Ye Htet Aung.",
+    url: "/media-plan-template",
+    siteName: "Ye Htet Aung",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Media Plan Template",
+    description:
+      "Request the Google Sheets media plan template and get a manual share follow-up from Ye Htet Aung.",
   },
 };
 
