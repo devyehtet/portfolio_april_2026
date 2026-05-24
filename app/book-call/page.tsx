@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import GoogleAdsConversionLink from "@/app/components/GoogleAdsConversionLink";
+import BookCallForm from "@/app/components/BookCallForm";
 import Reveal from "@/app/components/Reveal";
+import { googleAdsConversionIds } from "@/lib/google-ads";
 
 export const metadata: Metadata = {
   title: "Book a Call",
@@ -48,22 +49,20 @@ const bookingExpectations = [
 
 const bookingDecisionCards = [
   {
-    label: "Pick a Slot",
-    value: "Choose an available time directly from the Google Calendar booking page.",
+    label: "Step 1 — Brief",
+    value: "Fill in a short form so I know who you are and what the call is about.",
   },
   {
-    label: "Confirm Details",
-    value: "Google Calendar handles booking details, timezone conversion, and confirmation.",
+    label: "Step 2 — Calendar",
+    value: "After you submit, the Google Calendar link appears so you can pick a time.",
   },
   {
-    label: "Need More Scope?",
-    value: "If it is a bigger business inquiry, use the Work With Me page instead.",
+    label: "Step 3 — Confirmed",
+    value: "Google Calendar sends a confirmation email with the meeting details.",
   },
 ];
 
 export default function BookCallPage() {
-  const hasBookingLink = Boolean(bookingCalendarUrl);
-  const hasEmbeddedCalendar = Boolean(bookingCalendarEmbedUrl);
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-50">
@@ -115,7 +114,7 @@ export default function BookCallPage() {
                   href="#booking-calendar"
                   className="motion-button rounded-full bg-sky-500 px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-sky-400"
                 >
-                  Open booking section
+                  Start the booking form
                 </Link>
                 <Link
                   href="/work-with-me"
@@ -164,140 +163,18 @@ export default function BookCallPage() {
             delay={120}
             variant="right"
           >
-            <div
-              id="booking-calendar"
-              className="mb-4 overflow-hidden rounded-[1.75rem] border border-sky-400/20 bg-[linear-gradient(135deg,rgba(14,165,233,0.12),rgba(15,23,42,0.78)_50%,rgba(99,102,241,0.08))] px-4 py-4"
-            >
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-300">
-                    Main Action
-                  </p>
-                  <p className="mt-1 text-sm font-medium text-slate-100">
-                    Pick a time on the calendar
-                  </p>
-                </div>
-                <span className="rounded-full border border-sky-400/20 bg-sky-400/10 px-3 py-1 text-xs font-semibold text-sky-200">
-                  Start here →
-                </span>
-              </div>
-            </div>
-
-            <div className="form-surface motion-card motion-panel rounded-[2rem] border border-sky-400/15 bg-[linear-gradient(180deg,rgba(15,23,42,0.96),rgba(2,6,23,0.96))] shadow-[0_25px_100px_rgba(2,6,23,0.55)]">
-              <div className="rounded-2xl border border-sky-400/20 bg-sky-400/[0.08] p-4">
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-sky-200">
-                      Google Calendar
-                    </p>
-                    <p className="mt-1 text-sm font-semibold text-slate-50">
-                      Book a time directly instead of sending a request first.
-                    </p>
-                  </div>
-
-                  <span className="rounded-full border border-sky-300/20 bg-slate-950/60 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-200">
-                    Live booking
-                  </span>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <div className="flex flex-wrap gap-2">
-                  {["Google Calendar", "Direct Booking", "Timezone Ready"].map(
-                    (item) => (
-                      <span
-                        key={item}
-                        className="rounded-full border border-slate-700/80 bg-slate-950/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-300"
-                      >
-                        {item}
-                      </span>
-                    )
-                  )}
-                </div>
-
-                <p className="text-sm font-semibold text-slate-50">
-                  Choose a slot that works and confirm it inside Google Calendar.
-                </p>
-                <p className="text-xs leading-6 text-slate-400">
-                  This is now the scheduling page. If you need to explain a
-                  bigger scope, request consulting, or ask for a proposal
-                  first, use the Work With Me page instead.
-                </p>
-              </div>
-
-              {hasBookingLink ? (
-                <div className="mt-6 space-y-4">
-                  <GoogleAdsConversionLink
-                    href={bookingCalendarUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="motion-button inline-flex w-full items-center justify-center rounded-full bg-sky-500 px-5 py-3.5 text-sm font-semibold text-slate-900 transition hover:bg-sky-400"
-                  >
-                    Open Google Calendar Booking
-                  </GoogleAdsConversionLink>
-
-                  {hasEmbeddedCalendar ? (
-                    <div className="overflow-hidden rounded-[1.6rem] border border-slate-800 bg-slate-950/70">
-                      <iframe
-                        src={bookingCalendarEmbedUrl}
-                        title="Book a call with Ye Htet Aung on Google Calendar"
-                        className="h-[760px] w-full bg-white"
-                        loading="lazy"
-                      />
-                    </div>
-                  ) : (
-                    <div className="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
-                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-sky-300">
-                        Booking Mode
-                      </p>
-                      <p className="mt-2 text-sm leading-6 text-slate-300">
-                        The call booking opens in Google Calendar right now. If
-                        you want the scheduler embedded directly on this page
-                        too, add a public embed URL later.
-                      </p>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <div className="mt-6 space-y-4">
-                  <div className="rounded-2xl border border-amber-400/20 bg-amber-400/10 p-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-amber-200">
-                      Calendar Not Connected Yet
-                    </p>
-                    <p className="mt-2 text-sm leading-6 text-slate-200">
-                      Add your public Google Calendar booking URL to connect
-                      this page to real scheduling.
-                    </p>
-                    {process.env.NODE_ENV === "development" ? (
-                      <p className="mt-3 text-xs leading-6 text-slate-300">
-                        Set <code>NEXT_PUBLIC_GOOGLE_CALENDAR_BOOKING_URL</code>
-                        , and optionally{" "}
-                        <code>NEXT_PUBLIC_GOOGLE_CALENDAR_EMBED_URL</code>, in
-                        your environment variables.
-                      </p>
-                    ) : null}
-                  </div>
-
-                  <Link
-                    href="/work-with-me"
-                    className="motion-button inline-flex w-full items-center justify-center rounded-full border border-slate-700 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:border-sky-400 hover:text-sky-200"
-                  >
-                    Use Work With Me Instead
-                  </Link>
-                </div>
-              )}
-
-              <div className="mt-5 rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
-                <div className="flex flex-wrap items-center gap-3 text-xs text-slate-300">
-                  <span className="rounded-full border border-slate-700 bg-slate-900/80 px-2.5 py-1 font-semibold uppercase tracking-[0.16em] text-sky-200">
-                    Best use
-                  </span>
-                  <span>
-                    Direct scheduling for intro calls, check-ins, and focused
-                    discussions. Bigger scopes should start on Work With Me.
-                  </span>
-                </div>
-              </div>
+            <div id="booking-calendar">
+            <BookCallForm
+              calendarUrl={bookingCalendarUrl}
+              conversionId={googleAdsConversionIds.bookAppointment}
+              chips={["Step 1: Brief", "Step 2: Calendar", "Confirmed Booking"]}
+              heading="Tell me what the call is about first"
+              description="Share a quick brief — who you are, what you need, and what the call should cover. After you submit, the Google Calendar link appears so you can pick a slot straight away."
+              leadContentName="Book a Call — Calendar Flow"
+              nextStepLabel="What happens next"
+              nextStepText="Submit this form and the Google Calendar booking link will appear immediately so you can lock a time."
+              submitLabel="Send & Get Calendar Link"
+            />
             </div>
           </Reveal>
         </div>
