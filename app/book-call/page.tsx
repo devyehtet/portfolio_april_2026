@@ -26,8 +26,11 @@ export const metadata: Metadata = {
   },
 };
 
+const DEFAULT_BOOKING_CALENDAR_URL = "https://calendar.app.google/v6wXTWekHG8RUNh29";
+
 const bookingCalendarUrl =
-  process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_BOOKING_URL?.trim() ?? "";
+  process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_BOOKING_URL?.trim() ??
+  DEFAULT_BOOKING_CALENDAR_URL;
 const bookingCalendarEmbedUrl =
   process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_EMBED_URL?.trim() ?? "";
 
