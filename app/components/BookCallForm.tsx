@@ -2,6 +2,10 @@
 
 import { ChangeEvent, FormEvent, useState } from "react";
 import { sendLeadEvent } from "@/app/components/MetaLeadTracker";
+import {
+  googleAdsConversionIds,
+  sendGoogleAdsConversion,
+} from "@/lib/google-ads";
 
 type BookingResponse = {
   error?: string;
@@ -97,6 +101,8 @@ export default function BookCallForm({
         name: "",
         service: services[0],
       });
+
+      sendGoogleAdsConversion(googleAdsConversionIds.submitLeadForm);
 
       void sendLeadEvent({
         email: submittedForm.email,
