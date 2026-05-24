@@ -157,15 +157,15 @@ export default async function BlogPostPage({ params }: PageProps) {
                 </h2>
 
                 <div className="mt-4 space-y-4 text-sm leading-7 text-slate-300 md:text-base">
-                  {section.paragraphs.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
+                  {section.paragraphs.map((paragraph, i) => (
+                    <p key={i}>{paragraph}</p>
                   ))}
                 </div>
 
                 {section.bullets && (
                   <ul className="mt-5 space-y-2 text-sm text-slate-300">
-                    {section.bullets.map((bullet) => (
-                      <li key={bullet} className="flex gap-3">
+                    {section.bullets.map((bullet, i) => (
+                      <li key={i} className="flex gap-3">
                         <span className="mt-1 text-sky-300">•</span>
                         <span>{bullet}</span>
                       </li>

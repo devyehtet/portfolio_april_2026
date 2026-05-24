@@ -7,10 +7,19 @@ import {
   MailConfigError,
   sendPortfolioEmail,
 } from "@/lib/email";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 
 export async function POST(req: Request) {
+  const ip = getClientIp(req);
+  if (!checkRateLimit(ip)) {
+    return NextResponse.json(
+      { error: "Too many requests. Please wait a moment and try again." },
+      { status: 429 }
+    );
+  }
+
   try {
     const body = (await req.json()) as Record<string, unknown>;
     const name = getStringField(body.name);

@@ -39,7 +39,18 @@ export default function ContactForm() {
         body: JSON.stringify(form),
       });
 
-      if (!res.ok) throw new Error("Failed to send");
+      let data: { error?: string } | null = null;
+      try {
+        data = await res.json();
+      } catch {
+        // ignore json parse errors
+      }
+
+      if (!res.ok) {
+        setStatus("error");
+        setError(data?.error ?? "Failed to send message. Please try again later.");
+        return;
+      }
 
       setStatus("success");
       setForm({ name: "", email: "", message: "" });

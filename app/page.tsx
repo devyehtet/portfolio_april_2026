@@ -1,26 +1,11 @@
-"use client";
-
-import React, { useState, ChangeEvent, FormEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import NavBar from "@/app/components/NavBar";
+import ContactForm from "@/app/components/ContactForm";
 import {
   mediaPlanBlocks,
   mediaPlanHighlights,
 } from "@/lib/media-plan-template";
-
-/* ---------------------------------------
-   NAVIGATION ITEMS
---------------------------------------- */
-const navItems = [
-  { label: "About", id: "about" },
-  { label: "Services", id: "services" },
-  { label: "Work", id: "work" },
-  { label: "Template", id: "template" },
-  { label: "Skills", id: "skills" },
-  { label: "Experience", id: "experience" },
-  { label: "Education", id: "education" },
-  { label: "Contact", id: "contact" },
-];
 
 /* ---------------------------------------
    SERVICES
@@ -220,126 +205,16 @@ const inquiryPaths = [
 ];
 
 /* ---------------------------------------
-   PAGE COMPONENT
+   PAGE COMPONENT (Server Component)
 --------------------------------------- */
 export default function HomePage() {
-  /* Smooth scroll */
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
-  /* CONTACT FORM STATE */
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const [status, setStatus] = useState<
-    "idle" | "submitting" | "success" | "error"
-  >("idle");
-
-  const [error, setError] = useState<string | null>(null);
-
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
-    if (!form.name || !form.email || !form.message) {
-      setError("Please fill in all fields.");
-      return;
-    }
-
-    setError(null);
-    setStatus("submitting");
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-
-      let data: { error?: string } | null = null;
-      try {
-        data = await res.json();
-      } catch {
-        // ignore json parse error
-      }
-
-      if (!res.ok) {
-        setStatus("error");
-        setError(
-          data?.error || "Failed to send message. Please try again later."
-        );
-        return;
-      }
-
-      setStatus("success");
-      setForm({ name: "", email: "", message: "" });
-    } catch (err) {
-      console.error("Contact form error:", err);
-      setStatus("error");
-      setError("Something went wrong. Please try again.");
-    }
-  };
-
-  const disabled =
-    status === "submitting" || !form.name || !form.email || !form.message;
-
-  /* RENDER */
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50">
       {/* Background Glow */}
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.18),transparent_60%),radial-gradient(circle_at_bottom,_rgba(129,140,248,0.18),transparent_60%)]" />
 
       {/* NAVBAR */}
-      <header className="sticky top-0 z-20 border-b border-slate-800 bg-slate-950/80 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-          <button
-            onClick={() => scrollTo("top")}
-            className="flex items-center gap-2 font-semibold tracking-tight"
-          >
-            {/* Logo from /public/logo.png */}
-            <Image
-              src="/logo.png"
-              alt="Ye Htet Aung Logo"
-              width={32}
-              height={32}
-              className="rounded-md"
-            />
-            <span className="hidden text-sm text-slate-100 sm:inline">
-              Ye Htet Aung
-            </span>
-          </button>
-
-          <nav className="hidden gap-5 text-xs md:flex">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollTo(item.id)}
-                className="rounded-full px-3 py-1 text-slate-300 hover:bg-slate-800/70 hover:text-sky-300 transition"
-              >
-                {item.label}
-              </button>
-            ))}
-          </nav>
-
-          <button
-            onClick={() => scrollTo("contact")}
-            className="rounded-full bg-sky-500 px-4 py-1 text-xs font-semibold text-slate-900 hover:bg-sky-400 transition"
-          >
-            Contact
-          </button>
-        </div>
-      </header>
+      <NavBar />
 
       {/* PAGE CONTENT */}
       <main
@@ -710,77 +585,7 @@ export default function HomePage() {
             </div>
 
             {/* RIGHT SIDE FORM */}
-            <form
-              onSubmit={handleSubmit}
-              className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-4"
-            >
-              {/* NAME */}
-              <div>
-                <label className="text-xs mb-1 block">Name</label>
-                <input
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full bg-slate-950 border border-slate-700 rounded px-3 py-2 text-xs outline-none focus:border-sky-500"
-                />
-              </div>
-
-              {/* EMAIL */}
-              <div>
-                <label className="text-xs mb-1 block">Email</label>
-                <input
-                  name="email"
-                  type="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full bg-slate-950 border border-slate-700 rounded px-3 py-2 text-xs outline-none focus:border-sky-500"
-                />
-              </div>
-
-              {/* MESSAGE */}
-              <div>
-                <label className="text-xs mb-1 block">Message</label>
-                <textarea
-                  name="message"
-                  rows={4}
-                  value={form.message}
-                  onChange={handleChange}
-                  required
-                  className="w-full bg-slate-950 border border-slate-700 rounded px-3 py-2 text-xs outline-none focus:border-sky-500"
-                ></textarea>
-              </div>
-
-              {/* ERROR MESSAGE */}
-              {error && (
-                <p className="text-xs text-red-400 whitespace-pre-line">
-                  {error}
-                </p>
-              )}
-
-              {/* SUCCESS MESSAGE */}
-              {status === "success" && (
-                <p className="text-xs text-emerald-400">
-                  Message sent successfully! I&apos;ll get back to you soon.
-                </p>
-              )}
-
-              {/* BUTTON */}
-              <button
-                type="submit"
-                disabled={disabled}
-                className={`w-full py-2 rounded-full text-xs font-semibold transition 
-                  ${
-                    disabled
-                      ? "bg-sky-500/40 text-slate-700 cursor-not-allowed"
-                      : "bg-sky-500 text-slate-900 hover:bg-sky-400"
-                  }
-                `}
-              >
-                {status === "submitting" ? "Sending..." : "Send Message"}
-              </button>
-            </form>
+            <ContactForm />
           </div>
         </section>
 

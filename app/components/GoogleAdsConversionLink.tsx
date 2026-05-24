@@ -1,15 +1,19 @@
 "use client";
 
 import type { AnchorHTMLAttributes, ReactNode } from "react";
-import {
-  googleAdsConversionIds,
-  sendGoogleAdsConversion,
-} from "@/lib/google-ads";
 
 type GoogleAdsConversionLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   children: ReactNode;
 };
 
+/**
+ * Plain anchor link for the Google Calendar booking button.
+ *
+ * NOTE: The bookAppointment conversion is intentionally NOT fired here.
+ * It fires only on /book-call/thank-you (via BookingConversionTracker),
+ * which Google Calendar redirects to after a booking is confirmed.
+ * This prevents false conversions from people who click but don't complete.
+ */
 export default function GoogleAdsConversionLink({
   children,
   onClick,
@@ -19,8 +23,6 @@ export default function GoogleAdsConversionLink({
     <a
       {...props}
       onClick={(event) => {
-        sendGoogleAdsConversion(googleAdsConversionIds.bookAppointment);
-
         onClick?.(event);
       }}
     >

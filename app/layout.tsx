@@ -13,9 +13,9 @@ export const metadata: Metadata = {
   },
 };
 
-const GA_ID = "G-9BH46V9VMG";
-const GOOGLE_ADS_ID = "AW-18045831263";
-const PIXEL_ID = "928969039556719";
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-9BH46V9VMG";
+const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID ?? "AW-18045831263";
+const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "928969039556719";
 
 export default function RootLayout({
   children,

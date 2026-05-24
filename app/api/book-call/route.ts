@@ -3,13 +3,23 @@ import {
   escapeHtml,
   getStringField,
   getMailSetupHelpMessage,
+  isValidEmail,
   MailConfigError,
   sendPortfolioEmail,
 } from "@/lib/email";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 
 export async function POST(req: Request) {
+  const ip = getClientIp(req);
+  if (!checkRateLimit(ip)) {
+    return NextResponse.json(
+      { error: "Too many requests. Please wait a moment and try again." },
+      { status: 429 }
+    );
+  }
+
   try {
     const body = (await req.json()) as Record<string, unknown>;
     const name = getStringField(body.name);
@@ -21,6 +31,13 @@ export async function POST(req: Request) {
     if (!name || !email || !service || !message) {
       return NextResponse.json(
         { error: "Name, email, service, and message are required." },
+        { status: 400 }
+      );
+    }
+
+    if (!isValidEmail(email)) {
+      return NextResponse.json(
+        { error: "Please enter a valid email address." },
         { status: 400 }
       );
     }

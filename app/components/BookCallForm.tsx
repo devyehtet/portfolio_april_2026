@@ -13,7 +13,9 @@ type BookingResponse = {
 };
 
 type BookCallFormProps = {
+  calendarUrl?: string;
   chips?: string[];
+  conversionId?: string;
   description?: string;
   formId?: string;
   heading?: string;
@@ -32,7 +34,9 @@ const services = [
 ];
 
 export default function BookCallForm({
+  calendarUrl,
   chips = ["Focused Brief", "Work Inquiry", "Email Follow-up"],
+  conversionId,
   description = "Share the business context, the kind of support you need, and the challenge you want help with. I review the fit first, then reply with the clearest next step.",
   formId = "booking-form",
   heading = "Start the work inquiry here",
@@ -102,8 +106,12 @@ export default function BookCallForm({
         service: services[0],
       });
 
-      sendGoogleAdsConversion(googleAdsConversionIds.submitLeadForm);
+      // Fire the appropriate Google Ads conversion
+      const resolvedConversionId =
+        conversionId ?? googleAdsConversionIds.submitLeadForm;
+      sendGoogleAdsConversion(resolvedConversionId);
 
+      // Meta Pixel + server CAPI Lead event
       void sendLeadEvent({
         email: submittedForm.email,
         url: window.location.href,
@@ -125,6 +133,85 @@ export default function BookCallForm({
     !form.service ||
     !form.message;
 
+  // ─── SUCCESS STATE with calendar link ────────────────────────────────────
+  if (status === "success" && calendarUrl) {
+    return (
+      <div className="form-surface motion-panel rounded-[2rem] border border-emerald-400/20 bg-[linear-gradient(180deg,rgba(15,23,42,0.96),rgba(2,6,23,0.96))] shadow-[0_25px_100px_rgba(2,6,23,0.55)]">
+        {/* Top badge */}
+        <div className="rounded-2xl border border-emerald-400/20 bg-emerald-400/[0.08] p-4">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-emerald-300">
+                Request Received
+              </p>
+              <p className="mt-1 text-sm font-semibold text-slate-50">
+                Your details have been sent successfully.
+              </p>
+            </div>
+            <span className="rounded-full border border-emerald-300/20 bg-slate-950/60 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-300">
+              ✓ Done
+            </span>
+          </div>
+        </div>
+
+        {/* Body */}
+        <div className="space-y-4">
+          <p className="text-sm font-semibold text-slate-50">
+            Now pick a time on the calendar
+          </p>
+          <p className="text-xs leading-6 text-slate-400">
+            Your inquiry is in my inbox. Go ahead and lock a slot directly on
+            Google Calendar — I&apos;ll have context from your message when
+            we connect.
+          </p>
+
+          <ul className="space-y-2 text-xs text-slate-400">
+            {[
+              "Choose an available time that works for you.",
+              "Google Calendar will send a confirmation to your email.",
+              "I'll be prepared with context from your inquiry.",
+            ].map((item, i) => (
+              <li key={i} className="flex gap-2">
+                <span className="text-emerald-400">•</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Calendar CTA */}
+        <a
+          href={calendarUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="motion-button mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-sky-500 px-5 py-3.5 text-sm font-semibold text-slate-900 transition hover:bg-sky-400"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-4 w-4"
+          >
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          Book Your Slot on Google Calendar
+        </a>
+
+        <p className="mt-3 text-center text-[11px] text-slate-500">
+          Opens Google Calendar in a new tab
+        </p>
+      </div>
+    );
+  }
+
+  // ─── DEFAULT / ERROR / PLAIN SUCCESS STATE ────────────────────────────────
   return (
     <form
       id={formId}
@@ -160,17 +247,15 @@ export default function BookCallForm({
           ))}
         </div>
 
-        <p className="text-sm font-semibold text-slate-50">
-          {heading}
-        </p>
-        <p className="text-xs leading-6 text-slate-400">
-          {description}
-        </p>
+        <p className="text-sm font-semibold text-slate-50">{heading}</p>
+        <p className="text-xs leading-6 text-slate-400">{description}</p>
       </div>
 
       <div className="mt-6 grid gap-4 md:grid-cols-2">
         <label className="block">
-          <span className="mb-1 block text-xs font-medium text-slate-300">Name</span>
+          <span className="mb-1 block text-xs font-medium text-slate-300">
+            Name
+          </span>
           <input
             name="name"
             value={form.name}
@@ -182,7 +267,9 @@ export default function BookCallForm({
         </label>
 
         <label className="block">
-          <span className="mb-1 block text-xs font-medium text-slate-300">Email</span>
+          <span className="mb-1 block text-xs font-medium text-slate-300">
+            Email
+          </span>
           <input
             name="email"
             type="email"
@@ -230,7 +317,7 @@ export default function BookCallForm({
         <span className="mb-1 block text-xs text-slate-300">
           What would you like to talk about?
         </span>
-          <textarea
+        <textarea
           name="message"
           rows={6}
           value={form.message}
@@ -243,7 +330,7 @@ export default function BookCallForm({
 
       {error && <p className="mt-4 text-sm text-red-400">{error}</p>}
 
-      {status === "success" && (
+      {status === "success" && !calendarUrl && (
         <p className="mt-4 text-sm text-emerald-400">
           Your request has been sent. I&apos;ll get back to you soon.
         </p>
