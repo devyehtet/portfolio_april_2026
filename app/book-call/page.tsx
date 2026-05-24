@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import GoogleAdsConversionLink from "@/app/components/GoogleAdsConversionLink";
 import Reveal from "@/app/components/Reveal";
 
 export const metadata: Metadata = {
@@ -223,14 +224,14 @@ export default function BookCallPage() {
 
               {hasBookingLink ? (
                 <div className="mt-6 space-y-4">
-                  <a
+                  <GoogleAdsConversionLink
                     href={bookingCalendarUrl}
                     target="_blank"
                     rel="noreferrer"
                     className="motion-button inline-flex w-full items-center justify-center rounded-full bg-sky-500 px-5 py-3.5 text-sm font-semibold text-slate-900 transition hover:bg-sky-400"
                   >
                     Open Google Calendar Booking
-                  </a>
+                  </GoogleAdsConversionLink>
 
                   {hasEmbeddedCalendar ? (
                     <div className="overflow-hidden rounded-[1.6rem] border border-slate-800 bg-slate-950/70">
