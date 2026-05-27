@@ -233,7 +233,7 @@ export function renderLandingSocialCard({
                   fontWeight: 800,
                 }}
               >
-                ↗
+                &gt;
               </div>
             </div>
 

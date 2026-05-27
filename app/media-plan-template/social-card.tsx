@@ -210,7 +210,7 @@ export function renderMediaPlanSocialCard(): ReactElement {
                   fontWeight: 800,
                 }}
               >
-                ↗
+                &gt;
               </div>
             </div>
 
