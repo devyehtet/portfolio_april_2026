@@ -684,7 +684,7 @@ function Hero() {
                       LIVE
                     </div>
                   </div>
-                  <div className="mt-5 grid grid-cols-2 gap-3">
+                  <div className="mt-5 grid grid-cols-2 gap-2 sm:gap-3">
                     {[
                       [LuTrendingUp, "Peak ROAS", "7.5x"],
                       [LuTarget, "Baseline", "3.2x"],
@@ -693,20 +693,25 @@ function Hero() {
                     ].map(([Icon, label, value]) => {
                       const MetricIcon = Icon as IconType;
                       const compactValue = label === "Budget" || label === "Focus";
+                      const focusValue = label === "Focus";
                       return (
                         <div
                           key={label as string}
-                          className="flex min-h-[128px] flex-col rounded-2xl border border-white/10 bg-white/[0.045] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]"
+                          className="flex min-h-[130px] min-w-0 flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.045] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]"
                         >
                           <MetricIcon className="h-6 w-6 shrink-0 text-emerald-300" />
-                          <div className="mt-6 text-[13px] font-medium leading-none text-white/42">
+                          <div className="mt-5 text-[13px] font-medium leading-none text-white/42">
                             {label as string}
                           </div>
                           <div
                             className={
                               compactValue
-                                ? "mt-3 text-[1.05rem] font-black leading-tight tracking-[-0.01em] text-white"
-                                : "mt-3 text-[1.75rem] font-black leading-none tracking-[-0.04em] text-white"
+                                ? `mt-2 max-w-full font-black leading-tight tracking-[-0.01em] text-white ${
+                                    focusValue
+                                      ? "whitespace-nowrap text-[0.7rem]"
+                                      : "break-words text-[0.98rem] sm:text-[1.05rem]"
+                                  }`
+                                : "mt-3 text-[1.6rem] font-black leading-none tracking-[-0.04em] text-white md:text-[1.75rem]"
                             }
                           >
                             {value as string}
