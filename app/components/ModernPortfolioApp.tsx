@@ -26,6 +26,12 @@ import {
   LuMapPin,
   LuUserRound,
 } from "react-icons/lu";
+import { sendLeadEvent } from "@/app/components/MetaLeadTracker";
+import {
+  googleAdsConversionIds,
+  sendGoogleAdsConversion,
+} from "@/lib/google-ads";
+
 type Route =
   | "home"
   | "about"
