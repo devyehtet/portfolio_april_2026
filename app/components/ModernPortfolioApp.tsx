@@ -607,7 +607,7 @@ function Hero() {
             optimization.
           </p>
 
-          <div className="mt-8 grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3">
+          <div className="mt-8 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
             {[
               ["3.2x-7.5x", "ROAS range"],
               ["12+", "years experience"],
@@ -615,12 +615,12 @@ function Hero() {
             ].map(([metric, label]) => (
               <div
                 key={metric}
-                className="rounded-[1.35rem] border border-emerald-300/12 bg-white/[0.045] p-4"
+                className="min-h-[118px] rounded-[1.35rem] border border-emerald-300/12 bg-white/[0.045] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]"
               >
-                <div className="text-2xl font-black text-emerald-300 md:text-3xl">
+                <div className="text-balance text-[2rem] font-black leading-[0.98] tracking-[-0.04em] text-emerald-300 md:text-[2.45rem]">
                   {metric}
                 </div>
-                <div className="mt-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white/38">
+                <div className="mt-4 text-[11px] font-black uppercase leading-none tracking-[0.32em] text-white/42">
                   {label}
                 </div>
               </div>
@@ -684,7 +684,7 @@ function Hero() {
                       LIVE
                     </div>
                   </div>
-                  <div className="mt-5 grid grid-cols-2 gap-1">
+                  <div className="mt-5 grid grid-cols-2 gap-3">
                     {[
                       [LuTrendingUp, "Peak ROAS", "7.5x"],
                       [LuTarget, "Baseline", "3.2x"],
@@ -696,17 +696,17 @@ function Hero() {
                       return (
                         <div
                           key={label as string}
-                          className="rounded-2xl border border-white/10 bg-white/[0.045] p-4"
+                          className="flex min-h-[128px] flex-col rounded-2xl border border-white/10 bg-white/[0.045] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]"
                         >
-                          <MetricIcon className="mb-4 h-5 w-5 text-emerald-300" />
-                          <div className="text-xs text-white/42">
+                          <MetricIcon className="h-6 w-6 shrink-0 text-emerald-300" />
+                          <div className="mt-6 text-[13px] font-medium leading-none text-white/42">
                             {label as string}
                           </div>
                           <div
                             className={
                               compactValue
-                                ? "mt-1 text-xs font-semibold md:text-[0.7rem]"
-                                : "mt-1 text-lg font-black leading-tight md:text-xl"
+                                ? "mt-3 text-[1.05rem] font-black leading-tight tracking-[-0.01em] text-white"
+                                : "mt-3 text-[1.75rem] font-black leading-none tracking-[-0.04em] text-white"
                             }
                           >
                             {value as string}
