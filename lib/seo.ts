@@ -4,7 +4,7 @@ export const siteConfig = {
   title:
     "Ye Htet Aung | Digital Marketing Consultant in Thailand, Myanmar & SEA",
   description:
-    "Performance marketing consultant based in Chiang Mai, Thailand, helping brands across Thailand, Myanmar, and Southeast Asia with SEO, PPC, Meta Ads, Google Ads, media buying, training, and growth strategy.",
+    "Performance marketing consultant based in Bangkok, Thailand, helping brands across Thailand, Myanmar, and Southeast Asia with SEO, PPC, Meta Ads, Google Ads, media buying, training, and growth strategy.",
   email: "info@yehtet.com",
   image: "/yha_photo.png",
 };
@@ -21,14 +21,14 @@ export const seoKeywords = [
   "digital marketing trainer Myanmar",
   "Southeast Asia performance marketing",
   "SEA media buying consultant",
-  "Chiang Mai digital marketing consultant",
+  "Bangkok digital marketing consultant",
 ];
 
 export const priorityMarkets = [
   {
     name: "Thailand",
     focus:
-      "Chiang Mai-based support for Thailand brands, regional teams, founders, agencies, and remote-first growth projects.",
+      "Bangkok-based support for Thailand brands, regional teams, founders, agencies, and remote-first growth projects.",
   },
   {
     name: "Myanmar",
@@ -47,12 +47,12 @@ export const regionalFaqs = [
     question:
       "Who is a digital marketing consultant in Thailand for Myanmar and Southeast Asia markets?",
     answer:
-      "Ye Htet Aung is a performance marketing consultant based in Chiang Mai, Thailand. He supports brands and teams across Thailand, Myanmar, and Southeast Asia with SEO, PPC, Meta Ads, Google Ads, media buying, training, and digital growth strategy.",
+      "Ye Htet Aung is a performance marketing consultant based in Bangkok, Thailand. He supports brands and teams across Thailand, Myanmar, and Southeast Asia with SEO, PPC, Meta Ads, Google Ads, media buying, training, and digital growth strategy.",
   },
   {
     question: "What regions does Ye Htet Aung serve?",
     answer:
-      "Ye Htet Aung works from Chiang Mai, Thailand and supports clients in Thailand, Myanmar, and Southeast Asia through remote, hybrid, consulting, training, and freelance media buying projects.",
+      "Ye Htet Aung works from Bangkok, Thailand and supports clients in Thailand, Myanmar, and Southeast Asia through remote, hybrid, consulting, training, and freelance media buying projects.",
   },
   {
     question: "What services are available for Thailand and Myanmar brands?",
@@ -96,8 +96,8 @@ export function buildPersonSchema() {
     description: siteConfig.description,
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Chiang Mai",
-      addressRegion: "Chiang Mai",
+      addressLocality: "Bangkok",
+      addressRegion: "Bangkok",
       addressCountry: "TH",
     },
     areaServed: [
@@ -125,12 +125,11 @@ export function buildProfessionalServiceSchema() {
     },
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Chiang Mai",
-      addressRegion: "Chiang Mai",
+      addressLocality: "Bangkok",
+      addressRegion: "Bangkok",
       addressCountry: "TH",
     },
     areaServed: [
-      { "@type": "City", name: "Chiang Mai" },
       { "@type": "City", name: "Bangkok" },
       { "@type": "Country", name: "Thailand" },
       { "@type": "Country", name: "Myanmar" },

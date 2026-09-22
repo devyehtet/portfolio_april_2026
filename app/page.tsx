@@ -12,7 +12,7 @@ import {
 export const metadata: Metadata = {
   title: "Digital Marketing Consultant in Thailand, Myanmar & SEA",
   description:
-    "Hire Ye Htet Aung, a Chiang Mai-based digital marketing consultant for SEO, PPC, Meta Ads, Google Ads, media buying, training, and performance strategy across Thailand, Myanmar, and Southeast Asia.",
+    "Hire Ye Htet Aung, a Bangkok-based digital marketing consultant for SEO, PPC, Meta Ads, Google Ads, media buying, training, and performance strategy across Thailand, Myanmar, and Southeast Asia.",
   alternates: {
     canonical: "/",
   },

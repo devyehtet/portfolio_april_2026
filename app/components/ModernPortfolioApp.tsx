@@ -232,11 +232,11 @@ const experience = [
   {
     role: "Regional Digital Manager",
     company: "MCIX Thailand Agency",
-    period: "Feb 2025 - Present",
+    period: "Feb 2025 - Dec 2025",
     bullets: [
-      "Overseeing digital strategy and performance optimization across SEA markets.",
-      "Developing high-impact digital marketing strategies.",
-      "Managing analytics frameworks to improve campaign tracking and ROI measurement.",
+      "Oversaw digital strategy and performance optimization across SEA markets.",
+      "Developed high-impact digital marketing strategies.",
+      "Managed analytics frameworks to improve campaign tracking and ROI measurement.",
     ],
   },
   {
@@ -506,7 +506,7 @@ function ProfileCard() {
         )}
       </div>
       <div className="mt-6 text-center">
-        <h3 className="text-2xl font-black md:text-3xl">Based in Chiang Mai, Thailand</h3>
+        <h3 className="text-2xl font-black md:text-3xl">Based in Bangkok, Thailand</h3>
         <p className="mx-auto mt-2 max-w-xs text-sm leading-7 text-white/62 md:text-base">
           Open to remote, hybrid and regional leadership roles across SEA and
           global markets.
@@ -680,7 +680,7 @@ function Hero() {
             </a>
             <span className="hidden md:inline">-</span>
             <span>
-              Based in Chiang Mai - Open to remote, hybrid and regional roles
+              Based in Bangkok - Open to remote, hybrid and regional roles
             </span>
           </div>
         </div>
@@ -1095,7 +1095,7 @@ function AboutSection() {
         <div>
           <SectionLabel>About</SectionLabel>
           <h2 className="text-3xl font-black tracking-[-0.035em] md:text-5xl">
-            Performance-first digital marketer based in Chiang Mai.
+            Performance-first digital marketer based in Bangkok.
           </h2>
           <p className="mt-6 leading-8 text-white/62">
             I combine channel strategy, creative testing, analytics, media
@@ -1152,12 +1152,12 @@ function ContactSection() {
             Get In Touch
           </div>
           <h2 className="text-3xl font-black tracking-[-0.035em] md:text-5xl">
-            Based in Chiang Mai. Open to full-time, contract and consulting
+            Based in Bangkok. Open to full-time, contract and consulting
             roles.
           </h2>
           <div className="mt-8 space-y-4 font-semibold">
             <div className="flex gap-3">
-              <LuMapPin className="h-5 w-5" /> Chiang Mai, Thailand
+              <LuMapPin className="h-5 w-5" /> Bangkok, Thailand
             </div>
             <div className="flex gap-3">
               <LuMail className="h-5 w-5" /> info@yehtet.com
@@ -1563,7 +1563,7 @@ function AboutPage() {
             <GradientTitle>practical execution</GradientTitle>
           </>
         }
-        body="Based in Chiang Mai, Thailand. Open to remote, hybrid and regional leadership opportunities across SEA and global markets."
+        body="Based in Bangkok, Thailand. Open to remote, hybrid and regional leadership opportunities across SEA and global markets."
       />
       <AboutSection />
       <StatsSection />

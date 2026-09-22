@@ -104,7 +104,7 @@ const workWithMeFaqs = [
   {
     question: "Does Ye Htet Aung work with Thailand-based companies?",
     answer:
-      "Yes. Ye Htet Aung is based in Chiang Mai, Thailand and works with Thailand-based brands, founders, agencies, and regional teams.",
+      "Yes. Ye Htet Aung is based in Bangkok, Thailand and works with Thailand-based brands, founders, agencies, and regional teams.",
   },
   {
     question: "Can Myanmar and Southeast Asia teams work remotely?",

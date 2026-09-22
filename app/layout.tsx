@@ -32,7 +32,7 @@ export const metadata: Metadata = {
         url: siteConfig.image,
         width: 1200,
         height: 630,
-        alt: "Ye Htet Aung, digital marketing consultant based in Chiang Mai, Thailand",
+        alt: "Ye Htet Aung, digital marketing consultant based in Bangkok, Thailand",
       },
     ],
   },
@@ -56,9 +56,9 @@ export const metadata: Metadata = {
   other: {
     "business:contact_data:country_name": "Thailand",
     "business:contact_data:email": siteConfig.email,
-    "business:contact_data:locality": "Chiang Mai",
-    "geo.placename": "Chiang Mai, Thailand",
-    "geo.region": "TH-50",
+    "business:contact_data:locality": "Bangkok",
+    "geo.placename": "Bangkok, Thailand",
+    "geo.region": "TH-10",
     "target-market": "Thailand, Myanmar, Southeast Asia",
   },
 };

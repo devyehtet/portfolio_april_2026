@@ -45,7 +45,7 @@ const answerCards = [
   },
   {
     title: "Where I work",
-    body: "I am based in Chiang Mai, Thailand and support Thailand, Myanmar, and Southeast Asia projects through remote, hybrid, consulting, training, and freelance execution models.",
+    body: "I am based in Bangkok, Thailand and support Thailand, Myanmar, and Southeast Asia projects through remote, hybrid, consulting, training, and freelance execution models.",
   },
   {
     title: "Who this is for",
@@ -72,7 +72,7 @@ const serviceClusters = [
 ];
 
 const rankingSignals = [
-  "Clear Thailand-first location signal with Chiang Mai as the business base.",
+  "Clear Thailand-first location signal with Bangkok as the business base.",
   "Dedicated market coverage for Myanmar and Southeast Asia search intent.",
   "Structured data for Person, ProfessionalService, FAQPage, BreadcrumbList, and WebSite context.",
   "Answer-style copy that helps search engines and AI answer engines summarize the services accurately.",
@@ -193,7 +193,7 @@ export default function RegionalDigitalMarketingPage() {
             </p>
             <div className="space-y-3 text-sm leading-6 text-slate-300">
               <p>
-                Ye Htet Aung is a Chiang Mai-based digital marketing consultant
+                Ye Htet Aung is a Bangkok-based digital marketing consultant
                 for Thailand, Myanmar, and Southeast Asia.
               </p>
               <p>

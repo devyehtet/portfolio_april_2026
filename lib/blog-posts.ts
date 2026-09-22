@@ -29,7 +29,7 @@ const postDetails: Record<
       {
         title: "Why Thailand is a strong base for regional digital marketing",
         paragraphs: [
-          "Thailand is a practical base for regional marketing work because many teams need a mix of local market awareness, English communication, cross-border coordination, and performance discipline. A Chiang Mai-based consultant can still support Bangkok, Myanmar, Singapore, and Southeast Asia projects through remote and hybrid workflows.",
+          "Thailand is a practical base for regional marketing work because many teams need a mix of local market awareness, English communication, cross-border coordination, and performance discipline. A Bangkok-based consultant can still support Thailand, Myanmar, Singapore, and Southeast Asia projects through remote and hybrid workflows.",
           "For many brands, the challenge is not choosing one channel. The challenge is making SEO, paid media, landing pages, tracking, and reporting work together so the business can see which activity is actually creating qualified demand.",
         ],
         bullets: [
