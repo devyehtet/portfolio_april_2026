@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { renderMediaPlanSocialCard } from "@/app/media-plan-template/social-card";
 
-export const alt = "Media Plan Template by Ye Htet Aung";
+export const alt = "Digital Media Planning and Buying Toolkit by Ye Htet Aung";
 export const size = {
   width: 1200,
   height: 630,

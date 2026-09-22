@@ -22,11 +22,15 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 ## Environment
 
-Copy `.env.example` to `.env.local` and fill in your SMTP and Meta values before testing the contact form or Meta Conversions API:
+Copy `.env.example` to `.env.local` and fill in your Formspree, tracking, and Meta values before testing forms or Meta Conversions API:
 
 ```bash
 cp .env.example .env.local
 ```
+
+Forms use Formspree through `FORMSPREE_ENDPOINT`. Add
+`NEXT_PUBLIC_TOOLKIT_CHECKOUT_URL` only after you have a live payment link; until
+then, the toolkit page uses the manual payment and email delivery flow.
 
 ## Learn More
 

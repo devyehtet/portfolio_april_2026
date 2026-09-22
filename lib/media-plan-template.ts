@@ -23,72 +23,75 @@ export type MediaPlanDemoRow = {
 export const mediaPlanHighlights = [
   {
     label: "Built For",
-    value: "Launch planning, monthly reviews, client approvals, and workshops.",
+    value:
+      "Founders, marketers, freelancers, and teams that need a clearer paid media workflow.",
   },
   {
-    label: "Format",
-    value: "Structured for Google Sheets with channel role, KPI, timing, and budget clarity.",
+    label: "Toolkit Format",
+    value:
+      "Google Sheets planning system with buying checklist, budget view, and reporting prompts.",
   },
   {
-    label: "Workflow",
-    value: "Visitors request access first, then the template is shared manually after review.",
+    label: "Order Flow",
+    value:
+      "Buyers register their order first, then receive payment and delivery steps by email.",
   },
 ];
 
 export const mediaPlanWorkflow = [
-  "Start with one business goal and one primary KPI before deciding channels.",
-  "Clarify audience, offer, and message angle before making budget assumptions.",
-  "Give each channel a clear role so spend is not duplicated.",
-  "Define reporting cadence and optimization triggers before launch.",
+  "Campaign brief builder for objective, offer, audience, KPI, market context, and channel role clarity.",
+  "Media planning sheet for budget split, flighting, pacing, expected results, and channel ownership.",
+  "Buying checklist for launch QA, tracking checks, creative readiness, naming, and optimization rhythm.",
+  "Review prompts for weekly decisions, performance notes, next actions, and client or team updates.",
 ];
 
 export const mediaPlanBlocks: MediaPlanBlock[] = [
   {
-    title: "Business Objective",
+    title: "Campaign Brief Builder",
     description:
-      "Anchor the sheet around the commercial goal, the offer, and the KPI that matters most.",
-    fields: ["Campaign name", "Planning period", "Primary objective", "North-star KPI"],
+      "Turn a messy campaign idea into a clear brief before budget or channel decisions are made.",
+    fields: ["Objective", "Offer", "Audience", "Primary KPI"],
   },
   {
-    title: "Audience and Market Context",
+    title: "Media Plan Workspace",
     description:
-      "Make the target audience, market conditions, and demand insight visible before channel planning.",
-    fields: ["Audience segments", "Geography", "Pain points", "Seasonal note"],
+      "Plan channel roles, spend, pacing, timing, targets, and key assumptions in one working sheet.",
+    fields: ["Channel role", "Budget split", "Flighting", "Targets"],
   },
   {
-    title: "Channel and Budget Mix",
+    title: "Buying QA Checklist",
     description:
-      "Assign a clear role, budget range, and pacing expectation to every channel in the plan.",
-    fields: ["Channel role", "Budget split", "Flighting", "Guardrails"],
+      "Check the setup before launch so tracking, naming, creative, and optimization basics are covered.",
+    fields: ["Tracking", "UTM", "Creative", "Launch QA"],
   },
   {
-    title: "Creative and Landing Support",
+    title: "Optimization Review Notes",
     description:
-      "Keep the message angle, creative formats, and landing-page notes in the same planning flow.",
-    fields: ["Message hook", "Formats", "Test ideas", "Landing note"],
+      "Keep weekly media buying decisions visible instead of relying on memory or scattered comments.",
+    fields: ["Learnings", "Actions", "Risks", "Next tests"],
   },
 ];
 
 export const mediaPlanDemoMetrics: MediaPlanDemoMetric[] = [
   {
-    label: "Planned Reach",
-    value: "5.4M",
-    note: "Estimated primary reach from paid media",
+    label: "Planning Time",
+    value: "2-3h",
+    note: "Typical setup time saved per campaign brief",
   },
   {
-    label: "Traffic Goal",
-    value: "92K",
-    note: "Qualified landing-page sessions",
+    label: "Included Sheets",
+    value: "8+",
+    note: "Planning, buying, QA, reporting, and review tabs",
   },
   {
-    label: "Target CPA",
-    value: "$11.50",
-    note: "Blended acquisition target",
+    label: "Use Cases",
+    value: "5",
+    note: "Launch, monthly plan, audit, workshop, client review",
   },
   {
-    label: "Media Budget",
-    value: "$12K",
-    note: "Paid media plus landing support",
+    label: "Delivery",
+    value: "Email",
+    note: "Toolkit access and next steps after payment confirmation",
   },
 ];
 

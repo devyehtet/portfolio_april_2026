@@ -22,7 +22,7 @@ export async function sendLeadEvent(params: {
   }
 
   // 2) Server CAPI event (same event_id => dedup)
-  await fetch("/api/meta/capi", {
+  const response = await fetch("/api/meta/capi", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -38,6 +38,10 @@ export async function sendLeadEvent(params: {
       },
     }),
   });
+
+  if (!response.ok) {
+    throw new Error(`Meta CAPI request failed with status ${response.status}`);
+  }
 
   return eventId;
 }

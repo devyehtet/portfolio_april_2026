@@ -10,27 +10,29 @@ import {
 } from "@/lib/media-plan-template";
 
 export const metadata: Metadata = {
-  title: "Media Plan Template",
+  title: "Digital Media Planning & Buying Toolkit",
   description:
-    "Request the Google Sheets media plan template and get a manual share follow-up from Ye Htet Aung.",
+    "Buy Ye Htet Aung's Digital Media Planning & Buying Toolkit for campaign planning, budget allocation, buying QA, and optimization reviews.",
   alternates: {
     canonical: "/media-plan-template",
   },
   openGraph: {
-    title: "Media Plan Template",
+    title: "Digital Media Planning & Buying Toolkit",
     description:
-      "Request the Google Sheets media plan template and get a manual share follow-up from Ye Htet Aung.",
+      "A practical toolkit for campaign planning, media buying, budget allocation, buying QA, and weekly optimization reviews.",
     url: "/media-plan-template",
     siteName: "Ye Htet Aung",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Media Plan Template",
+    title: "Digital Media Planning & Buying Toolkit",
     description:
-      "Request the Google Sheets media plan template and get a manual share follow-up from Ye Htet Aung.",
+      "A practical toolkit for campaign planning, media buying, budget allocation, buying QA, and weekly optimization reviews.",
   },
 };
+
+const toolkitCheckoutUrl = process.env.NEXT_PUBLIC_TOOLKIT_CHECKOUT_URL?.trim();
 
 const phaseStyles: Record<string, string> = {
   Awareness: "border-sky-400/35 bg-sky-400/12 text-sky-100",
@@ -52,9 +54,9 @@ const metricCardStyles = [
 ];
 
 const requestFlowSteps = [
-  "Fill the request form with your planning context.",
-  "I review the details in my inbox.",
-  "The Google Sheet is shared manually if it fits.",
+  "Fill the order form with your name, work email, company, and product option.",
+  "Receive the payment step and invoice option directly by email.",
+  "Get toolkit access after payment confirmation and start planning cleaner campaigns.",
 ];
 
 export default function MediaPlanTemplatePage() {
@@ -73,30 +75,28 @@ export default function MediaPlanTemplatePage() {
             </Link>
 
             <div className="flex flex-wrap gap-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-200">
-              {["Google Sheets format", "Manual share workflow", "Lead capture"].map(
-                (item) => (
+              {["Paid Toolkit", "Media Planning", "Buying Workflow"].map((item) => (
                   <span
                     key={item}
                     className="rounded-full border border-slate-700 bg-slate-900/80 px-3 py-1"
                   >
                     {item}
                   </span>
-                )
-              )}
+              ))}
             </div>
 
             <div className="space-y-4">
               <p className="text-xs uppercase tracking-[0.26em] text-sky-300">
-                Media Plan Template
+                Digital Media Planning & Buying Toolkit
               </p>
               <h1 className="max-w-3xl text-4xl font-semibold leading-[1.02] md:text-[3.55rem]">
-                Start with the form and I&apos;ll send the media plan sheet after review
+                Ready-to-use planning tools for cleaner campaigns, budgets, and buying decisions
               </h1>
               <p className="max-w-3xl text-sm leading-7 text-slate-300 md:text-base">
-                This page is built like a quick intake, not a brochure. Tell me
-                what you&apos;re planning, who it&apos;s for, and how you want to
-                use the template. I&apos;ll receive the request and manually share
-                the sheet with the right people.
+                A practical toolkit for marketers, founders, freelancers, and
+                small teams who need a repeatable way to brief campaigns, plan
+                channel roles, allocate budgets, check buying setup, and review
+                performance without scattered notes.
               </p>
             </div>
 
@@ -108,30 +108,41 @@ export default function MediaPlanTemplatePage() {
                 <div className="space-y-4">
                   <div className="flex flex-wrap items-center gap-3">
                     <span className="rounded-full border border-sky-300/20 bg-sky-400/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-200">
-                      Most visitors start here
+                      Ready to buy
                     </span>
                     <span className="text-sm font-medium text-slate-300">
-                      About 1 minute to complete
+                      Register your order in one step
                     </span>
                   </div>
 
                   <div className="space-y-3">
                     <h2 className="max-w-xl text-2xl font-semibold leading-tight text-white">
-                      Make the form the first move, then I take it from there.
+                      Register once and buy the toolkit directly.
                     </h2>
                     <p className="max-w-xl text-sm leading-7 text-slate-300">
-                      No instant file gate, no confusing flow. Just submit the
-                      request, wait for my review, and I&apos;ll share the Google
-                      Sheet manually.
+                      Use the form to place your order now. I&apos;ll reply with
+                      the payment step, invoice option if needed, and delivery
+                      access for the toolkit.
                     </p>
                   </div>
 
-                  <Link
-                    href="#request-form"
-                    className="inline-flex items-center rounded-full bg-sky-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-400"
-                  >
-                    Jump to the request form
-                  </Link>
+                  {toolkitCheckoutUrl ? (
+                    <a
+                      href={toolkitCheckoutUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center rounded-full bg-sky-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-400"
+                    >
+                      Buy Toolkit Now
+                    </a>
+                  ) : (
+                    <Link
+                      href="#request-form"
+                      className="inline-flex items-center rounded-full bg-sky-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-400"
+                    >
+                      Register Order Now
+                    </Link>
+                  )}
                 </div>
 
                 <div className="grid gap-3">
@@ -177,11 +188,11 @@ export default function MediaPlanTemplatePage() {
                   Main Action
                 </p>
                 <p className="mt-1 text-sm font-medium text-slate-100">
-                  Fill the form to request access
+                  Register your toolkit order
                 </p>
                 <p className="mt-2 text-sm leading-6 text-slate-300">
-                  This card is the important part of the page. If someone is ready,
-                  they should know to start here immediately.
+                  Fill this once to register your order. I&apos;ll send the
+                  payment step and toolkit access details to your email.
                 </p>
               </div>
               <span className="absolute right-4 top-4 rounded-full border border-sky-400/20 bg-sky-400/10 px-3 py-1 text-xs font-semibold text-sky-200">
@@ -196,13 +207,13 @@ export default function MediaPlanTemplatePage() {
         <section className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6">
             <p className="text-xs uppercase tracking-[0.22em] text-sky-300">
-              What Happens Next
+              How Buying Works
             </p>
             <div className="mt-4 space-y-4">
               {[
-                "You fill in the request form with your planning context.",
-                "The details land in my inbox for review.",
-                "I manually share the Google Sheet if it is a fit.",
+                "Register your order with your buyer details and selected product option.",
+                "Receive payment instructions and invoice option by email.",
+                "After payment confirmation, receive toolkit access and setup notes.",
               ].map((item, index) => (
                 <div
                   key={item}
@@ -219,7 +230,7 @@ export default function MediaPlanTemplatePage() {
 
           <div className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6">
             <p className="text-xs uppercase tracking-[0.22em] text-sky-300">
-              Planning Principles
+              What Buyers Get
             </p>
             <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-300">
               {mediaPlanWorkflow.map((item) => (
@@ -235,9 +246,9 @@ export default function MediaPlanTemplatePage() {
         <section className="space-y-6">
           <div className="space-y-3">
             <p className="text-xs uppercase tracking-[0.26em] text-sky-300">
-              Inside the Template
+              Inside the Toolkit
             </p>
-            <h2 className="text-2xl font-semibold">What the sheet covers</h2>
+            <h2 className="text-2xl font-semibold">What the buyer receives</h2>
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
@@ -270,14 +281,14 @@ export default function MediaPlanTemplatePage() {
         <section className="space-y-6">
           <div className="space-y-3">
             <p className="text-xs uppercase tracking-[0.26em] text-sky-300">
-              Demo Preview
+              Toolkit Preview
             </p>
             <h2 className="text-2xl font-semibold">
-              Example of the planning view
+              Example of the planning and buying view
             </h2>
             <p className="max-w-3xl text-sm leading-7 text-slate-300">
-              This preview shows the structure only. The actual Google Sheet is
-              still shared manually after a request is reviewed.
+              This preview shows the product structure. Payment and delivery
+              can stay manual until a checkout link is connected.
             </p>
           </div>
 
@@ -292,10 +303,10 @@ export default function MediaPlanTemplatePage() {
                   </div>
                   <div>
                     <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-400">
-                      Google Sheet Mockup
+                      Toolkit Mockup
                     </p>
                     <p className="mt-1 text-sm font-semibold text-slate-100">
-                      Q2 growth planning workspace
+                      Digital media planning workspace
                     </p>
                   </div>
                 </div>
@@ -318,20 +329,21 @@ export default function MediaPlanTemplatePage() {
                     Campaign Snapshot
                   </p>
                   <h3 className="mt-3 text-xl font-semibold text-white">
-                    Multi-channel launch plan with reach, traffic, and conversion guardrails
+                    Multi-channel planning system with buying QA and optimization notes
                   </h3>
                   <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300">
-                    Built to show how spend, audience strategy, and landing-page
-                    support can live in one clean planning view before execution.
+                    Built to show how campaign briefing, spend, audience
+                    strategy, buying setup, and weekly review decisions can
+                    live in one clean workspace.
                   </p>
                 </div>
 
                 <div className="grid gap-3 sm:grid-cols-2">
                   {[
-                    { label: "Primary KPI", value: "Qualified Sessions" },
-                    { label: "Planning Window", value: "8 Weeks" },
-                    { label: "Optimization Rhythm", value: "Weekly" },
-                    { label: "Share Method", value: "Manual Review" },
+                    { label: "Product Type", value: "Google Sheets Toolkit" },
+                    { label: "Best For", value: "Planning + Buying" },
+                    { label: "Review Rhythm", value: "Weekly" },
+                    { label: "Delivery Method", value: "Email Access" },
                   ].map((item) => (
                     <div
                       key={item.label}

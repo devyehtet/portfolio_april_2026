@@ -46,7 +46,7 @@ export function renderMediaPlanSocialCard(): ReactElement {
         >
           <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-              {["GOOGLE SHEET", "MANUAL SHARE", "EMAIL DELIVERY"].map((item) => (
+              {["PAID TOOLKIT", "MEDIA PLAN", "BUYING QA"].map((item) => (
                 <div
                   key={item}
                   style={{
@@ -78,7 +78,7 @@ export function renderMediaPlanSocialCard(): ReactElement {
                   textTransform: "uppercase",
                 }}
               >
-                Media Plan Template
+                Digital Media Toolkit
               </div>
               <div
                 style={{
@@ -89,7 +89,7 @@ export function renderMediaPlanSocialCard(): ReactElement {
                   maxWidth: 620,
                 }}
               >
-                Request the sheet and get a manual share after review
+                Plan campaigns and buy media with more control
               </div>
               <div
                 style={{
@@ -100,8 +100,8 @@ export function renderMediaPlanSocialCard(): ReactElement {
                   maxWidth: 650,
                 }}
               >
-                Built for launch planning, campaign budgets, channel roles, KPI
-                targets, and cleaner planning conversations.
+                Built for campaign briefs, budget allocation, buying checks,
+                optimization notes, and cleaner performance reviews.
               </div>
             </div>
           </div>
@@ -126,7 +126,7 @@ export function renderMediaPlanSocialCard(): ReactElement {
                 fontWeight: 800,
               }}
             >
-              Start with the request form
+              Register order now
             </div>
             <div
               style={{
@@ -183,7 +183,7 @@ export function renderMediaPlanSocialCard(): ReactElement {
                     color: "#7dd3fc",
                   }}
                 >
-                  Demo Preview
+                  Toolkit Preview
                 </div>
                 <div
                   style={{
@@ -192,7 +192,7 @@ export function renderMediaPlanSocialCard(): ReactElement {
                     fontWeight: 800,
                   }}
                 >
-                  Planning View
+                  Buying System
                 </div>
               </div>
               <div
@@ -216,9 +216,9 @@ export function renderMediaPlanSocialCard(): ReactElement {
 
             <div style={{ display: "flex", gap: 12 }}>
               {[
-                ["Reach", "5.4M"],
-                ["Sessions", "92K"],
-                ["Budget", "$12K"],
+                ["Sheets", "8+"],
+                ["Checks", "QA"],
+                ["Reviews", "Weekly"],
               ].map(([label, value]) => (
                 <div
                   key={label}
@@ -266,10 +266,10 @@ export function renderMediaPlanSocialCard(): ReactElement {
               }}
             >
               {[
-                ["Awareness", "Meta Ads", "$4,200"],
-                ["Consideration", "Google Search", "$3,600"],
-                ["Conversion", "Landing Page + CRO", "$1,200"],
-              ].map(([phase, channel, budget]) => (
+                ["Brief", "Objective + KPI", "01"],
+                ["Plan", "Channel + budget mix", "02"],
+                ["Buy", "Launch QA + review", "03"],
+              ].map(([phase, channel, step]) => (
                 <div
                   key={phase}
                   style={{
@@ -319,7 +319,7 @@ export function renderMediaPlanSocialCard(): ReactElement {
                       color: "#e2e8f0",
                     }}
                   >
-                    {budget}
+                    {step}
                   </div>
                 </div>
               ))}

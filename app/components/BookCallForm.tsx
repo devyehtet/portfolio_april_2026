@@ -6,6 +6,7 @@ import {
   googleAdsConversionIds,
   sendGoogleAdsConversion,
 } from "@/lib/google-ads";
+import { markBookingIntent } from "@/lib/booking-conversion";
 
 type BookingResponse = {
   error?: string;
@@ -182,6 +183,7 @@ export default function BookCallForm({
         {/* Calendar CTA */}
         <a
           href={calendarUrl}
+          onClick={() => markBookingIntent()}
           target="_blank"
           rel="noreferrer"
           className="motion-button mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-sky-500 px-5 py-3.5 text-sm font-semibold text-slate-900 transition hover:bg-sky-400"

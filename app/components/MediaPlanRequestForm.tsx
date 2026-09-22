@@ -9,24 +9,23 @@ type MediaPlanRequestResponse = {
 };
 
 const useCases = [
-  "Launch planning",
-  "Monthly media planning",
-  "Client review",
-  "Internal team planning",
-  "Workshop or training",
+  "Buy toolkit now",
+  "Buy toolkit + setup support",
+  "Buy for team / agency",
+  "Need invoice before payment",
+  "Ask a question before buying",
 ];
 
-const budgetRanges = [
-  "Under $1,000",
-  "$1,000 - $5,000",
-  "$5,000 - $15,000",
-  "$15,000+",
-  "Not decided yet",
+const productOptions = [
+  "Digital Media Planning & Buying Toolkit",
+  "Toolkit + setup guidance",
+  "Team / agency access",
+  "Invoice purchase",
 ];
 
 export default function MediaPlanRequestForm() {
   const [form, setForm] = useState({
-    budgetRange: "",
+    budgetRange: productOptions[0],
     company: "",
     email: "",
     name: "",
@@ -54,8 +53,7 @@ export default function MediaPlanRequestForm() {
       !form.email ||
       !form.company ||
       !form.role ||
-      !form.useCase ||
-      !form.notes
+      !form.useCase
     ) {
       setError("Please complete the required fields.");
       return;
@@ -88,7 +86,7 @@ export default function MediaPlanRequestForm() {
 
       setStatus("success");
       setForm({
-        budgetRange: "",
+        budgetRange: productOptions[0],
         company: "",
         email: "",
         name: "",
@@ -100,12 +98,12 @@ export default function MediaPlanRequestForm() {
       void sendLeadEvent({
         email: submittedForm.email,
         url: window.location.href,
-        contentName: "Media Plan Template Request",
+        contentName: "Digital Media Planning & Buying Toolkit Order",
       }).catch((trackingError) => {
-        console.error("Media plan request lead tracking error:", trackingError);
+        console.error("Toolkit order lead tracking error:", trackingError);
       });
     } catch (submitError) {
-      console.error("Media plan request form error:", submitError);
+      console.error("Toolkit order form error:", submitError);
       setStatus("error");
       setError("Something went wrong. Please try again.");
     }
@@ -117,8 +115,7 @@ export default function MediaPlanRequestForm() {
     !form.email ||
     !form.company ||
     !form.role ||
-    !form.useCase ||
-    !form.notes;
+    !form.useCase;
 
   return (
     <form
@@ -133,18 +130,18 @@ export default function MediaPlanRequestForm() {
               Start Here
             </p>
             <p className="mt-1 text-sm font-semibold text-slate-50">
-              Fill this form and I&apos;ll review your request before sharing the sheet.
+              Fill this order form to register your toolkit purchase.
             </p>
           </div>
 
           <span className="rounded-full border border-sky-300/20 bg-slate-950/60 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-200">
-            1-minute request
+            Buy now
           </span>
         </div>
       </div>
 
       <div className="flex flex-wrap gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300">
-        {["Google Sheet", "Manual Share", "Email Delivery"].map((item) => (
+        {["Order Form", "Payment Next", "Email Delivery"].map((item) => (
           <span
             key={item}
             className="rounded-full border border-slate-700 bg-slate-950/80 px-3 py-1"
@@ -156,11 +153,11 @@ export default function MediaPlanRequestForm() {
 
       <div className="mt-5 space-y-2">
         <h2 className="text-xl font-semibold text-slate-50">
-          Request the media plan template
+          Register to buy the toolkit
         </h2>
         <p className="text-sm leading-7 text-slate-300">
-          Fill in a few details and I&apos;ll receive your request by email.
-          After I review it, I&apos;ll manually share the Google Sheet with you.
+          Submit your order registration now. I&apos;ll send the payment step,
+          invoice option, and toolkit delivery access to your email.
         </p>
       </div>
 
@@ -218,7 +215,7 @@ export default function MediaPlanRequestForm() {
 
         <label className="block">
           <span className="mb-1 block text-xs text-slate-300">
-            Primary Use Case
+            Order Type
           </span>
           <select
             name="useCase"
@@ -235,17 +232,16 @@ export default function MediaPlanRequestForm() {
         </label>
 
         <label className="block">
-          <span className="mb-1 block text-xs text-slate-300">Budget Range</span>
+          <span className="mb-1 block text-xs text-slate-300">Product Option</span>
           <select
             name="budgetRange"
             value={form.budgetRange}
             onChange={handleChange}
             className="w-full rounded-2xl border border-slate-700 bg-slate-950/90 px-4 py-3 text-sm outline-none transition focus:border-sky-500 focus:bg-slate-950"
           >
-            <option value="">Select budget range</option>
-            {budgetRanges.map((budgetRange) => (
-              <option key={budgetRange} value={budgetRange}>
-                {budgetRange}
+            {productOptions.map((productOption) => (
+              <option key={productOption} value={productOption}>
+                {productOption}
               </option>
             ))}
           </select>
@@ -254,15 +250,14 @@ export default function MediaPlanRequestForm() {
 
       <label className="mt-4 block">
         <span className="mb-1 block text-xs font-medium text-slate-300">
-          What are you planning right now?
+          Order note
         </span>
         <textarea
           name="notes"
           rows={6}
           value={form.notes}
           onChange={handleChange}
-          required
-          placeholder="Tell me what campaign, market, launch, or planning problem you want to use this template for."
+          placeholder="Optional: tell me whether you are buying for yourself, a team, client work, training, or a specific campaign planning problem."
           className="w-full rounded-3xl border border-slate-700 bg-slate-950/90 px-4 py-3 text-sm outline-none transition placeholder:text-slate-500 focus:border-sky-500 focus:bg-slate-950"
         />
       </label>
@@ -275,8 +270,8 @@ export default function MediaPlanRequestForm() {
 
       {status === "success" && (
         <p className="mt-4 text-sm text-emerald-400" aria-live="polite">
-          Your request has been sent. I&apos;ll review it and manually share the
-          Google Sheet by email.
+          Your order registration has been sent. I&apos;ll reply with the payment
+          step and toolkit delivery access by email.
         </p>
       )}
 
@@ -285,7 +280,7 @@ export default function MediaPlanRequestForm() {
           <span className="rounded-full border border-slate-700 bg-slate-900/80 px-2.5 py-1 font-semibold uppercase tracking-[0.16em] text-sky-200">
             Next step
           </span>
-          <span>I review the request and manually share the Google Sheet if it fits.</span>
+          <span>Your order is registered first, then I send payment and delivery steps.</span>
         </div>
       </div>
 
@@ -298,12 +293,12 @@ export default function MediaPlanRequestForm() {
             : "bg-sky-500 text-slate-900 shadow-lg shadow-sky-950/30 hover:bg-sky-400"
         }`}
       >
-        {status === "submitting" ? "Sending..." : "Request Access"}
+        {status === "submitting" ? "Sending..." : "Register Order & Buy Now"}
       </button>
 
       <p className="mt-4 text-center text-xs leading-6 text-slate-400">
-        This does not trigger an instant download. The request goes to my inbox
-        first, then I manually share the Google Sheet.
+        This registers your order. I&apos;ll send payment confirmation steps and
+        toolkit access by email.
       </p>
     </form>
   );

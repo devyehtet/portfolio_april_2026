@@ -30,11 +30,11 @@ export async function POST(req: Request) {
     const budgetRange = getStringField(body.budgetRange);
     const notes = getStringField(body.notes);
 
-    if (!name || !email || !company || !role || !useCase || !notes) {
+    if (!name || !email || !company || !role || !useCase) {
       return NextResponse.json(
         {
           error:
-            "Name, email, company, role, use case, and planning notes are required.",
+            "Name, email, company, role, and order type are required.",
         },
         { status: 400 }
       );
@@ -55,45 +55,47 @@ export async function POST(req: Request) {
     const escapedBudgetRange = budgetRange
       ? escapeHtml(budgetRange)
       : "Not provided";
-    const escapedNotes = escapeHtml(notes).replace(/\n/g, "<br>");
+    const escapedNotes = notes
+      ? escapeHtml(notes).replace(/\n/g, "<br>")
+      : "No extra note provided.";
 
     await sendPortfolioEmail({
-      fromLabel: "Media Plan Template Request",
-      toEnv: "MEDIA_PLAN_TO_EMAIL",
-      subject: `Media plan template request from ${name}`,
+      fromLabel: "Toolkit Order Registration",
+      toEnv: "TOOLKIT_TO_EMAIL",
+      subject: `Toolkit order registration from ${name}`,
       replyTo: email,
       text: `
 Name: ${name}
 Email: ${email}
 Company / Brand: ${company}
 Role: ${role}
-Use Case: ${useCase}
-Budget Range: ${budgetRange ?? "Not provided"}
+Order Type: ${useCase}
+Product Option: ${budgetRange ?? "Not provided"}
 
-Planning Notes:
-${notes}
+Order Note:
+${notes ?? "No extra note provided."}
 
 Next Step:
-Review this request and manually share the Google Sheet if it is a fit.
+Send payment confirmation steps and toolkit delivery access.
       `,
       html: `
-        <h2>New Media Plan Template Request</h2>
+        <h2>New Digital Media Planning & Buying Toolkit Order Registration</h2>
         <p><strong>Name:</strong> ${escapedName}</p>
         <p><strong>Email:</strong> ${escapedEmail}</p>
         <p><strong>Company / Brand:</strong> ${escapedCompany}</p>
         <p><strong>Role:</strong> ${escapedRole}</p>
-        <p><strong>Use Case:</strong> ${escapedUseCase}</p>
-        <p><strong>Budget Range:</strong> ${escapedBudgetRange}</p>
-        <p><strong>Planning Notes:</strong></p>
+        <p><strong>Order Type:</strong> ${escapedUseCase}</p>
+        <p><strong>Product Option:</strong> ${escapedBudgetRange}</p>
+        <p><strong>Order Note:</strong></p>
         <p>${escapedNotes}</p>
         <hr />
-        <p><strong>Next Step:</strong> Review this lead and manually share the Google Sheet if it is a fit.</p>
+        <p><strong>Next Step:</strong> Send payment confirmation steps and toolkit delivery access.</p>
       `,
     });
 
     return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error("❌ ERROR sending media plan request:", error);
+    console.error("❌ ERROR sending toolkit order registration:", error);
 
     if (error instanceof MailConfigError) {
       return NextResponse.json(
@@ -101,14 +103,14 @@ Review this request and manually share the Google Sheet if it is a fit.
           error:
             process.env.NODE_ENV === "development"
               ? getMailSetupHelpMessage(error)
-              : "Request form is temporarily unavailable. Please try again later.",
+              : "Toolkit order form is temporarily unavailable. Please try again later.",
         },
         { status: 503 }
       );
     }
 
     return NextResponse.json(
-      { error: "Failed to send media plan request" },
+      { error: "Failed to send toolkit order registration" },
       { status: 500 }
     );
   }

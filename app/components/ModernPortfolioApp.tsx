@@ -27,6 +27,7 @@ import {
   LuUserRound,
 } from "react-icons/lu";
 import { sendLeadEvent } from "@/app/components/MetaLeadTracker";
+import { markBookingIntent } from "@/lib/booking-conversion";
 import {
   googleAdsConversionIds,
   sendGoogleAdsConversion,
@@ -82,7 +83,7 @@ const routes: { label: string; route: Route }[] = [
   { label: "About", route: "about" },
   { label: "Services", route: "services" },
   { label: "Work", route: "work" },
-  { label: "Template", route: "template" },
+  { label: "Toolkit", route: "template" },
   { label: "Skills", route: "skills" },
   { label: "Experience", route: "experience" },
   { label: "Education", route: "education" },
@@ -199,20 +200,20 @@ const workItems: WorkItem[] = [
 
 const templateBlocks = [
   [
-    "Business Objective",
-    "Campaign name, planning period, primary objective, commercial goal, and north-star KPI.",
+    "Campaign Brief Builder",
+    "Objective, offer, audience, market context, primary KPI, and decision notes before spend is assigned.",
   ],
   [
-    "Audience & Market Context",
-    "Audience segments, geography, pain points, demand insight, and seasonal notes before channel planning.",
+    "Media Plan Workspace",
+    "Channel roles, budget split, pacing, flighting, expected results, and buying assumptions in one view.",
   ],
   [
-    "Channel & Budget Mix",
-    "Channel role, budget split, pacing, flighting, and optimization guardrails.",
+    "Buying QA Checklist",
+    "Tracking, UTM, naming, creative readiness, launch checks, and optimization rhythm before going live.",
   ],
   [
-    "Creative & Landing Support",
-    "Message hook, creative formats, test ideas, and landing page notes in the same workflow.",
+    "Review Notes",
+    "Weekly learnings, action items, risks, next tests, and client or team update prompts.",
   ],
 ];
 
@@ -329,6 +330,10 @@ function getInitialRoute(): Route {
 
 function openConversion(type: ConversionType) {
   window.dispatchEvent(new CustomEvent("open-conversion", { detail: type }));
+}
+
+function openToolkitPage() {
+  window.location.href = "/media-plan-template";
 }
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
@@ -653,7 +658,7 @@ function Hero() {
               className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-4 py-2 font-bold text-white/62 transition hover:border-emerald-300/35 hover:text-emerald-200"
               type="button"
             >
-              <LuDownload className="h-4 w-4" /> Request Media Plan Template
+              <LuDownload className="h-4 w-4" /> Get Digital Media Toolkit
             </button>
             <span className="hidden md:inline">-</span>
             <span>
@@ -727,7 +732,7 @@ function Hero() {
                     <div className="mt-3 grid gap-2 text-sm font-bold text-white/68">
                       <div>01 - Book a Call</div>
                       <div>02 - Work With Me</div>
-                      <div>03 - Media Plan Template Request</div>
+                      <div>03 - Toolkit Order Registration</div>
                     </div>
                   </div>
                 </div>
@@ -881,22 +886,22 @@ function TemplateSection() {
     <section className="mx-auto max-w-7xl px-5 py-20">
       <div className="grid gap-10 rounded-[2.4rem] border border-emerald-300/14 bg-slate-900/52 p-7 md:p-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
         <div>
-          <SectionLabel>Media Plan Template</SectionLabel>
+          <SectionLabel>Digital Media Planning & Buying Toolkit</SectionLabel>
           <h2 className="text-3xl font-black tracking-[-0.035em] md:text-5xl">
-            Request the planning sheet before launch.
+            Buy the toolkit for cleaner campaign planning and media buying.
           </h2>
           <p className="mt-6 leading-8 text-white/62">
-            I use this template to structure business goals, audience logic,
-            channel roles, KPI targets, and budget planning in one Google Sheet
-            workflow. Visitors request access first, then I manually share the
-            sheet after review.
+            This toolkit turns campaign briefs, channel roles, budget splits,
+            launch QA, and optimization notes into one practical workflow.
+            Buyers can register an order first, then receive the payment step
+            and toolkit access by email after payment confirmation.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button onClick={() => openConversion("template")}>
-              Request Access
+              Register Order
             </Button>
-            <Button variant="ghost" onClick={() => openConversion("template")}>
-              View Template
+            <Button variant="ghost" onClick={openToolkitPage}>
+              View Toolkit
             </Button>
           </div>
         </div>
@@ -1024,8 +1029,8 @@ function ConversionPaths() {
     ],
     [
       LuFileSpreadsheet,
-      "Media Plan Template",
-      "Request the Google Sheet workflow and share what you are planning before access is manually reviewed.",
+      "Digital Media Toolkit",
+      "Buy the planning and buying workflow for briefs, budgets, QA checks, and weekly optimization reviews.",
       "template",
     ],
   ];
@@ -1095,7 +1100,7 @@ function AboutSection() {
             {[
               "Meta and Google performance systems",
               "Education and digital product campaigns",
-              "Media plan template request funnel",
+              "Digital toolkit sales funnel",
               "Remote, hybrid and SEA/global opportunities",
             ].map((item) => (
               <div
@@ -1118,7 +1123,7 @@ function ContactSection() {
     [LuSend, "Contact", "contact"],
     [LuBriefcaseBusiness, "Work With Me", "work"],
     [LuCalendarDays, "Strategy Call", "booking"],
-    [LuFileSpreadsheet, "Request Media Plan Template", "template"],
+    [LuFileSpreadsheet, "Buy Toolkit", "template"],
   ];
 
   return (
@@ -1185,11 +1190,11 @@ function getConversionConfig(type: ConversionType) {
       title: "Send a focused work inquiry.",
     },
     template: {
-      button: "Request Template Access",
-      fields: ["Campaign type", "Planning purpose"],
+      button: "Register Order",
+      fields: ["Buying option", "Toolkit use case"],
       icon: LuFileSpreadsheet,
-      label: "Media Plan Template",
-      title: "Request the media plan template.",
+      label: "Digital Media Toolkit",
+      title: "Register to buy the toolkit.",
     },
     contact: {
       button: "Send Message",
@@ -1263,7 +1268,9 @@ function ConversionModal({
             name: form.name,
             notes: buildMessage(form, type),
             role: form.detailOne || "Website visitor",
-            useCase: form.need || "Media plan template request",
+            useCase:
+              form.need ||
+              "Digital Media Planning & Buying Toolkit order registration",
           }
         : type === "contact"
           ? {
@@ -1387,6 +1394,7 @@ function ConversionModal({
                 {type === "booking" ? (
                   <a
                     href={bookingCalendarUrl}
+                    onClick={() => markBookingIntent()}
                     target="_blank"
                     rel="noreferrer"
                     className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-emerald-300 px-6 py-4 font-black text-[#050914] transition hover:bg-emerald-200"
@@ -1457,7 +1465,7 @@ function ConversionModal({
                   <option>Meta / Google performance audit</option>
                   <option>Education lead generation</option>
                   <option>Digital product launch</option>
-                  <option>Media plan template</option>
+                  <option>Digital media toolkit</option>
                   <option>Training / workshop</option>
                   <option>Freelance media buying</option>
                   <option>Strategy call / consultation</option>
@@ -1591,13 +1599,13 @@ function TemplatePage() {
   return (
     <PageShell>
       <PageHero
-        label="Template"
+        label="Toolkit"
         title={
           <>
-            Request the media planning <GradientTitle>Google Sheet</GradientTitle>
+            Buy the digital media <GradientTitle>planning toolkit</GradientTitle>
           </>
         }
-        body="A structured workflow for business objectives, audience logic, channel roles, KPI targets and budget planning."
+        body="A structured workflow for campaign briefs, channel roles, budget allocation, buying QA, and optimization reviews."
       />
       <TemplateSection />
       <ContactSection />
@@ -1672,7 +1680,7 @@ function ContactPage() {
             Choose the fastest path to <GradientTitle>reach me</GradientTitle>
           </>
         }
-        body="Work inquiry, booking request, media plan template request or direct contact."
+        body="Work inquiry, booking request, toolkit order registration or direct contact."
       />
       <ConversionPaths />
       <ContactSection />
