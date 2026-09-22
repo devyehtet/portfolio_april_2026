@@ -16,6 +16,61 @@ const postDetails: Record<
   string,
   Pick<BlogPost, "intro" | "sections" | "seoPhrases">
 > = {
+  "digital-marketing-consultant-thailand-myanmar-sea": {
+    intro:
+      "Hiring a digital marketing consultant in Thailand is not only about finding someone who can run ads. For Thailand-based brands, Myanmar-focused businesses, and Southeast Asia teams, the real value comes from connecting search visibility, paid media execution, answer-friendly content, and conversion planning into one practical growth system.",
+    seoPhrases: [
+      "digital marketing consultant Thailand",
+      "SEO consultant Thailand",
+      "Southeast Asia performance marketing",
+      "digital marketing consultant Myanmar",
+    ],
+    sections: [
+      {
+        title: "Why Thailand is a strong base for regional digital marketing",
+        paragraphs: [
+          "Thailand is a practical base for regional marketing work because many teams need a mix of local market awareness, English communication, cross-border coordination, and performance discipline. A Chiang Mai-based consultant can still support Bangkok, Myanmar, Singapore, and Southeast Asia projects through remote and hybrid workflows.",
+          "For many brands, the challenge is not choosing one channel. The challenge is making SEO, paid media, landing pages, tracking, and reporting work together so the business can see which activity is actually creating qualified demand.",
+        ],
+        bullets: [
+          "Thailand-first visibility for local and regional search intent.",
+          "Myanmar market context for brands that sell into or from Myanmar.",
+          "SEA execution style for remote, hybrid, and cross-border teams.",
+        ],
+      },
+      {
+        title: "What AEO, SEO, and GEO should cover",
+        paragraphs: [
+          "SEO helps search engines understand pages, topics, and commercial intent. AEO helps answer engines extract direct answers from clear headings, FAQs, and concise explanations. GEO adds regional signals so the site is easier to connect with Thailand, Myanmar, and Southeast Asia search contexts.",
+          "For a consultant portfolio, this means the homepage should say who you are, where you are based, who you help, and what services you provide. Service pages should answer buyer questions directly, and blog posts should build topical authority around recurring problems.",
+        ],
+        bullets: [
+          "Use clear page titles for Thailand, Myanmar, and SEA services.",
+          "Add structured data for Person, ProfessionalService, FAQ, Article, and Product pages.",
+          "Publish content that answers practical buyer questions, not only generic marketing definitions.",
+        ],
+      },
+      {
+        title: "How paid media supports search growth",
+        paragraphs: [
+          "Paid media creates fast feedback. Meta Ads and Google Ads can show which offer, audience, keyword, hook, and landing page angle gets meaningful response before a long SEO plan fully matures.",
+          "A useful regional strategy turns those paid media learnings into search content, landing page updates, FAQs, case examples, and stronger conversion paths. That is how SEO and PPC stop competing and start informing each other.",
+        ],
+      },
+      {
+        title: "How to choose the right consultant",
+        paragraphs: [
+          "A strong consultant should be able to talk about business goals, tracking quality, channel roles, creative testing, content strategy, and reporting. If the conversation stays only at platform tactics, the growth system will stay fragile.",
+          "Before starting, prepare your target market, current website, campaign history, monthly budget, lead or sales goal, and the main business constraint. That makes the first strategy conversation much more productive.",
+        ],
+        bullets: [
+          "Ask how SEO, paid media, and conversion tracking will work together.",
+          "Look for clear reporting logic and decision frameworks.",
+          "Start with a focused audit or strategy call before scaling execution.",
+        ],
+      },
+    ],
+  },
   "myanmar-digital-marketing-strategy-playbook": {
     intro:
       "Myanmar brands do not need a bigger list of channels. They need a sharper operating system for traffic, messaging, and conversion. The brands that grow consistently are usually the ones that connect business goals to channel execution instead of treating Facebook posts, Google Ads, SEO, and landing pages as separate jobs.",

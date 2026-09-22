@@ -2,24 +2,61 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/app/components/Reveal";
 import { blogPreviews } from "@/lib/blog-preview";
+import { absoluteUrl, seoKeywords, siteConfig, toJsonLd } from "@/lib/seo";
+
+const blogDescription =
+  "Practical articles on Thailand, Myanmar, and Southeast Asia digital marketing, SEO, PPC, consulting, training, and freelance media buying by Ye Htet Aung.";
 
 export const metadata: Metadata = {
-  title: "Blog | Myanmar Digital Marketing Insights",
-  description:
-    "Articles on Myanmar digital marketing, SEO, consulting, training, and freelance media buying by Ye Htet Aung.",
-  keywords: [
-    "Myanmar digital marketing blog",
-    "digital marketing consultant Myanmar",
-    "digital marketing trainer Myanmar",
-    "freelance media buyer Myanmar",
-  ],
+  title: "Digital Marketing Blog for Thailand, Myanmar & SEA",
+  description: blogDescription,
+  keywords: seoKeywords,
+  alternates: {
+    canonical: "/blog",
+  },
+  openGraph: {
+    title: "Digital Marketing Blog for Thailand, Myanmar & SEA",
+    description:
+      "SEO, paid media, consulting, training, and performance marketing insights for Thailand, Myanmar, and Southeast Asia brands.",
+    url: "/blog",
+    siteName: siteConfig.name,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Digital Marketing Blog for Thailand, Myanmar & SEA",
+    description:
+      "Regional SEO, paid media, consulting, and training insights by Ye Htet Aung.",
+  },
 };
 
 export default function BlogIndexPage() {
   const [featuredPost, ...otherPosts] = blogPreviews;
+  const collectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Digital Marketing Blog for Thailand, Myanmar & SEA",
+    url: absoluteUrl("/blog"),
+    description: blogDescription,
+    mainEntity: blogPreviews.map((post) => ({
+      "@type": "BlogPosting",
+      headline: post.title,
+      description: post.description,
+      url: absoluteUrl(`/blog/${post.slug}`),
+      datePublished: post.publishedAt,
+      author: {
+        "@type": "Person",
+        name: siteConfig.name,
+      },
+    })),
+  };
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-50">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(collectionSchema) }}
+      />
       <div className="site-bg-grid" />
       <div className="site-orb site-orb--cyan" />
       <div className="site-orb site-orb--violet" />
@@ -39,12 +76,13 @@ export default function BlogIndexPage() {
                 Blog & Insights
               </p>
               <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
-                Myanmar digital marketing insights for brands, teams, and founders
+                Digital marketing insights for Thailand, Myanmar, and SEA
               </h1>
               <p className="max-w-2xl text-sm text-slate-300 md:text-base">
                 I write about SEO, paid media, digital strategy, team training,
                 and freelance campaign execution for businesses that want
-                clearer growth systems in Myanmar and across the region.
+                clearer growth systems across Thailand, Myanmar, and Southeast
+                Asia.
               </p>
             </div>
           </Reveal>
@@ -168,7 +206,7 @@ export default function BlogIndexPage() {
         <Reveal delay={120} variant="up">
           <div className="section-shell rounded-3xl p-6 text-sm text-slate-300">
           Looking for a trainer, consultant, or freelance digital media buyer
-          for Myanmar-focused growth?{" "}
+          for Thailand, Myanmar, or Southeast Asia growth?{" "}
           <Link
             href="/#contact"
             className="motion-button rounded-full px-1 text-sky-300 hover:text-sky-200"

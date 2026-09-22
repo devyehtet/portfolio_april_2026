@@ -8,25 +8,36 @@ import {
   mediaPlanHighlights,
   mediaPlanWorkflow,
 } from "@/lib/media-plan-template";
+import { absoluteUrl, seoKeywords, siteConfig, toJsonLd } from "@/lib/seo";
+
+const toolkitDescription =
+  "Buy Ye Htet Aung's Digital Media Planning & Buying Toolkit for campaign planning, budget allocation, buying QA, and optimization reviews across Thailand, Myanmar, and Southeast Asia teams.";
 
 export const metadata: Metadata = {
-  title: "Digital Media Planning & Buying Toolkit",
-  description:
-    "Buy Ye Htet Aung's Digital Media Planning & Buying Toolkit for campaign planning, budget allocation, buying QA, and optimization reviews.",
+  title: "Digital Media Planning & Buying Toolkit for SEA Marketers",
+  description: toolkitDescription,
+  keywords: [
+    "digital media planning toolkit",
+    "media buying toolkit",
+    "media plan template Thailand",
+    "media plan template Myanmar",
+    "Southeast Asia media buying toolkit",
+    ...seoKeywords,
+  ],
   alternates: {
     canonical: "/media-plan-template",
   },
   openGraph: {
-    title: "Digital Media Planning & Buying Toolkit",
+    title: "Digital Media Planning & Buying Toolkit for SEA Marketers",
     description:
       "A practical toolkit for campaign planning, media buying, budget allocation, buying QA, and weekly optimization reviews.",
     url: "/media-plan-template",
-    siteName: "Ye Htet Aung",
+    siteName: siteConfig.name,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Digital Media Planning & Buying Toolkit",
+    title: "Digital Media Planning & Buying Toolkit for SEA Marketers",
     description:
       "A practical toolkit for campaign planning, media buying, budget allocation, buying QA, and weekly optimization reviews.",
   },
@@ -60,8 +71,32 @@ const requestFlowSteps = [
 ];
 
 export default function MediaPlanTemplatePage() {
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": absoluteUrl("/media-plan-template#product"),
+    name: "Digital Media Planning & Buying Toolkit",
+    description: toolkitDescription,
+    brand: {
+      "@type": "Brand",
+      name: siteConfig.name,
+    },
+    category: "Digital marketing toolkit",
+    audience: {
+      "@type": "Audience",
+      audienceType:
+        "Marketers, founders, freelancers, agencies, and in-house teams in Thailand, Myanmar, and Southeast Asia",
+    },
+    url: absoluteUrl("/media-plan-template"),
+  };
+
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-50">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(productSchema) }}
+      />
+      <main className="min-h-screen bg-slate-950 text-slate-50">
       <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.14),transparent_55%),radial-gradient(circle_at_bottom_right,_rgba(129,140,248,0.16),transparent_40%)]" />
 
       <section className="relative z-10 mx-auto flex max-w-6xl flex-col gap-10 px-4 py-12">
@@ -446,6 +481,7 @@ export default function MediaPlanTemplatePage() {
           </div>
         </section>
       </section>
-    </main>
+      </main>
+    </>
   );
 }

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Reveal from "@/app/components/Reveal";
 import { blogPosts, getBlogPost } from "@/lib/blog-posts";
+import { absoluteUrl, siteConfig, toJsonLd } from "@/lib/seo";
 
 type PageProps = {
   params: Promise<{
@@ -34,6 +35,23 @@ export async function generateMetadata({
     title: `${post.title} | Blog`,
     description: post.description,
     keywords: post.seoPhrases,
+    alternates: {
+      canonical: `/blog/${post.slug}`,
+    },
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      url: `/blog/${post.slug}`,
+      siteName: siteConfig.name,
+      type: "article",
+      publishedTime: post.publishedAt,
+      authors: [siteConfig.name],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+    },
   };
 }
 
@@ -48,22 +66,34 @@ export default async function BlogPostPage({ params }: PageProps) {
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
+    "@id": absoluteUrl(`/blog/${post.slug}#article`),
+    mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`),
     headline: post.title,
     description: post.description,
+    image: absoluteUrl(siteConfig.image),
     datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
+    inLanguage: "en",
     author: {
       "@type": "Person",
-      name: "Ye Htet Aung",
+      name: siteConfig.name,
+      url: siteConfig.siteUrl,
+    },
+    publisher: {
+      "@type": "Person",
+      name: siteConfig.name,
+      url: siteConfig.siteUrl,
     },
     keywords: post.seoPhrases.join(", "),
     articleSection: post.category,
+    about: post.seoPhrases,
   };
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-50">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        dangerouslySetInnerHTML={{ __html: toJsonLd(articleSchema) }}
       />
 
       <div className="site-bg-grid" />

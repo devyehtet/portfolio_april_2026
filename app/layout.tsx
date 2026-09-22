@@ -2,14 +2,64 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Script from "next/script";
+import { seoKeywords, siteConfig } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Ye Htet Aung | Digital Marketing Manager",
-  description:
-    "Digital Marketing Manager & Performance Marketing Expert specializing in SEO, PPC, Social Media, and Data-Driven Campaign Optimization.",
+  title: {
+    default: siteConfig.title,
+    template: "%s | Ye Htet Aung",
+  },
+  description: siteConfig.description,
   metadataBase: new URL("https://yehtet.com"),
+  applicationName: "Ye Htet Aung Portfolio",
+  authors: [{ name: "Ye Htet Aung", url: "https://yehtet.com" }],
+  category: "Digital Marketing",
+  creator: "Ye Htet Aung",
+  keywords: seoKeywords,
+  publisher: "Ye Htet Aung",
   alternates: {
     canonical: "/",
+  },
+  openGraph: {
+    title: siteConfig.title,
+    description: siteConfig.description,
+    url: "/",
+    siteName: siteConfig.name,
+    locale: "en_TH",
+    type: "website",
+    images: [
+      {
+        url: siteConfig.image,
+        width: 1200,
+        height: 630,
+        alt: "Ye Htet Aung, digital marketing consultant based in Chiang Mai, Thailand",
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: [siteConfig.image],
+  },
+  other: {
+    "business:contact_data:country_name": "Thailand",
+    "business:contact_data:email": siteConfig.email,
+    "business:contact_data:locality": "Chiang Mai",
+    "geo.placename": "Chiang Mai, Thailand",
+    "geo.region": "TH-50",
+    "target-market": "Thailand, Myanmar, Southeast Asia",
   },
 };
 

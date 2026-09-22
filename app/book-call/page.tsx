@@ -3,27 +3,29 @@ import Link from "next/link";
 import BookCallForm from "@/app/components/BookCallForm";
 import Reveal from "@/app/components/Reveal";
 import { googleAdsConversionIds } from "@/lib/google-ads";
+import { seoKeywords, siteConfig } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Book a Call",
+  title: "Book a Digital Marketing Strategy Call",
   description:
-    "Book time directly on Ye Htet Aung's Google Calendar for a focused call about strategy, training, or performance marketing support.",
+    "Book a digital marketing strategy call with Ye Htet Aung for SEO, PPC, Meta Ads, Google Ads, media buying, training, or performance marketing support in Thailand, Myanmar, and SEA.",
+  keywords: seoKeywords,
   alternates: {
     canonical: "/book-call",
   },
   openGraph: {
-    title: "Book a Call",
+    title: "Book a Digital Marketing Strategy Call",
     description:
-      "Book time directly on Ye Htet Aung's Google Calendar for a focused call about strategy, training, or performance marketing support.",
+      "Schedule a focused call about SEO, paid media, training, or performance marketing support in Thailand, Myanmar, and Southeast Asia.",
     url: "/book-call",
-    siteName: "Ye Htet Aung",
+    siteName: siteConfig.name,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Book a Call",
+    title: "Book a Digital Marketing Strategy Call",
     description:
-      "Book time directly on Ye Htet Aung's Google Calendar for a focused call about strategy, training, or performance marketing support.",
+      "Book a focused digital marketing strategy call with Ye Htet Aung.",
   },
 };
 

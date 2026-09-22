@@ -2,27 +2,35 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import BookCallForm from "@/app/components/BookCallForm";
 import Reveal from "@/app/components/Reveal";
+import {
+  buildFaqSchema,
+  buildProfessionalServiceSchema,
+  seoKeywords,
+  siteConfig,
+  toJsonLd,
+} from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Work With Me",
+  title: "Digital Marketing Services in Thailand, Myanmar & SEA",
   description:
-    "Explore how Ye Htet Aung works with brands and teams through training, consulting, and freelance media buying.",
+    "Work with Ye Htet Aung for SEO, PPC, Meta Ads, Google Ads, media buying, training, consulting, and performance strategy across Thailand, Myanmar, and Southeast Asia.",
+  keywords: seoKeywords,
   alternates: {
     canonical: "/work-with-me",
   },
   openGraph: {
-    title: "Work With Me",
+    title: "Digital Marketing Services in Thailand, Myanmar & SEA",
     description:
-      "Explore how Ye Htet Aung works with brands and teams through training, consulting, and freelance media buying.",
+      "SEO, PPC, Meta Ads, Google Ads, media buying, training, consulting, and performance strategy for Thailand, Myanmar, and Southeast Asia.",
     url: "/work-with-me",
-    siteName: "Ye Htet Aung",
+    siteName: siteConfig.name,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Work With Me",
+    title: "Digital Marketing Services in Thailand, Myanmar & SEA",
     description:
-      "Explore how Ye Htet Aung works with brands and teams through training, consulting, and freelance media buying.",
+      "Work with Ye Htet Aung for regional SEO, paid media, training, and performance marketing support.",
   },
 };
 
@@ -87,9 +95,37 @@ const supportSignals = [
   "Good for both one-off strategy and ongoing execution support",
 ];
 
+const workWithMeFaqs = [
+  {
+    question: "What digital marketing services does Ye Htet Aung offer?",
+    answer:
+      "Ye Htet Aung offers SEO strategy, PPC planning, Meta Ads and Google Ads management, digital media buying, performance audits, campaign reporting, training, and consulting.",
+  },
+  {
+    question: "Does Ye Htet Aung work with Thailand-based companies?",
+    answer:
+      "Yes. Ye Htet Aung is based in Chiang Mai, Thailand and works with Thailand-based brands, founders, agencies, and regional teams.",
+  },
+  {
+    question: "Can Myanmar and Southeast Asia teams work remotely?",
+    answer:
+      "Yes. Projects can be handled remotely or in a hybrid setup for Myanmar and Southeast Asia teams that need consulting, training, audits, or media buying support.",
+  },
+];
+
 export default function WorkWithMePage() {
+  const schemaGraph = {
+    "@context": "https://schema.org",
+    "@graph": [buildProfessionalServiceSchema(), buildFaqSchema(workWithMeFaqs)],
+  };
+
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-50">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(schemaGraph) }}
+      />
+      <main className="min-h-screen bg-slate-950 text-slate-50">
       <div className="site-bg-grid" />
       <div className="site-orb site-orb--cyan" />
       <div className="site-orb site-orb--violet" />
@@ -334,6 +370,7 @@ export default function WorkWithMePage() {
           </div>
         </Reveal>
       </section>
-    </main>
+      </main>
+    </>
   );
 }

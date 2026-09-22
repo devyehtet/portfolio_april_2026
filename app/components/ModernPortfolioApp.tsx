@@ -433,6 +433,12 @@ function Header({
               {item.label}
             </button>
           ))}
+          <a
+            href="/digital-marketing-consultant-thailand-myanmar-sea"
+            className="transition hover:text-emerald-200"
+          >
+            SEO/GEO
+          </a>
         </div>
 
         <div className="hidden lg:block">
@@ -465,6 +471,12 @@ function Header({
                 </button>
               )
             )}
+            <a
+              href="/digital-marketing-consultant-thailand-myanmar-sea"
+              className="rounded-2xl bg-white/[0.04] px-4 py-3 text-left text-sm font-semibold text-white/75"
+            >
+              SEO/GEO Thailand
+            </a>
           </div>
         </div>
       )}
@@ -660,6 +672,12 @@ function Hero() {
             >
               <LuDownload className="h-4 w-4" /> Get Digital Media Toolkit
             </button>
+            <a
+              href="/digital-marketing-consultant-thailand-myanmar-sea"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.035] px-4 py-2 font-bold text-white/62 transition hover:border-emerald-300/35 hover:text-emerald-200"
+            >
+              <LuSearch className="h-4 w-4" /> Thailand / SEA SEO
+            </a>
             <span className="hidden md:inline">-</span>
             <span>
               Based in Chiang Mai - Open to remote, hybrid and regional roles
