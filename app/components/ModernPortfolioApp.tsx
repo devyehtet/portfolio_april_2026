@@ -400,8 +400,12 @@ function Header({
 
   return (
     <header className="sticky top-0 z-50 border-b border-emerald-300/10 bg-[#050914]/88 backdrop-blur-xl">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
+      <nav
+        aria-label="Primary navigation"
+        className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4"
+      >
         <button
+          aria-label="Go to homepage"
           onClick={() => navigate("home")}
           className="flex items-center gap-3 text-left"
           type="button"
@@ -424,6 +428,7 @@ function Header({
           {routes.map((item) => (
             <button
               key={item.route}
+              aria-current={activeRoute === item.route ? "page" : undefined}
               onClick={() => navigate(item.route)}
               className={`transition hover:text-emerald-200 ${
                 activeRoute === item.route ? "text-emerald-300" : ""
@@ -442,21 +447,32 @@ function Header({
         </div>
 
         <button
+          aria-controls="mobile-navigation"
+          aria-expanded={open}
+          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
           className="rounded-full border border-white/10 p-2 text-white lg:hidden"
           onClick={() => setOpen((value) => !value)}
           type="button"
         >
-          {open ? <LuX /> : <LuMenu />}
+          {open ? (
+            <LuX aria-hidden="true" focusable="false" />
+          ) : (
+            <LuMenu aria-hidden="true" focusable="false" />
+          )}
         </button>
       </nav>
 
       {open && (
-        <div className="border-t border-white/10 bg-[#050914] px-5 py-4 lg:hidden">
+        <div
+          id="mobile-navigation"
+          className="border-t border-white/10 bg-[#050914] px-5 py-4 lg:hidden"
+        >
           <div className="grid gap-3">
             {[{ label: "Home", route: "home" as Route }, ...routes].map(
               (item) => (
                 <button
                   key={item.route}
+                  aria-current={activeRoute === item.route ? "page" : undefined}
                   onClick={() => navigate(item.route)}
                   className="rounded-2xl bg-white/[0.04] px-4 py-3 text-left text-sm font-semibold text-white/75"
                   type="button"
@@ -1328,7 +1344,12 @@ function ConversionModal({
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-6">
+    <div
+      aria-labelledby="conversion-dialog-title"
+      aria-modal="true"
+      className="fixed inset-0 z-[100] flex items-center justify-center px-4 py-6"
+      role="dialog"
+    >
       <button
         aria-label="Close form"
         onClick={onClose}
@@ -1344,17 +1365,21 @@ function ConversionModal({
                 <Icon className="h-7 w-7" />
               </div>
               <button
+                aria-label="Close form"
                 onClick={onClose}
                 className="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/[0.04] text-white/65 hover:text-white"
                 type="button"
               >
-                <LuX className="h-5 w-5" />
+                <LuX aria-hidden="true" className="h-5 w-5" focusable="false" />
               </button>
             </div>
             <div className="mt-8 text-xs font-black uppercase tracking-[0.28em] text-emerald-300">
               {selected.label}
             </div>
-            <h2 className="mt-4 text-4xl font-black leading-[0.95] tracking-[-0.06em] md:text-5xl">
+            <h2
+              id="conversion-dialog-title"
+              className="mt-4 text-4xl font-black leading-[0.95] tracking-[-0.06em] md:text-5xl"
+            >
               {selected.title}
             </h2>
             <p className="mt-5 leading-8 text-white/58">
@@ -1406,77 +1431,131 @@ function ConversionModal({
             ) : (
               <>
                 <div className="grid gap-4 md:grid-cols-2">
-                  <input
-                    required
-                    placeholder="Full name"
-                    value={form.name}
-                    onChange={(event) => updateField("name", event.target.value)}
-                    className="rounded-2xl border border-white/10 bg-white/[0.05] px-5 py-4 outline-none placeholder:text-white/35 focus:border-emerald-300"
-                  />
-                  <input
-                    required
-                    type="email"
-                    placeholder="Email address"
-                    value={form.email}
-                    onChange={(event) => updateField("email", event.target.value)}
-                    className="rounded-2xl border border-white/10 bg-white/[0.05] px-5 py-4 outline-none placeholder:text-white/35 focus:border-emerald-300"
-                  />
-                  <input
-                    placeholder="Company / brand"
-                    value={form.company}
-                    onChange={(event) =>
-                      updateField("company", event.target.value)
-                    }
-                    className="rounded-2xl border border-white/10 bg-white/[0.05] px-5 py-4 outline-none placeholder:text-white/35 focus:border-emerald-300"
-                  />
-                  <input
-                    placeholder="Website / LinkedIn URL"
-                    value={form.website}
-                    onChange={(event) =>
-                      updateField("website", event.target.value)
-                    }
-                    className="rounded-2xl border border-white/10 bg-white/[0.05] px-5 py-4 outline-none placeholder:text-white/35 focus:border-emerald-300"
-                  />
+                  <label className="block">
+                    <span className="mb-1 block text-xs font-semibold text-white/55">
+                      Full name
+                    </span>
+                    <input
+                      name="name"
+                      required
+                      placeholder="Full name"
+                      value={form.name}
+                      onChange={(event) =>
+                        updateField("name", event.target.value)
+                      }
+                      className="w-full rounded-2xl border border-white/10 bg-white/[0.05] px-5 py-4 outline-none placeholder:text-white/35 focus:border-emerald-300"
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="mb-1 block text-xs font-semibold text-white/55">
+                      Email address
+                    </span>
+                    <input
+                      name="email"
+                      required
+                      type="email"
+                      placeholder="Email address"
+                      value={form.email}
+                      onChange={(event) =>
+                        updateField("email", event.target.value)
+                      }
+                      className="w-full rounded-2xl border border-white/10 bg-white/[0.05] px-5 py-4 outline-none placeholder:text-white/35 focus:border-emerald-300"
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="mb-1 block text-xs font-semibold text-white/55">
+                      Company or brand
+                    </span>
+                    <input
+                      name="company"
+                      placeholder="Company / brand"
+                      value={form.company}
+                      onChange={(event) =>
+                        updateField("company", event.target.value)
+                      }
+                      className="w-full rounded-2xl border border-white/10 bg-white/[0.05] px-5 py-4 outline-none placeholder:text-white/35 focus:border-emerald-300"
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="mb-1 block text-xs font-semibold text-white/55">
+                      Website or LinkedIn URL
+                    </span>
+                    <input
+                      name="website"
+                      placeholder="Website / LinkedIn URL"
+                      value={form.website}
+                      onChange={(event) =>
+                        updateField("website", event.target.value)
+                      }
+                      className="w-full rounded-2xl border border-white/10 bg-white/[0.05] px-5 py-4 outline-none placeholder:text-white/35 focus:border-emerald-300"
+                    />
+                  </label>
                 </div>
                 <div className="grid gap-4 md:grid-cols-2">
-                  <input
-                    placeholder={selected.fields[0]}
-                    value={form.detailOne}
-                    onChange={(event) =>
-                      updateField("detailOne", event.target.value)
-                    }
-                    className="rounded-2xl border border-white/10 bg-white/[0.05] px-5 py-4 outline-none placeholder:text-white/35 focus:border-emerald-300"
-                  />
-                  <input
-                    placeholder={selected.fields[1]}
-                    value={form.detailTwo}
-                    onChange={(event) =>
-                      updateField("detailTwo", event.target.value)
-                    }
-                    className="rounded-2xl border border-white/10 bg-white/[0.05] px-5 py-4 outline-none placeholder:text-white/35 focus:border-emerald-300"
-                  />
+                  <label className="block">
+                    <span className="mb-1 block text-xs font-semibold text-white/55">
+                      {selected.fields[0]}
+                    </span>
+                    <input
+                      name="detailOne"
+                      placeholder={selected.fields[0]}
+                      value={form.detailOne}
+                      onChange={(event) =>
+                        updateField("detailOne", event.target.value)
+                      }
+                      className="w-full rounded-2xl border border-white/10 bg-white/[0.05] px-5 py-4 outline-none placeholder:text-white/35 focus:border-emerald-300"
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="mb-1 block text-xs font-semibold text-white/55">
+                      {selected.fields[1]}
+                    </span>
+                    <input
+                      name="detailTwo"
+                      placeholder={selected.fields[1]}
+                      value={form.detailTwo}
+                      onChange={(event) =>
+                        updateField("detailTwo", event.target.value)
+                      }
+                      className="w-full rounded-2xl border border-white/10 bg-white/[0.05] px-5 py-4 outline-none placeholder:text-white/35 focus:border-emerald-300"
+                    />
+                  </label>
                 </div>
-                <select
-                  className="w-full rounded-2xl border border-white/10 bg-[#07120f] px-5 py-4 text-white/70 outline-none focus:border-emerald-300"
-                  value={form.need}
-                  onChange={(event) => updateField("need", event.target.value)}
-                >
-                  <option value="">Main need</option>
-                  <option>Meta / Google performance audit</option>
-                  <option>Education lead generation</option>
-                  <option>Digital product launch</option>
-                  <option>Digital media toolkit</option>
-                  <option>Training / workshop</option>
-                  <option>Freelance media buying</option>
-                  <option>Strategy call / consultation</option>
-                </select>
-                <textarea
-                  rows={5}
-                  placeholder="Tell me about your goal, current ROAS/CPL/CPA if available, monthly budget, timeline, and main challenge"
-                  value={form.message}
-                  onChange={(event) => updateField("message", event.target.value)}
-                  className="w-full rounded-2xl border border-white/10 bg-white/[0.05] px-5 py-4 outline-none placeholder:text-white/35 focus:border-emerald-300"
-                />
+                <label className="block">
+                  <span className="mb-1 block text-xs font-semibold text-white/55">
+                    Main need
+                  </span>
+                  <select
+                    name="need"
+                    className="w-full rounded-2xl border border-white/10 bg-[#07120f] px-5 py-4 text-white/70 outline-none focus:border-emerald-300"
+                    value={form.need}
+                    onChange={(event) => updateField("need", event.target.value)}
+                  >
+                    <option value="">Main need</option>
+                    <option>Meta / Google performance audit</option>
+                    <option>Education lead generation</option>
+                    <option>Digital product launch</option>
+                    <option>Digital media toolkit</option>
+                    <option>Training / workshop</option>
+                    <option>Freelance media buying</option>
+                    <option>Strategy call / consultation</option>
+                  </select>
+                </label>
+                <label className="block">
+                  <span className="mb-1 block text-xs font-semibold text-white/55">
+                    Message
+                  </span>
+                  <textarea
+                    name="message"
+                    rows={5}
+                    placeholder="Tell me about your goal, current ROAS/CPL/CPA if available, monthly budget, timeline, and main challenge"
+                    value={form.message}
+                    onChange={(event) =>
+                      updateField("message", event.target.value)
+                    }
+                    className="w-full rounded-2xl border border-white/10 bg-white/[0.05] px-5 py-4 outline-none placeholder:text-white/35 focus:border-emerald-300"
+                  />
+                </label>
                 {error ? (
                   <p className="text-sm font-semibold text-red-300">{error}</p>
                 ) : null}
