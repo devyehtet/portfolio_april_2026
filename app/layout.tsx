@@ -78,9 +78,9 @@ export default function RootLayout({
         {/* Google tag */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-tag" strategy="afterInteractive">
+        <Script id="google-tag" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -105,7 +105,7 @@ export default function RootLayout({
           <>
             <Script
               id="meta-pixel"
-              strategy="afterInteractive"
+              strategy="lazyOnload"
               dangerouslySetInnerHTML={{
                 __html: `
                   !function(f,b,e,v,n,t,s)

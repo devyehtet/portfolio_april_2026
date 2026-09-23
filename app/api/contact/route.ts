@@ -2,14 +2,25 @@ import { NextResponse } from "next/server";
 import {
   escapeHtml,
   getMailSetupHelpMessage,
-  getStringField,
   isValidEmail,
   MailConfigError,
   sendPortfolioEmail,
 } from "@/lib/email";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import {
+  getBoundedStringField,
+  getFieldLimitError,
+  getJsonRequestError,
+  readJsonObject,
+} from "@/lib/request-validation";
 
 export const runtime = "nodejs";
+
+const fieldLimits = [
+  { key: "name", label: "name", maxLength: 120 },
+  { key: "email", label: "email", maxLength: 254 },
+  { key: "message", label: "message", maxLength: 3_000 },
+];
 
 export async function POST(req: Request) {
   const ip = getClientIp(req);
@@ -21,10 +32,23 @@ export async function POST(req: Request) {
   }
 
   try {
-    const body = (await req.json()) as Record<string, unknown>;
-    const name = getStringField(body.name);
-    const email = getStringField(body.email);
-    const message = getStringField(body.message);
+    const requestError = getJsonRequestError(req);
+    if (requestError) return requestError;
+
+    const body = await readJsonObject(req);
+    if (!body) {
+      return NextResponse.json(
+        { error: "Invalid request body." },
+        { status: 400 }
+      );
+    }
+
+    const fieldLimitError = getFieldLimitError(body, fieldLimits);
+    if (fieldLimitError) return fieldLimitError;
+
+    const name = getBoundedStringField(body, "name", 120);
+    const email = getBoundedStringField(body, "email", 254);
+    const message = getBoundedStringField(body, "message", 3_000);
 
     if (!name || !email || !message) {
       return NextResponse.json(

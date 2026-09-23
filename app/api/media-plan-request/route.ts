@@ -2,14 +2,29 @@ import { NextResponse } from "next/server";
 import {
   escapeHtml,
   getMailSetupHelpMessage,
-  getStringField,
   isValidEmail,
   MailConfigError,
   sendPortfolioEmail,
 } from "@/lib/email";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import {
+  getBoundedStringField,
+  getFieldLimitError,
+  getJsonRequestError,
+  readJsonObject,
+} from "@/lib/request-validation";
 
 export const runtime = "nodejs";
+
+const fieldLimits = [
+  { key: "name", label: "name", maxLength: 120 },
+  { key: "email", label: "email", maxLength: 254 },
+  { key: "company", label: "company", maxLength: 160 },
+  { key: "role", label: "role", maxLength: 120 },
+  { key: "useCase", label: "order type", maxLength: 240 },
+  { key: "budgetRange", label: "product option", maxLength: 120 },
+  { key: "notes", label: "order note", maxLength: 3_000 },
+];
 
 export async function POST(req: Request) {
   const ip = getClientIp(req);
@@ -21,14 +36,27 @@ export async function POST(req: Request) {
   }
 
   try {
-    const body = (await req.json()) as Record<string, unknown>;
-    const name = getStringField(body.name);
-    const email = getStringField(body.email);
-    const company = getStringField(body.company);
-    const role = getStringField(body.role);
-    const useCase = getStringField(body.useCase);
-    const budgetRange = getStringField(body.budgetRange);
-    const notes = getStringField(body.notes);
+    const requestError = getJsonRequestError(req);
+    if (requestError) return requestError;
+
+    const body = await readJsonObject(req);
+    if (!body) {
+      return NextResponse.json(
+        { error: "Invalid request body." },
+        { status: 400 }
+      );
+    }
+
+    const fieldLimitError = getFieldLimitError(body, fieldLimits);
+    if (fieldLimitError) return fieldLimitError;
+
+    const name = getBoundedStringField(body, "name", 120);
+    const email = getBoundedStringField(body, "email", 254);
+    const company = getBoundedStringField(body, "company", 160);
+    const role = getBoundedStringField(body, "role", 120);
+    const useCase = getBoundedStringField(body, "useCase", 240);
+    const budgetRange = getBoundedStringField(body, "budgetRange", 120);
+    const notes = getBoundedStringField(body, "notes", 3_000);
 
     if (!name || !email || !company || !role || !useCase) {
       return NextResponse.json(

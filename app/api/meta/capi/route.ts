@@ -1,6 +1,7 @@
 import crypto from "crypto";
 import { NextResponse } from "next/server";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import { getJsonRequestError } from "@/lib/request-validation";
 
 export const runtime = "nodejs";
 
@@ -149,13 +150,22 @@ export async function POST(req: Request) {
   }
 
   try {
+    const requestError = getJsonRequestError(req, 4 * 1024);
+    if (requestError) return requestError;
+
     const PIXEL_ID = process.env.META_PIXEL_ID;
     const ACCESS_TOKEN = process.env.META_CAPI_TOKEN;
     const TEST_EVENT_CODE = process.env.META_TEST_EVENT_CODE;
 
     if (!PIXEL_ID || !ACCESS_TOKEN) {
       return NextResponse.json(
-        { ok: false, error: "Missing META_PIXEL_ID or META_CAPI_TOKEN in .env.local" },
+        {
+          ok: false,
+          error:
+            process.env.NODE_ENV === "development"
+              ? "Missing META_PIXEL_ID or META_CAPI_TOKEN in .env.local"
+              : "Meta tracking is temporarily unavailable.",
+        },
         { status: 500 }
       );
     }
@@ -247,8 +257,10 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ ok: true });
   } catch (error: unknown) {
-    const message =
-      error instanceof Error ? error.message : "Unexpected Meta CAPI error";
-    return NextResponse.json({ ok: false, error: message }, { status: 500 });
+    console.error("Meta CAPI error:", error);
+    return NextResponse.json(
+      { ok: false, error: "Meta tracking failed." },
+      { status: 500 }
+    );
   }
 }
