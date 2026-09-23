@@ -17,7 +17,7 @@ import {
 export const metadata: Metadata = {
   title: "Digital Marketing Consultant Thailand, Myanmar & SEA",
   description:
-    "Digital marketing consulting for Thailand, Myanmar, and Southeast Asia: SEO, AEO, GEO, PPC, Meta Ads, Google Ads, media buying, training, and performance strategy.",
+    "Digital marketing consulting for Thailand, Myanmar, and Southeast Asia: SEO, PPC, Meta Ads, Google Ads, media buying, training, search visibility, and performance strategy.",
   keywords: seoKeywords,
   alternates: {
     canonical: "/digital-marketing-consultant-thailand-myanmar-sea",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Digital Marketing Consultant Thailand, Myanmar & SEA",
     description:
-      "Thailand-first digital marketing consulting with Myanmar and Southeast Asia market experience across SEO, AEO, GEO, PPC, and media buying.",
+      "Thailand-first digital marketing consulting with Myanmar and Southeast Asia market experience across SEO, PPC, media buying, and performance strategy.",
     url: "/digital-marketing-consultant-thailand-myanmar-sea",
     siteName: siteConfig.name,
     type: "website",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Digital Marketing Consultant Thailand, Myanmar & SEA",
     description:
-      "SEO, AEO, GEO, PPC, Meta Ads, Google Ads, and media buying support for Thailand, Myanmar, and SEA brands.",
+      "SEO, PPC, Meta Ads, Google Ads, and media buying support for Thailand, Myanmar, and SEA brands.",
   },
 };
 
@@ -55,9 +55,9 @@ const answerCards = [
 
 const serviceClusters = [
   {
-    title: "SEO, AEO, and GEO strategy",
+    title: "SEO and regional search visibility",
     body: "Technical SEO, search intent mapping, answer-friendly page structure, schema markup, regional landing pages, internal linking, and content plans for Thailand, Myanmar, and SEA discovery.",
-    terms: ["SEO consultant Thailand", "AEO strategy", "GEO visibility"],
+    terms: ["SEO consultant Thailand", "Search strategy", "Regional visibility"],
   },
   {
     title: "Paid media and performance marketing",
@@ -75,7 +75,7 @@ const rankingSignals = [
   "Clear Thailand-first location signal with Bangkok as the business base.",
   "Dedicated market coverage for Myanmar and Southeast Asia search intent.",
   "Structured data for Person, ProfessionalService, FAQPage, BreadcrumbList, and WebSite context.",
-  "Answer-style copy that helps search engines and AI answer engines summarize the services accurately.",
+  "Clear, answer-friendly copy that helps search systems summarize the services accurately.",
   "Internal links to work inquiry, booking, toolkit, and blog content for stronger topical pathways.",
 ];
 
@@ -109,8 +109,8 @@ export default function RegionalDigitalMarketingPage() {
         ],
         serviceType: [
           "SEO consulting",
-          "AEO strategy",
-          "GEO strategy",
+          "Answer-friendly content strategy",
+          "Regional search visibility",
           "PPC advertising",
           "Meta Ads management",
           "Google Ads management",
@@ -158,7 +158,7 @@ export default function RegionalDigitalMarketingPage() {
 
             <div className="space-y-4">
               <p className="section-kicker text-xs uppercase tracking-[0.24em] text-sky-300">
-                AEO, SEO, GEO
+                Regional Growth Support
               </p>
               <h1 className="max-w-5xl text-4xl font-semibold leading-[1.04] md:text-6xl">
                 Digital marketing consultant for Thailand, Myanmar, and
@@ -197,8 +197,8 @@ export default function RegionalDigitalMarketingPage() {
                 for Thailand, Myanmar, and Southeast Asia.
               </p>
               <p>
-                Core services include SEO, AEO, GEO, PPC, Meta Ads, Google Ads,
-                media buying, training, and performance strategy.
+                Core services include SEO, PPC, Meta Ads, Google Ads, media
+                buying, training, and performance strategy.
               </p>
             </div>
           </Reveal>
@@ -246,7 +246,7 @@ export default function RegionalDigitalMarketingPage() {
           <Reveal variant="right" delay={100}>
             <section className="story-card motion-card motion-panel rounded-[2rem] p-6">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-300">
-                Ranking Foundation
+                Search Foundation
               </p>
               <p className="mt-3 text-sm leading-7 text-slate-300">
                 Top ten rankings depend on competition, content depth, backlinks,
@@ -305,7 +305,7 @@ export default function RegionalDigitalMarketingPage() {
         <Reveal delay={120} variant="up">
           <section className="section-shell rounded-3xl border border-slate-800 bg-slate-900/70 p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-300">
-              Answer Engine FAQ
+              Service FAQ
             </p>
             <div className="mt-5 grid gap-4">
               {regionalFaqs.map((item) => (

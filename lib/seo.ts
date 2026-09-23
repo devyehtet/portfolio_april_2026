@@ -60,7 +60,7 @@ export const regionalFaqs = [
       "Services include SEO strategy, paid media audits, Meta Ads and Google Ads management, PPC planning, conversion rate optimization, digital marketing training, campaign reporting, and media planning systems.",
   },
   {
-    question: "Can Ye Htet Aung help with AEO, SEO, and GEO visibility?",
+    question: "Can Ye Htet Aung help with search and regional visibility?",
     answer:
       "Yes. The work can cover technical SEO, answer-friendly content, structured data, local and regional market signals, search intent planning, and content systems that help search engines and AI answer engines understand the site clearly.",
   },
@@ -137,8 +137,8 @@ export function buildProfessionalServiceSchema() {
     ],
     serviceType: [
       "SEO consulting",
-      "AEO strategy",
-      "GEO strategy",
+      "Answer-friendly content strategy",
+      "Regional search visibility",
       "PPC advertising",
       "Meta Ads management",
       "Google Ads management",
@@ -154,7 +154,7 @@ export function buildProfessionalServiceSchema() {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "SEO, AEO, and GEO strategy",
+            name: "SEO and regional visibility strategy",
           },
         },
         {

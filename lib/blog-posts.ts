@@ -39,9 +39,9 @@ const postDetails: Record<
         ],
       },
       {
-        title: "What AEO, SEO, and GEO should cover",
+        title: "What search visibility should cover",
         paragraphs: [
-          "SEO helps search engines understand pages, topics, and commercial intent. AEO helps answer engines extract direct answers from clear headings, FAQs, and concise explanations. GEO adds regional signals so the site is easier to connect with Thailand, Myanmar, and Southeast Asia search contexts.",
+          "Strong search visibility helps people and search systems understand pages, topics, and commercial intent. Clear headings, FAQs, concise explanations, and regional signals make the site easier to connect with Thailand, Myanmar, and Southeast Asia search contexts.",
           "For a consultant portfolio, this means the homepage should say who you are, where you are based, who you help, and what services you provide. Service pages should answer buyer questions directly, and blog posts should build topical authority around recurring problems.",
         ],
         bullets: [

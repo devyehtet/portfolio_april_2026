@@ -19,7 +19,7 @@ export const blogPreviews: BlogPreview[] = [
     publishedAt: "2026-09-23",
     readTime: "7 min read",
     excerpt:
-      "How Thailand-based brands and regional teams can connect SEO, paid media, AEO, GEO, and conversion planning across Myanmar and Southeast Asia.",
+      "How Thailand-based brands and regional teams can connect search visibility, paid media, and conversion planning across Myanmar and Southeast Asia.",
     description:
       "A practical guide for finding and working with a digital marketing consultant in Thailand who understands Myanmar and Southeast Asia growth.",
   },
