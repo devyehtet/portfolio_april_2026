@@ -79,6 +79,29 @@ const rankingSignals = [
   "Internal links to work inquiry, booking, toolkit, and blog content for stronger topical pathways.",
 ];
 
+const focusedPages = [
+  {
+    href: "/digital-media-planning-consultant-bangkok",
+    label: "Digital media planning consultant in Bangkok",
+    body: "Campaign briefs, channel roles, budget allocation, launch QA, and reporting structure.",
+  },
+  {
+    href: "/digital-media-buying-consultant-thailand-sea",
+    label: "Digital media buying consultant for Thailand and SEA",
+    body: "Meta Ads, Google Ads, PPC, paid social, tracking, campaign audits, and optimization support.",
+  },
+  {
+    href: "/myanmar-digital-marketing-consultant",
+    label: "Myanmar digital marketing consultant",
+    body: "Myanmar market strategy, paid media, SEO planning, campaign reporting, and team training.",
+  },
+  {
+    href: "/media-planning-buying-toolkit",
+    label: "Media planning and buying toolkit",
+    body: "A paid toolkit for campaign planning, budget decisions, buying QA, and weekly optimization.",
+  },
+];
+
 export default function RegionalDigitalMarketingPage() {
   const schemaGraph = {
     "@context": "https://schema.org",
@@ -298,6 +321,34 @@ export default function RegionalDigitalMarketingPage() {
                   </div>
                 </article>
               </Reveal>
+            ))}
+          </div>
+        </div>
+
+        <div className="section-shell space-y-6">
+          <div className="space-y-3">
+            <p className="text-xs uppercase tracking-[0.26em] text-sky-300">
+              Focused Support
+            </p>
+            <h2 className="text-2xl font-semibold">
+              Choose the page that matches your search intent
+            </h2>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {focusedPages.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="motion-button rounded-[1.65rem] border border-slate-800 bg-slate-950/55 p-5 transition hover:border-sky-400"
+              >
+                <span className="text-base font-semibold text-slate-50">
+                  {item.label}
+                </span>
+                <span className="mt-3 block text-sm leading-6 text-slate-300">
+                  {item.body}
+                </span>
+              </Link>
             ))}
           </div>
         </div>

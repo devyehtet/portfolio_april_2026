@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { blogPreviews } from "@/lib/blog-preview";
+import { keywordLandingPageRoutes } from "@/lib/keyword-landing-pages";
 import { absoluteUrl } from "@/lib/seo";
 
 const staticRoutes: Array<{
@@ -13,6 +14,11 @@ const staticRoutes: Array<{
     changeFrequency: "weekly",
     priority: 0.95,
   },
+  ...keywordLandingPageRoutes.map((path) => ({
+    path,
+    changeFrequency: "weekly" as const,
+    priority: 0.92,
+  })),
   { path: "/work-with-me", changeFrequency: "monthly", priority: 0.9 },
   { path: "/book-call", changeFrequency: "monthly", priority: 0.8 },
   { path: "/media-plan-template", changeFrequency: "monthly", priority: 0.8 },

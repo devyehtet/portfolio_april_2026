@@ -22,6 +22,10 @@ export const seoKeywords = [
   "Southeast Asia performance marketing",
   "SEA media buying consultant",
   "Bangkok digital marketing consultant",
+  "digital media planning consultant Bangkok",
+  "digital media buying consultant Thailand",
+  "media planning and buying toolkit",
+  "campaign planning template Thailand",
 ];
 
 export const priorityMarkets = [
@@ -143,6 +147,8 @@ export function buildProfessionalServiceSchema() {
       "Meta Ads management",
       "Google Ads management",
       "Digital media buying",
+      "Digital media planning",
+      "Campaign planning templates",
       "Digital marketing training",
       "Performance marketing consulting",
     ],
@@ -162,6 +168,13 @@ export function buildProfessionalServiceSchema() {
           itemOffered: {
             "@type": "Service",
             name: "Meta Ads and Google Ads media buying",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Digital media planning and campaign buying workflow",
           },
         },
         {
