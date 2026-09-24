@@ -209,19 +209,35 @@ export default async function BlogPostPage({ params }: PageProps) {
 
         <Reveal delay={120} variant="scale">
           <div className="editorial-panel motion-card motion-panel rounded-3xl p-6">
-          <p className="text-sm font-semibold text-slate-50">
-            Need support for Myanmar digital marketing?
-          </p>
-          <p className="mt-2 text-sm leading-6 text-slate-300">
-            I help with consulting, team training, and freelance media buying
-            for brands that want stronger strategy and cleaner execution.
-          </p>
-          <Link
-            href="/#contact"
-            className="motion-button mt-4 inline-flex rounded-full bg-sky-500 px-4 py-2 text-xs font-semibold text-slate-900 transition hover:bg-sky-400"
-          >
-            Contact Me
-          </Link>
+            <p className="text-sm font-semibold text-slate-50">
+              Need practical support after reading this?
+            </p>
+            <p className="mt-2 text-sm leading-6 text-slate-300">
+              I help with consulting, media planning, paid media audits, team
+              training, and freelance media buying for Thailand, Myanmar, and
+              Southeast Asia growth.
+            </p>
+
+            {post.relatedLinks && (
+              <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                {post.relatedLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="motion-button rounded-2xl border border-slate-700 bg-slate-950/60 px-4 py-3 text-xs font-semibold text-sky-200 transition hover:border-sky-400 hover:text-sky-100"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+
+            <Link
+              href="/work-with-me"
+              className="motion-button mt-5 inline-flex rounded-full bg-sky-500 px-4 py-2 text-xs font-semibold text-slate-900 transition hover:bg-sky-400"
+            >
+              Contact Me
+            </Link>
           </div>
         </Reveal>
       </article>

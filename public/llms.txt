@@ -14,6 +14,9 @@
 - [Strategy call booking](https://yehtet.com/book-call): Request a focused performance marketing strategy call.
 - [Digital Media Planning & Buying Toolkit](https://yehtet.com/media-plan-template): Paid toolkit for campaign planning, budget allocation, buying QA, and optimization review.
 - [Blog](https://yehtet.com/blog): Digital marketing, media planning, and performance strategy articles.
+- [Bangkok media planning guide](https://yehtet.com/blog/digital-media-planning-consultant-bangkok-media-plan): What a strong media plan should include before buying ads.
+- [Thailand and SEA media buying audit checklist](https://yehtet.com/blog/digital-media-buying-consultant-thailand-sea-audit-checklist): Audit checklist for Meta Ads, Google Ads, tracking, landing pages, creative testing, and budget pacing.
+- [Media planning toolkit launch guide](https://yehtet.com/blog/media-planning-buying-toolkit-before-launch): How to use a planning and buying toolkit before campaign launch.
 - [Sitemap](https://yehtet.com/sitemap.xml): Index of public URLs.
 
 ## Expertise
@@ -25,6 +28,7 @@
 - Performance marketing strategy, CRO, analytics, and lead generation.
 - Digital marketing training, workshops, and team enablement.
 - Myanmar, Thailand, and Southeast Asia market growth support.
+- Practical SEO articles and guides for Bangkok media planning, Thailand and SEA media buying, and media planning toolkit usage.
 
 ## Contact
 

@@ -11,6 +11,45 @@ export type BlogPreview = {
 
 export const blogPreviews: BlogPreview[] = [
   {
+    slug: "digital-media-planning-consultant-bangkok-media-plan",
+    title:
+      "Digital Media Planning Consultant in Bangkok: What a Strong Media Plan Should Include",
+    category: "Media Planning",
+    roleFocus: "Consulting",
+    publishedAt: "2026-09-24",
+    readTime: "8 min read",
+    excerpt:
+      "A practical Bangkok media planning guide for teams that need clearer channel roles, budget allocation, launch QA, and reporting before buying ads.",
+    description:
+      "Learn what a strong digital media plan should include when working with a Bangkok-based media planning consultant for Thailand and SEA campaigns.",
+  },
+  {
+    slug: "digital-media-buying-consultant-thailand-sea-audit-checklist",
+    title:
+      "Digital Media Buying Consultant for Thailand and SEA: Audit Checklist Before Scaling",
+    category: "Media Buying",
+    roleFocus: "Freelance Media Buying",
+    publishedAt: "2026-09-24",
+    readTime: "8 min read",
+    excerpt:
+      "A paid media audit checklist for Meta Ads, Google Ads, tracking, landing pages, creative testing, and budget pacing across Thailand and Southeast Asia.",
+    description:
+      "Use this Thailand and SEA media buying audit checklist before scaling Meta Ads, Google Ads, PPC, and paid social budgets.",
+  },
+  {
+    slug: "media-planning-buying-toolkit-before-launch",
+    title:
+      "How to Use a Media Planning and Buying Toolkit Before Launching Campaigns",
+    category: "Toolkit",
+    roleFocus: "Planning System",
+    publishedAt: "2026-09-24",
+    readTime: "7 min read",
+    excerpt:
+      "How founders, marketers, freelancers, and agencies can use a media planning toolkit to organize briefs, budgets, buying QA, and weekly optimization.",
+    description:
+      "A practical guide to using a media planning and buying toolkit before launching campaigns in Thailand, Myanmar, or Southeast Asia.",
+  },
+  {
     slug: "digital-marketing-consultant-thailand-myanmar-sea",
     title:
       "Digital Marketing Consultant in Thailand: Building Growth Across Myanmar and SEA",
