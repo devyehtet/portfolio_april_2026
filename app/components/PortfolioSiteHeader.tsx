@@ -7,7 +7,7 @@ const navLinks = [
   { href: "/blog", label: "Blog" },
 ];
 
-export default function PortfolioBlogHeader() {
+export default function PortfolioSiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-emerald-300/10 bg-[#050914]/88 backdrop-blur-xl">
       <nav

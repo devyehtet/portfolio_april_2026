@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BookCallForm from "@/app/components/BookCallForm";
+import PortfolioSiteHeader from "@/app/components/PortfolioSiteHeader";
 import Reveal from "@/app/components/Reveal";
 import {
   buildFaqSchema,
@@ -45,8 +46,6 @@ const offers = [
       "Campaign planning and KPI frameworks",
       "Reporting and optimization workflows",
     ],
-    accent:
-      "border-sky-500/30 bg-[linear-gradient(180deg,rgba(14,165,233,0.16),rgba(15,23,42,0.9))]",
   },
   {
     label: "Consultant",
@@ -58,8 +57,6 @@ const offers = [
       "Performance audits and diagnosis",
       "Roadmaps with practical next steps",
     ],
-    accent:
-      "border-indigo-500/30 bg-[linear-gradient(180deg,rgba(99,102,241,0.16),rgba(15,23,42,0.9))]",
   },
   {
     label: "Freelance Media Buyer",
@@ -71,8 +68,6 @@ const offers = [
       "Testing and budget optimization",
       "Weekly reporting and recommendations",
     ],
-    accent:
-      "border-emerald-500/30 bg-[linear-gradient(180deg,rgba(16,185,129,0.16),rgba(15,23,42,0.9))]",
   },
 ];
 
@@ -92,7 +87,7 @@ const processSteps = [
 const supportSignals = [
   "For founders, marketing leads, and in-house teams",
   "Useful before scaling paid media or training a team",
-  "Good for both one-off strategy and ongoing execution support",
+  "Good for one-off strategy and ongoing execution support",
 ];
 
 const workWithMeFaqs = [
@@ -120,141 +115,107 @@ export default function WorkWithMePage() {
   };
 
   return (
-    <>
+    <main className="relative isolate min-h-screen overflow-hidden bg-[#050914] text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: toJsonLd(schemaGraph) }}
       />
-      <main className="min-h-screen bg-slate-950 text-slate-50">
-      <div className="site-bg-grid" />
-      <div className="site-orb site-orb--cyan" />
-      <div className="site-orb site-orb--violet" />
-      <div className="site-orb site-orb--emerald" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_12%,rgba(80,245,170,0.22),transparent_34%),radial-gradient(circle_at_78%_4%,rgba(45,212,191,0.12),transparent_32%),linear-gradient(180deg,#050914_0%,#07111d_46%,#050914_100%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(rgba(80,245,170,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(80,245,170,0.035)_1px,transparent_1px)] bg-[size:5rem_5rem] opacity-70" />
 
-      <section className="page-shell">
-        <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
-          <Reveal className="order-2 space-y-6 lg:order-1">
-            <Link
-              href="/"
-              className="motion-button inline-flex w-fit rounded-full border border-slate-700 px-3 py-1 text-xs text-slate-300 transition hover:border-sky-400 hover:text-sky-300"
-            >
-              Back to Home
-            </Link>
+      <PortfolioSiteHeader />
 
-            <div className="editorial-panel hero-panel space-y-5">
-              <div className="flex flex-wrap gap-2">
+      <section className="mx-auto max-w-7xl px-5 py-14 md:py-20">
+        <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+          <Reveal className="space-y-6">
+            <div className="relative overflow-hidden rounded-[2rem] border border-emerald-300/12 bg-white/[0.045] p-6 shadow-[0_30px_120px_rgba(0,0,0,0.35)] backdrop-blur md:p-8">
+              <div className="absolute right-0 top-0 h-full w-1/3 bg-emerald-300/[0.035]" />
+              <Link
+                href="/"
+                className="relative inline-flex rounded-full border border-emerald-300/18 bg-emerald-300/[0.08] px-3 py-1 text-xs font-semibold text-emerald-100 transition hover:border-emerald-300/45 hover:text-emerald-50"
+              >
+                Back to Home
+              </Link>
+
+              <div className="relative mt-8 flex flex-wrap gap-2">
                 {["Trainer", "Consultant", "Media Buyer"].map((item) => (
                   <span
                     key={item}
-                    className="hero-chip rounded-full border border-slate-700 bg-slate-950/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-200"
+                    className="rounded-full border border-emerald-300/16 bg-slate-950/50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-emerald-100"
                   >
                     {item}
                   </span>
                 ))}
               </div>
 
-              <div className="space-y-4">
-                <p className="section-kicker text-xs uppercase tracking-[0.24em] text-sky-300">
+              <div className="relative mt-6 space-y-5">
+                <p className="text-xs font-bold uppercase tracking-[0.32em] text-emerald-300">
                   Work With Me
                 </p>
-                <h1 className="max-w-4xl text-4xl font-semibold leading-[1.04] md:text-6xl">
-                  Choose the kind of support you need and send a work inquiry
+                <h1 className="max-w-4xl text-4xl font-black leading-[0.98] md:text-6xl">
+                  Choose the right support for{" "}
+                  <span className="text-emerald-300">
+                    growth, training, or media buying
+                  </span>
                 </h1>
-                <p className="max-w-3xl text-sm leading-7 text-slate-300 md:text-base">
+                <p className="max-w-3xl text-base leading-8 text-white/68">
                   This page is for real work conversations: team training,
                   strategy support, freelance media buying, audits, and growth
-                  planning. Use the inquiry form to tell me what you need and
-                  I&apos;ll reply with the best next step.
+                  planning. Tell me what you need and I&apos;ll reply with the
+                  clearest next step.
                 </p>
               </div>
 
-              <div className="flex flex-wrap items-center gap-4">
+              <div className="relative mt-8 flex flex-wrap items-center gap-4">
                 <Link
                   href="#work-inquiry-form"
-                  className="motion-button rounded-full bg-sky-500 px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-sky-400"
+                  className="rounded-full bg-emerald-300 px-5 py-3 text-sm font-black text-[#050914] transition hover:bg-emerald-200"
                 >
-                  Send a work inquiry
+                  Send a Work Inquiry
                 </Link>
                 <Link
                   href="/book-call"
-                  className="motion-button rounded-full border border-slate-700 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:border-sky-400 hover:text-sky-200"
+                  className="rounded-full border border-emerald-300/24 bg-emerald-300/[0.08] px-5 py-3 text-sm font-black text-emerald-100 transition hover:border-emerald-300/50 hover:bg-emerald-300/[0.12]"
                 >
-                  Go to booking page
+                  Go to Booking Page
                 </Link>
               </div>
             </div>
 
-            <div className="relative overflow-hidden rounded-[2rem] border border-slate-800 bg-[linear-gradient(135deg,rgba(14,165,233,0.12),rgba(15,23,42,0.78)_52%,rgba(99,102,241,0.1))] p-6">
-              <div className="pointer-events-none absolute right-0 top-0 h-40 w-40 rounded-full bg-sky-400/12 blur-3xl" />
-              <div className="pointer-events-none absolute bottom-0 left-8 h-28 w-28 rounded-full bg-indigo-400/12 blur-3xl" />
-
-              <div className="relative space-y-4">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-300">
-                  Best Fit
-                </p>
-                <div className="grid gap-3 md:grid-cols-3">
-                  {supportSignals.map((item) => (
-                    <div
-                      key={item}
-                      className="rounded-2xl border border-white/10 bg-slate-950/45 px-4 py-4 text-sm leading-6 text-slate-300"
-                    >
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-
-        <div className="section-shell grid gap-6 lg:grid-cols-[0.98fr_1.02fr]">
-          <Reveal variant="left" className="space-y-4">
-            <div className="story-card motion-card motion-panel rounded-[2rem] p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-300">
-                Choose the right lane
+            <div className="rounded-[1.6rem] border border-emerald-300/12 bg-white/[0.04] p-6">
+              <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-emerald-300">
+                Best Fit
               </p>
-              <div className="mt-4 grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
-                {offers.map((offer) => (
+              <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                {supportSignals.map((item) => (
                   <div
-                    key={offer.label}
-                    className={`rounded-[1.6rem] border p-5 ${offer.accent}`}
+                    key={item}
+                    className="rounded-[1.25rem] border border-emerald-300/10 bg-slate-950/42 px-4 py-4 text-sm leading-6 text-white/62"
                   >
-                    <div className="flex flex-wrap items-center justify-between gap-3">
-                      <span className="inline-flex rounded-full border border-white/10 bg-slate-950/55 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-200">
-                        {offer.label}
-                      </span>
-                      <Link
-                        href="#work-inquiry-form"
-                        className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-200"
-                      >
-                        Inquire →
-                      </Link>
-                    </div>
-                    <h2 className="mt-4 text-lg font-semibold leading-snug text-slate-50">
-                      {offer.title}
-                    </h2>
-                    <p className="mt-3 text-sm leading-6 text-slate-300">
-                      {offer.description}
-                    </p>
+                    {item}
                   </div>
                 ))}
               </div>
             </div>
           </Reveal>
 
-          <Reveal variant="right" delay={120} className="lg:sticky lg:top-6">
-            <div className="mb-4 overflow-hidden rounded-[1.75rem] border border-sky-400/20 bg-[linear-gradient(135deg,rgba(14,165,233,0.12),rgba(15,23,42,0.78)_50%,rgba(99,102,241,0.08))] px-4 py-4">
+          <Reveal
+            variant="right"
+            delay={120}
+            className="space-y-4 lg:sticky lg:top-24"
+          >
+            <div className="overflow-hidden rounded-[1.6rem] border border-emerald-300/18 bg-emerald-300/[0.06] px-4 py-4">
               <div className="flex items-center justify-between gap-3">
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-300">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.26em] text-emerald-300">
                     Main Action
                   </p>
-                  <p className="mt-1 text-sm font-medium text-slate-100">
+                  <p className="mt-1 text-sm font-black text-white">
                     Send a work inquiry here
                   </p>
                 </div>
-                <span className="rounded-full border border-sky-400/20 bg-sky-400/10 px-3 py-1 text-xs font-semibold text-sky-200">
-                  Start here →
+                <span className="rounded-full border border-emerald-300/18 bg-slate-950/55 px-3 py-1 text-xs font-black text-emerald-200">
+                  Start here -&gt;
                 </span>
               </div>
             </div>
@@ -271,25 +232,23 @@ export default function WorkWithMePage() {
           </Reveal>
         </div>
 
-        <div className="section-shell grid gap-4 lg:grid-cols-3">
+        <div className="mt-16 grid gap-5 lg:grid-cols-3">
           {offers.map((offer, index) => (
             <Reveal key={offer.label} delay={index * 100} variant="up">
-              <article
-                className={`motion-card motion-panel story-card rounded-[1.9rem] border p-6 shadow-lg shadow-slate-950/20 ${offer.accent}`}
-              >
-                <span className="inline-flex rounded-full border border-white/10 bg-slate-950/55 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-200">
+              <article className="h-full rounded-[1.6rem] border border-emerald-300/12 bg-white/[0.04] p-6 transition hover:border-emerald-300/42 hover:bg-emerald-300/[0.07]">
+                <span className="inline-flex rounded-full border border-emerald-300/18 bg-slate-950/50 px-3 py-1 text-[11px] font-black uppercase tracking-[0.18em] text-emerald-200">
                   {offer.label}
                 </span>
-                <h2 className="mt-5 text-xl font-semibold leading-snug text-slate-50">
+                <h2 className="mt-5 text-xl font-black leading-snug text-white">
                   {offer.title}
                 </h2>
-                <p className="mt-3 text-sm leading-6 text-slate-300">
+                <p className="mt-4 text-sm leading-7 text-white/64">
                   {offer.description}
                 </p>
-                <ul className="mt-5 space-y-2 text-sm text-slate-200">
+                <ul className="mt-6 space-y-3 text-sm leading-7 text-white/68">
                   {offer.bullets.map((bullet) => (
                     <li key={bullet} className="flex gap-3">
-                      <span className="mt-1 text-sky-300">•</span>
+                      <span className="mt-1 text-emerald-300">•</span>
                       <span>{bullet}</span>
                     </li>
                   ))}
@@ -299,16 +258,16 @@ export default function WorkWithMePage() {
           ))}
         </div>
 
-        <div className="section-shell grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+        <div className="mt-14 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
           <Reveal variant="left">
-            <div className="story-card motion-card motion-panel rounded-[2rem] p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-300">
+            <div className="h-full rounded-[1.6rem] border border-emerald-300/12 bg-white/[0.04] p-6">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-emerald-300">
                 Who This Is For
               </p>
-              <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-300">
+              <ul className="mt-5 space-y-3 text-sm leading-7 text-white/68">
                 {fitItems.map((item) => (
                   <li key={item} className="flex gap-3">
-                    <span className="mt-1 text-sky-300">•</span>
+                    <span className="mt-1 text-emerald-300">•</span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -317,20 +276,20 @@ export default function WorkWithMePage() {
           </Reveal>
 
           <Reveal variant="right" delay={100}>
-            <div className="story-card motion-card motion-panel rounded-[2rem] p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-300">
+            <div className="h-full rounded-[1.6rem] border border-emerald-300/12 bg-white/[0.04] p-6">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-emerald-300">
                 How We Start
               </p>
-              <ol className="mt-4 space-y-4">
+              <ol className="mt-5 space-y-4">
                 {processSteps.map((step, index) => (
                   <li
                     key={step}
-                    className="process-card rounded-2xl p-4 pl-7"
+                    className="rounded-[1.2rem] border border-emerald-300/10 bg-slate-950/42 p-4"
                   >
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/38">
                       Step {index + 1}
                     </p>
-                    <p className="mt-2 text-sm leading-6 text-slate-300">
+                    <p className="mt-2 text-sm leading-7 text-white/68">
                       {step}
                     </p>
                   </li>
@@ -341,12 +300,12 @@ export default function WorkWithMePage() {
         </div>
 
         <Reveal delay={140} variant="scale">
-          <div className="editorial-panel motion-card motion-panel flex flex-col gap-4 rounded-[2rem] p-6 md:flex-row md:items-center md:justify-between">
+          <div className="mt-14 flex flex-col gap-4 rounded-[1.8rem] border border-emerald-300/14 bg-emerald-300/[0.06] p-6 md:flex-row md:items-center md:justify-between">
             <div className="max-w-3xl space-y-2">
-              <p className="text-lg font-semibold text-slate-50">
+              <p className="text-lg font-black text-white">
                 Ready to talk about the right kind of support?
               </p>
-              <p className="text-sm leading-6 text-slate-300">
+              <p className="text-sm leading-7 text-white/68">
                 Use the inquiry form or booking page and tell me about your
                 business, team, campaign goals, or hiring needs before we
                 schedule anything.
@@ -356,13 +315,13 @@ export default function WorkWithMePage() {
             <div className="flex flex-wrap gap-3">
               <Link
                 href="#work-inquiry-form"
-                className="motion-button rounded-full bg-sky-500 px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-sky-400"
+                className="rounded-full bg-emerald-300 px-5 py-3 text-sm font-black text-[#050914] transition hover:bg-emerald-200"
               >
                 Send a Work Inquiry
               </Link>
               <Link
                 href="/book-call"
-                className="motion-button rounded-full border border-slate-700 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:border-sky-400 hover:text-sky-200"
+                className="rounded-full border border-emerald-300/24 bg-slate-950/40 px-5 py-3 text-sm font-black text-emerald-100 transition hover:border-emerald-300/50"
               >
                 Go to Booking Page
               </Link>
@@ -370,7 +329,6 @@ export default function WorkWithMePage() {
           </div>
         </Reveal>
       </section>
-      </main>
-    </>
+    </main>
   );
 }

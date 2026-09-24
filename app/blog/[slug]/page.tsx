@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import PortfolioBlogHeader from "@/app/components/PortfolioBlogHeader";
+import PortfolioSiteHeader from "@/app/components/PortfolioSiteHeader";
 import Reveal from "@/app/components/Reveal";
 import { blogPosts, getBlogPost } from "@/lib/blog-posts";
 import { absoluteUrl, siteConfig, toJsonLd } from "@/lib/seo";
@@ -99,7 +99,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_16%_8%,rgba(80,245,170,0.22),transparent_34%),radial-gradient(circle_at_82%_4%,rgba(45,212,191,0.12),transparent_32%),linear-gradient(180deg,#050914_0%,#07111d_44%,#050914_100%)]" />
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(rgba(80,245,170,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(80,245,170,0.035)_1px,transparent_1px)] bg-[size:5rem_5rem] opacity-70" />
 
-      <PortfolioBlogHeader />
+      <PortfolioSiteHeader />
 
       <article className="mx-auto max-w-6xl px-5 py-14 md:py-20">
         <div className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr]">

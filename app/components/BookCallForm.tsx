@@ -186,7 +186,7 @@ export default function BookCallForm({
           onClick={() => markBookingIntent()}
           target="_blank"
           rel="noreferrer"
-          className="motion-button mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-sky-500 px-5 py-3.5 text-sm font-semibold text-slate-900 transition hover:bg-sky-400"
+          className="motion-button mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-300 px-5 py-3.5 text-sm font-black text-[#050914] transition hover:bg-emerald-200"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -218,12 +218,12 @@ export default function BookCallForm({
     <form
       id={formId}
       onSubmit={handleSubmit}
-      className="form-surface motion-card motion-panel rounded-[2rem] border border-sky-400/15 bg-[linear-gradient(180deg,rgba(15,23,42,0.96),rgba(2,6,23,0.96))] shadow-[0_25px_100px_rgba(2,6,23,0.55)]"
+      className="form-surface motion-card motion-panel rounded-[2rem] border border-emerald-300/14 bg-[linear-gradient(180deg,rgba(15,23,42,0.96),rgba(2,6,23,0.96))] shadow-[0_25px_100px_rgba(2,6,23,0.55)]"
     >
-      <div className="rounded-2xl border border-sky-400/20 bg-sky-400/[0.08] p-4">
+      <div className="rounded-2xl border border-emerald-300/18 bg-emerald-300/[0.08] p-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-sky-200">
+            <p className="text-[11px] font-bold uppercase tracking-[0.24em] text-emerald-300">
               Start Here
             </p>
             <p className="mt-1 text-sm font-semibold text-slate-50">
@@ -231,7 +231,7 @@ export default function BookCallForm({
             </p>
           </div>
 
-          <span className="rounded-full border border-sky-300/20 bg-slate-950/60 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-200">
+          <span className="rounded-full border border-emerald-300/18 bg-slate-950/60 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-200">
             Fast intake
           </span>
         </div>
@@ -340,7 +340,7 @@ export default function BookCallForm({
 
       <div className="mt-5 rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
         <div className="flex flex-wrap items-center gap-3 text-xs text-slate-300">
-          <span className="rounded-full border border-slate-700 bg-slate-900/80 px-2.5 py-1 font-semibold uppercase tracking-[0.16em] text-sky-200">
+          <span className="rounded-full border border-emerald-300/18 bg-slate-900/80 px-2.5 py-1 font-bold uppercase tracking-[0.16em] text-emerald-200">
             {nextStepLabel}
           </span>
           <span>{nextStepText}</span>
@@ -352,8 +352,8 @@ export default function BookCallForm({
         disabled={isDisabled}
         className={`motion-button relative z-10 mt-6 inline-flex w-full justify-center rounded-full px-5 py-3.5 text-sm font-semibold transition ${
           isDisabled
-            ? "cursor-not-allowed bg-sky-500/40 text-slate-700"
-            : "bg-sky-500 text-slate-900 hover:bg-sky-400"
+            ? "cursor-not-allowed bg-emerald-300/35 text-slate-700"
+            : "bg-emerald-300 text-[#050914] hover:bg-emerald-200"
         }`}
       >
         {status === "submitting" ? "Sending..." : submitLabel}
