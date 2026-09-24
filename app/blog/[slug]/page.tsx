@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import PortfolioBlogHeader from "@/app/components/PortfolioBlogHeader";
 import Reveal from "@/app/components/Reveal";
 import { blogPosts, getBlogPost } from "@/lib/blog-posts";
 import { absoluteUrl, siteConfig, toJsonLd } from "@/lib/seo";
@@ -90,45 +91,46 @@ export default async function BlogPostPage({ params }: PageProps) {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-50">
+    <main className="relative isolate min-h-screen overflow-hidden bg-[#050914] text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: toJsonLd(articleSchema) }}
       />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_16%_8%,rgba(80,245,170,0.22),transparent_34%),radial-gradient(circle_at_82%_4%,rgba(45,212,191,0.12),transparent_32%),linear-gradient(180deg,#050914_0%,#07111d_44%,#050914_100%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(rgba(80,245,170,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(80,245,170,0.035)_1px,transparent_1px)] bg-[size:5rem_5rem] opacity-70" />
 
-      <div className="site-bg-grid" />
-      <div className="site-orb site-orb--cyan" />
-      <div className="site-orb site-orb--violet" />
+      <PortfolioBlogHeader />
 
-      <article className="page-shell max-w-5xl">
-        <div className="section-intro gap-6">
-          <Reveal className="editorial-panel hero-panel space-y-5">
+      <article className="mx-auto max-w-6xl px-5 py-14 md:py-20">
+        <div className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr]">
+          <Reveal className="relative overflow-hidden rounded-[2rem] border border-emerald-300/12 bg-white/[0.045] p-6 shadow-[0_30px_120px_rgba(0,0,0,0.35)] backdrop-blur md:p-8">
+            <div className="absolute right-0 top-0 h-full w-1/3 bg-emerald-300/[0.035]" />
             <Link
               href="/blog"
-              className="motion-button inline-flex w-fit rounded-full border border-slate-700 px-3 py-1 text-xs text-slate-300 transition hover:border-sky-400 hover:text-sky-300"
+              className="relative inline-flex w-fit rounded-full border border-emerald-300/18 bg-emerald-300/[0.08] px-3 py-1 text-xs font-semibold text-emerald-100 transition hover:border-emerald-300/45 hover:text-emerald-50"
             >
               Back to Blog
             </Link>
 
-            <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.22em] text-sky-300">
+            <div className="relative mt-8 flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-emerald-300">
               <span>{post.category}</span>
-              <span className="text-slate-500">{post.readTime}</span>
-              <span className="text-slate-500">{post.publishedAt}</span>
+              <span className="text-white/38">{post.readTime}</span>
+              <span className="text-white/38">{post.publishedAt}</span>
             </div>
 
-            <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
+            <h1 className="relative mt-5 max-w-4xl text-4xl font-black leading-[0.98] md:text-6xl">
               {post.title}
             </h1>
 
-            <p className="max-w-3xl text-sm leading-7 text-slate-300 md:text-base">
+            <p className="relative mt-5 max-w-3xl text-base leading-8 text-white/68">
               {post.description}
             </p>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="relative mt-6 flex flex-wrap gap-2">
               {post.seoPhrases.map((phrase) => (
                 <span
                   key={phrase}
-                  className="rounded-full border border-slate-700 bg-slate-900/70 px-3 py-1 text-xs text-slate-300"
+                  className="rounded-full border border-emerald-300/16 bg-emerald-300/[0.08] px-3 py-1 text-xs font-semibold text-emerald-100"
                 >
                   {phrase}
                 </span>
@@ -136,35 +138,39 @@ export default async function BlogPostPage({ params }: PageProps) {
             </div>
           </Reveal>
 
-          <Reveal className="section-note space-y-4" delay={120} variant="right">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-300">
+          <Reveal
+            className="rounded-[1.6rem] border border-emerald-300/14 bg-slate-900/62 p-6 shadow-[0_24px_90px_rgba(0,0,0,0.28)] backdrop-blur"
+            delay={120}
+            variant="right"
+          >
+            <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-emerald-300">
               Reading Lens
             </p>
-            <div className="space-y-3 text-sm leading-6 text-slate-300">
+            <div className="mt-6 space-y-4 text-sm leading-7 text-white/68">
               <p>This article is written for teams that need practical clarity.</p>
               <p>Use the section list to jump straight to the most useful part.</p>
             </div>
           </Reveal>
         </div>
 
-        <div className="section-shell grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <Reveal delay={100} variant="scale">
-            <div className="story-card motion-card motion-panel rounded-3xl p-6 text-base leading-8 text-slate-200">
+            <div className="rounded-[1.6rem] border border-emerald-300/12 bg-white/[0.04] p-6 text-base leading-8 text-white/74">
               {post.intro}
             </div>
           </Reveal>
 
           <Reveal delay={140} variant="right">
-            <aside className="story-card motion-card motion-panel rounded-3xl p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-300">
+            <aside className="rounded-[1.6rem] border border-emerald-300/12 bg-white/[0.04] p-6">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-emerald-300">
                 In This Article
               </p>
-              <ul className="mt-4 space-y-3 text-sm text-slate-300">
+              <ul className="mt-5 space-y-3 text-sm text-white/68">
                 {post.sections.map((section) => (
                   <li key={section.title}>
                     <a
                       href={`#${toSectionId(section.title)}`}
-                      className="transition hover:text-sky-200"
+                      className="transition hover:text-emerald-200"
                     >
                       {section.title}
                     </a>
@@ -175,28 +181,28 @@ export default async function BlogPostPage({ params }: PageProps) {
           </Reveal>
         </div>
 
-        <div className="section-shell space-y-8">
+        <div className="mt-12 space-y-7">
           {post.sections.map((section, index) => (
             <Reveal key={section.title} delay={index * 110 + 80} variant="up">
               <section
                 id={toSectionId(section.title)}
-                className="story-card motion-card motion-panel scroll-mt-28 rounded-3xl p-6"
+                className="scroll-mt-28 rounded-[1.6rem] border border-emerald-300/12 bg-white/[0.04] p-6"
               >
-                <h2 className="text-2xl font-semibold text-slate-50">
+                <h2 className="text-2xl font-black text-white">
                   {section.title}
                 </h2>
 
-                <div className="mt-4 space-y-4 text-sm leading-7 text-slate-300 md:text-base">
+                <div className="mt-5 space-y-4 text-sm leading-8 text-white/68 md:text-base">
                   {section.paragraphs.map((paragraph, i) => (
                     <p key={i}>{paragraph}</p>
                   ))}
                 </div>
 
                 {section.bullets && (
-                  <ul className="mt-5 space-y-2 text-sm text-slate-300">
+                  <ul className="mt-6 space-y-3 text-sm leading-7 text-white/68">
                     {section.bullets.map((bullet, i) => (
                       <li key={i} className="flex gap-3">
-                        <span className="mt-1 text-sky-300">•</span>
+                        <span className="mt-1 text-emerald-300">•</span>
                         <span>{bullet}</span>
                       </li>
                     ))}
@@ -208,23 +214,23 @@ export default async function BlogPostPage({ params }: PageProps) {
         </div>
 
         <Reveal delay={120} variant="scale">
-          <div className="editorial-panel motion-card motion-panel rounded-3xl p-6">
-            <p className="text-sm font-semibold text-slate-50">
+          <div className="mt-12 rounded-[1.8rem] border border-emerald-300/14 bg-emerald-300/[0.06] p-6">
+            <p className="text-sm font-black text-white">
               Need practical support after reading this?
             </p>
-            <p className="mt-2 text-sm leading-6 text-slate-300">
+            <p className="mt-3 text-sm leading-7 text-white/68">
               I help with consulting, media planning, paid media audits, team
               training, and freelance media buying for Thailand, Myanmar, and
               Southeast Asia growth.
             </p>
 
             {post.relatedLinks && (
-              <div className="mt-5 grid gap-3 sm:grid-cols-3">
+              <div className="mt-6 grid gap-3 sm:grid-cols-3">
                 {post.relatedLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="motion-button rounded-2xl border border-slate-700 bg-slate-950/60 px-4 py-3 text-xs font-semibold text-sky-200 transition hover:border-sky-400 hover:text-sky-100"
+                    className="rounded-[1.1rem] border border-emerald-300/14 bg-slate-950/46 px-4 py-3 text-xs font-black text-emerald-100 transition hover:border-emerald-300/45 hover:bg-emerald-300/[0.08]"
                   >
                     {link.label}
                   </Link>
@@ -234,7 +240,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
             <Link
               href="/work-with-me"
-              className="motion-button mt-5 inline-flex rounded-full bg-sky-500 px-4 py-2 text-xs font-semibold text-slate-900 transition hover:bg-sky-400"
+              className="mt-6 inline-flex rounded-full bg-emerald-300 px-5 py-3 text-sm font-black text-[#050914] transition hover:bg-emerald-200"
             >
               Contact Me
             </Link>

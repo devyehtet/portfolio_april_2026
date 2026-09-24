@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import PortfolioBlogHeader from "@/app/components/PortfolioBlogHeader";
 import Reveal from "@/app/components/Reveal";
 import { blogPreviews } from "@/lib/blog-preview";
 import { absoluteUrl, seoKeywords, siteConfig, toJsonLd } from "@/lib/seo";
@@ -52,33 +53,38 @@ export default function BlogIndexPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-50">
+    <main className="relative isolate min-h-screen overflow-hidden bg-[#050914] text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: toJsonLd(collectionSchema) }}
       />
-      <div className="site-bg-grid" />
-      <div className="site-orb site-orb--cyan" />
-      <div className="site-orb site-orb--violet" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_12%,rgba(80,245,170,0.22),transparent_34%),radial-gradient(circle_at_78%_4%,rgba(45,212,191,0.12),transparent_32%),linear-gradient(180deg,#050914_0%,#07111d_46%,#050914_100%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(rgba(80,245,170,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(80,245,170,0.035)_1px,transparent_1px)] bg-[size:5rem_5rem] opacity-70" />
 
-      <section className="page-shell">
-        <div className="section-intro gap-6">
-          <Reveal className="editorial-panel hero-panel space-y-5">
+      <PortfolioBlogHeader />
+
+      <section className="mx-auto max-w-7xl px-5 py-14 md:py-20">
+        <div className="grid gap-6 lg:grid-cols-[1.55fr_0.95fr]">
+          <Reveal className="relative overflow-hidden rounded-[2rem] border border-emerald-300/12 bg-white/[0.045] p-6 shadow-[0_30px_120px_rgba(0,0,0,0.35)] backdrop-blur md:p-8">
+            <div className="absolute right-0 top-0 h-full w-1/3 bg-emerald-300/[0.035]" />
             <Link
               href="/"
-              className="motion-button inline-flex rounded-full border border-slate-700 px-3 py-1 text-xs text-slate-300 transition hover:border-sky-400 hover:text-sky-300"
+              className="relative inline-flex rounded-full border border-emerald-300/18 bg-emerald-300/[0.08] px-3 py-1 text-xs font-semibold text-emerald-100 transition hover:border-emerald-300/45 hover:text-emerald-50"
             >
               Back to Home
             </Link>
 
-            <div className="space-y-4">
-              <p className="section-kicker text-xs uppercase tracking-[0.28em] text-sky-300">
+            <div className="relative mt-8 space-y-5">
+              <p className="text-xs font-bold uppercase tracking-[0.32em] text-emerald-300">
                 Blog & Insights
               </p>
-              <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
-                Digital marketing insights for Thailand, Myanmar, and SEA
+              <h1 className="max-w-4xl text-4xl font-black leading-[0.98] md:text-6xl">
+                Digital marketing insights for{" "}
+                <span className="text-emerald-300">
+                  Thailand, Myanmar, and SEA
+                </span>
               </h1>
-              <p className="max-w-2xl text-sm text-slate-300 md:text-base">
+              <p className="max-w-3xl text-base leading-8 text-white/68">
                 I write about SEO, paid media, digital strategy, team training,
                 and freelance campaign execution for businesses that want
                 clearer growth systems across Thailand, Myanmar, and Southeast
@@ -87,18 +93,25 @@ export default function BlogIndexPage() {
             </div>
           </Reveal>
 
-          <Reveal className="section-note space-y-4" delay={100} variant="right">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-300">
+          <Reveal
+            className="rounded-[1.6rem] border border-emerald-300/14 bg-slate-900/62 p-6 shadow-[0_24px_90px_rgba(0,0,0,0.28)] backdrop-blur"
+            delay={100}
+            variant="right"
+          >
+            <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-emerald-300">
               What You&apos;ll Find
             </p>
-            <div className="space-y-3 text-sm leading-6 text-slate-300">
+            <div className="mt-6 space-y-4 text-sm leading-7 text-white/68">
               <p>SEO thinking, paid-media systems, and practical growth notes.</p>
               <p>Written for teams, founders, and brands that need clarity.</p>
             </div>
-            <div className="grid gap-3 sm:grid-cols-3 md:grid-cols-1">
+            <div className="mt-6 grid gap-3">
               {["Strategy", "Training", "Execution"].map((item) => (
-                <div key={item} className="metric-card">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">
+                <div
+                  key={item}
+                  className="rounded-full border border-emerald-300/12 bg-white/[0.035] px-5 py-4"
+                >
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/74">
                     {item}
                   </p>
                 </div>
@@ -107,62 +120,66 @@ export default function BlogIndexPage() {
           </Reveal>
         </div>
 
-        <div className="section-shell grid gap-4 md:grid-cols-3">
-          {[
-            {
-              title: "Trainer",
-              body: "Workshops and practical learning for teams that need better execution, clearer reporting, and stronger campaign thinking.",
-            },
-            {
-              title: "Consultant",
-              body: "Strategy support for brands that need sharper positioning, channel planning, and conversion-focused decision making.",
-            },
-            {
-              title: "Freelance Media Buyer",
-              body: "Hands-on paid media execution across Meta and Google Ads with testing, optimization, and budget discipline.",
-            },
-          ].map((item, index) => (
-            <Reveal key={item.title} delay={index * 100} variant="up">
-              <div className="story-card motion-card motion-panel rounded-2xl p-5">
-                <p className="text-sm font-semibold text-slate-100">{item.title}</p>
-                <p className="mt-2 text-xs leading-6 text-slate-400">{item.body}</p>
-              </div>
-            </Reveal>
-          ))}
+        <div className="mt-12 rounded-[1.8rem] border border-emerald-300/12 bg-white/[0.04] p-5 md:p-6">
+          <div className="grid gap-4 md:grid-cols-3">
+            {[
+              {
+                title: "Trainer",
+                body: "Workshops and practical learning for teams that need better execution, clearer reporting, and stronger campaign thinking.",
+              },
+              {
+                title: "Consultant",
+                body: "Strategy support for brands that need sharper positioning, channel planning, and conversion-focused decision making.",
+              },
+              {
+                title: "Freelance Media Buyer",
+                body: "Hands-on paid media execution across Meta and Google Ads with testing, optimization, and budget discipline.",
+              },
+            ].map((item, index) => (
+              <Reveal key={item.title} delay={index * 100} variant="up">
+                <div className="h-full rounded-[1.35rem] border border-emerald-300/10 bg-slate-950/42 p-5">
+                  <p className="text-sm font-black text-white">{item.title}</p>
+                  <p className="mt-3 text-sm leading-7 text-white/56">
+                    {item.body}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
 
         <Reveal delay={80} variant="scale">
-          <article className="editorial-panel motion-card motion-panel grid gap-6 rounded-[2rem] p-6 md:grid-cols-[1.2fr_0.8fr] md:p-8">
-            <div className="space-y-4">
-              <div className="flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-[0.18em] text-sky-300">
+          <article className="mt-14 grid gap-6 overflow-hidden rounded-[2rem] border border-emerald-300/14 bg-white/[0.045] p-6 shadow-[0_30px_100px_rgba(0,0,0,0.32)] md:grid-cols-[1.15fr_0.85fr] md:p-8">
+            <div className="space-y-5">
+              <div className="flex flex-wrap items-center gap-3 text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-300">
                 <span>Featured Insight</span>
-                <span className="rounded-full border border-sky-500/30 px-2 py-1 text-slate-200">
+                <span className="rounded-full border border-emerald-300/22 bg-emerald-300/[0.08] px-3 py-1 text-emerald-100">
                   {featuredPost.category}
                 </span>
-                <span className="text-slate-500">{featuredPost.readTime}</span>
+                <span className="text-white/38">{featuredPost.readTime}</span>
               </div>
 
-              <h2 className="max-w-3xl text-2xl font-semibold leading-tight text-slate-50 md:text-3xl">
+              <h2 className="max-w-3xl text-2xl font-black leading-tight text-white md:text-4xl">
                 {featuredPost.title}
               </h2>
 
-              <p className="max-w-3xl text-sm leading-7 text-slate-300 md:text-base">
+              <p className="max-w-3xl text-sm leading-7 text-white/68 md:text-base">
                 {featuredPost.description}
               </p>
 
-              <div className="flex flex-wrap gap-3 text-xs text-slate-400">
+              <div className="flex flex-wrap gap-3 text-xs text-white/45">
                 <span>{featuredPost.roleFocus}</span>
                 <span>{featuredPost.publishedAt}</span>
               </div>
             </div>
 
-            <div className="section-note flex flex-col justify-between gap-4 rounded-[1.5rem] p-5">
-              <p className="text-sm leading-7 text-slate-300">
+            <div className="flex flex-col justify-between gap-6 rounded-[1.5rem] border border-emerald-300/12 bg-slate-950/44 p-5">
+              <p className="text-sm leading-7 text-white/68">
                 {featuredPost.excerpt}
               </p>
               <Link
                 href={`/blog/${featuredPost.slug}`}
-                className="motion-button inline-flex w-fit rounded-full bg-sky-500 px-4 py-2 text-xs font-semibold text-slate-900 transition hover:bg-sky-400"
+                className="inline-flex w-fit rounded-full bg-emerald-300 px-5 py-3 text-sm font-black text-[#050914] transition hover:bg-emerald-200"
               >
                 Read Featured Article
               </Link>
@@ -170,31 +187,31 @@ export default function BlogIndexPage() {
           </article>
         </Reveal>
 
-        <div className="section-shell grid gap-5 md:grid-cols-2">
+        <div className="mt-14 grid gap-5 md:grid-cols-2">
           {otherPosts.map((post, index) => (
             <Reveal key={post.slug} delay={index * 110 + 120} variant="scale">
-              <article className="story-card motion-card motion-panel group flex h-full flex-col rounded-3xl p-6 transition hover:border-sky-500/60 hover:bg-slate-900/80">
-                <div className="flex items-center justify-between gap-4 text-[11px] uppercase tracking-[0.18em] text-sky-300">
+              <article className="group flex h-full flex-col rounded-[1.6rem] border border-emerald-300/12 bg-white/[0.04] p-6 transition hover:border-emerald-300/42 hover:bg-emerald-300/[0.07]">
+                <div className="flex items-center justify-between gap-4 text-[11px] font-bold uppercase tracking-[0.2em] text-emerald-300">
                   <span>{post.category}</span>
-                  <span className="text-slate-500">{post.readTime}</span>
+                  <span className="text-white/38">{post.readTime}</span>
                 </div>
 
-                <h2 className="mt-4 text-xl font-semibold leading-snug text-slate-50">
+                <h2 className="mt-5 text-xl font-black leading-snug text-white">
                   {post.title}
                 </h2>
 
-                <p className="mt-3 text-sm leading-6 text-slate-300">
+                <p className="mt-4 text-sm leading-7 text-white/64">
                   {post.excerpt}
                 </p>
 
-                <div className="mt-5 flex items-center justify-between text-xs text-slate-400">
+                <div className="mt-6 flex items-center justify-between text-xs text-white/42">
                   <span>{post.roleFocus}</span>
                   <span>{post.publishedAt}</span>
                 </div>
 
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="motion-button mt-6 inline-flex w-fit rounded-full border border-sky-500/50 px-4 py-2 text-xs font-semibold text-sky-300 transition group-hover:border-sky-400 group-hover:text-sky-200"
+                  className="mt-7 inline-flex w-fit rounded-full border border-emerald-300/35 px-4 py-2 text-xs font-black text-emerald-200 transition group-hover:border-emerald-300 group-hover:text-emerald-100"
                 >
                   Read article
                 </Link>
@@ -204,16 +221,16 @@ export default function BlogIndexPage() {
         </div>
 
         <Reveal delay={120} variant="up">
-          <div className="section-shell rounded-3xl p-6 text-sm text-slate-300">
-          Looking for a trainer, consultant, or freelance digital media buyer
-          for Thailand, Myanmar, or Southeast Asia growth?{" "}
-          <Link
-            href="/#contact"
-            className="motion-button rounded-full px-1 text-sky-300 hover:text-sky-200"
-          >
-            Let&apos;s talk
-          </Link>
-          .
+          <div className="mt-14 rounded-[1.6rem] border border-emerald-300/12 bg-emerald-300/[0.06] p-6 text-sm leading-7 text-white/70">
+            Looking for a trainer, consultant, or freelance digital media buyer
+            for Thailand, Myanmar, or Southeast Asia growth?{" "}
+            <Link
+              href="/work-with-me"
+              className="font-black text-emerald-200 hover:text-emerald-100"
+            >
+              Let&apos;s talk
+            </Link>
+            .
           </div>
         </Reveal>
       </section>
