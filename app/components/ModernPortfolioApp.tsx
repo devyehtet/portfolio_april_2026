@@ -162,6 +162,39 @@ const services: Service[] = [
   },
 ];
 
+const resourceLinks = [
+  {
+    href: "/digital-marketing-consultant-thailand-myanmar-sea",
+    label: "Digital marketing consultant for Thailand, Myanmar and SEA",
+    body: "Regional consulting page for SEO, PPC, media buying, training, and performance strategy.",
+  },
+  {
+    href: "/digital-media-planning-consultant-bangkok",
+    label: "Digital media planning consultant in Bangkok",
+    body: "Campaign briefs, channel roles, budget allocation, launch QA, and reporting setup.",
+  },
+  {
+    href: "/digital-media-buying-consultant-thailand-sea",
+    label: "Digital media buying consultant for Thailand and SEA",
+    body: "Meta Ads, Google Ads, tracking, campaign audits, testing, and budget optimization.",
+  },
+  {
+    href: "/myanmar-digital-marketing-consultant",
+    label: "Myanmar digital marketing consultant",
+    body: "Myanmar-focused digital strategy, paid media, SEO planning, training, and reporting.",
+  },
+  {
+    href: "/media-planning-buying-toolkit",
+    label: "Media planning and buying toolkit",
+    body: "A structured planning workflow for founders, marketers, freelancers, and small teams.",
+  },
+  {
+    href: "/blog",
+    label: "Digital marketing blog and practical guides",
+    body: "Articles on media planning, buying audits, toolkit usage, and regional growth decisions.",
+  },
+];
+
 const workItems: WorkItem[] = [
   {
     category: "Education - Meta + Google",
@@ -836,6 +869,49 @@ function ServicesSection() {
             </div>
           </div>
         ))}
+      </div>
+    </section>
+  );
+}
+
+function RegionalResourcesSection() {
+  return (
+    <section className="mx-auto max-w-7xl px-5 py-20">
+      <div className="rounded-[2.2rem] border border-emerald-300/12 bg-white/[0.035] p-6 md:p-8">
+        <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+          <div>
+            <SectionLabel>Regional Growth Pages</SectionLabel>
+            <h2 className="max-w-3xl text-3xl font-black tracking-[-0.035em] md:text-5xl">
+              Focused pages for Bangkok, Thailand, Myanmar and SEA marketing
+              support.
+            </h2>
+            <p className="mt-5 leading-8 text-white/58">
+              Use these pages to find the right path for consulting, planning,
+              media buying, training, toolkit purchase, or practical marketing
+              guides.
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {resourceLinks.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="group rounded-[1.5rem] border border-emerald-300/10 bg-slate-950/38 p-5 transition hover:-translate-y-1 hover:border-emerald-300/35 hover:bg-emerald-300/[0.08]"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <h3 className="text-lg font-black leading-snug text-white">
+                    {item.label}
+                  </h3>
+                  <LuArrowRight className="mt-1 h-5 w-5 shrink-0 text-emerald-300 transition group-hover:translate-x-1" />
+                </div>
+                <p className="mt-3 text-sm leading-7 text-white/58">
+                  {item.body}
+                </p>
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -1602,6 +1678,7 @@ function HomePage() {
       <BrandMarquee />
       <StatsSection />
       <ServicesSection />
+      <RegionalResourcesSection />
       <TemplateSection />
       <WorkSection />
       <SkillsSection />
